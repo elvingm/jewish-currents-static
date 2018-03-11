@@ -7,11 +7,19 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "react-static start",
-    "stage": "react-static build --staging",
     "build": "react-static build",
+    "clean": "rm -rf ./dist",
+    "lint": "prettier --write '**/*.js",
+    "precommit": "lint-staged",
     "serve": "serve dist -p 1111",
-    "clean": "rm -rf ./dist"
+    "start": "react-static start",
+    "stage": "react-static build --staging"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -23,6 +31,10 @@
   },
   "devDependencies": {
     "eslint-config-react-tools": "1.x.x",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1",
+    "prettier-eslint": "^8.8.1",
     "serve": "^6.1.0"
   }
 }

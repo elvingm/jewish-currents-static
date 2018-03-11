@@ -1,38 +1,40 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   getSiteData: () => ({
-    title: 'React Static',
+    title: "Jewish Currents"
   }),
   getRoutes: async () => {
-    const { data: posts } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const { data: posts } = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
     return [
       {
-        path: '/',
-        component: 'src/containers/Home',
+        path: "/",
+        component: "src/containers/Home"
       },
       {
-        path: '/about',
-        component: 'src/containers/About',
+        path: "/about",
+        component: "src/containers/About"
       },
       {
-        path: '/blog',
-        component: 'src/containers/Blog',
+        path: "/blog",
+        component: "src/containers/Blog",
         getData: () => ({
-          posts,
+          posts
         }),
         children: posts.map(post => ({
           path: `/post/${post.id}`,
-          component: 'src/containers/Post',
+          component: "src/containers/Post",
           getData: () => ({
-            post,
-          }),
-        })),
+            post
+          })
+        }))
       },
       {
         is404: true,
-        component: 'src/containers/404',
-      },
-    ]
-  },
-}
+        component: "src/containers/404"
+      }
+    ];
+  }
+};

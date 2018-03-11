@@ -10,7 +10,7 @@
     "build": "react-static build",
     "clean": "rm -rf ./dist",
     "lint": "eslint '**/*.{js,jsx}' --quiet",
-    "format": "prettier-eslint --write '**/*.js'",
+    "format": "prettier --write '**/*.js'",
     "precommit": "lint-staged",
     "serve": "serve dist -p 1111",
     "start": "react-static start",

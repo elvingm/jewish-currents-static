@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["react-tools", "prettier"]
+  extends: ['react-tools', 'prettier']
 };

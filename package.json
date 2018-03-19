@@ -14,7 +14,8 @@
     "precommit": "lint-staged",
     "serve": "serve dist -p 1111",
     "start": "react-static start",
-    "stage": "react-static build --staging"
+    "stage": "react-static build --staging",
+    "migrate": "node scripts/migrate/index.js"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -31,6 +32,7 @@
     "react-static": "^5.5.14"
   },
   "devDependencies": {
+    "datocms-client": "^0.3.44",
     "eslint": "^4.18.2",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-tools": "1.x.x",

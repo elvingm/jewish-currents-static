@@ -11,13 +11,13 @@ export default {
     return [
       {
         path: '/',
-        component: 'src/containers/Home',
+        component: 'src/App/containers/Home',
         getData: () => ({
           posts
         }),
         children: posts.map(post => ({
           path: `/${post.slug}`,
-          component: 'src/containers/Post',
+          component: 'src/App/containers/Post',
           getData: () => ({
             post
           })
@@ -25,11 +25,11 @@ export default {
       },
       {
         path: '/about',
-        component: 'src/containers/About'
+        component: 'src/App/containers/About'
       },
       {
         is404: true,
-        component: 'src/containers/404'
+        component: 'src/App/containers/404'
       }
     ];
   },
@@ -38,7 +38,7 @@ export default {
       {
         oneOf: [
           {
-            test: /\.sss$/, // support .sss files via postcss-loader
+            test: /\.css$/, // support .sss files via postcss-loader
             use:
               stage === 'dev'
                 ? [

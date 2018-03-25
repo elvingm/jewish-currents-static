@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-static';
 //
-import './index.css';
+import './style.css';
 import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
 import FacebookLogo from '../../assets/img/logos/facebook.svg';
 import TwitterLogo from '../../assets/img/logos/twitter.svg';

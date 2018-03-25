@@ -1,19 +1,24 @@
 import React from 'react';
-import { Link, withRouteData } from 'react-static';
+import { Head, Link, withRouteData } from 'react-static';
 //
 import Post from '../../components/Post';
+import Newsletter from '../../components/Newsletter';
 import arrowIcon from '../../assets/img/icons/arrow.svg';
-import './index.css';
+import './style.css';
 
-export default withRouteData(({ posts }) => (
+export default withRouteData(({ title, description, posts }) => (
   <div id="home">
+    <Head>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </Head>
     <section className="featured-post">
       <Post {...posts[0]} />
     </section>
     <section className="post-row">
       {posts.slice(1, 4).map(p => <Post {...p} stackedLayout />)}
     </section>
-    <section className="shop-now-banner">
+    <section className="shop-now-ad">
       <div className="g-border-wrap">
         <img src="http://placehold.it/1360x400" alt="Shop Now" />
       </div>
@@ -24,7 +29,7 @@ export default withRouteData(({ posts }) => (
         </a>
       </div>
     </section>
-    <section className="newsletter">
+    <section className="subscription-callout">
       <div className="text">
         <h2>Subscribe</h2>
         <h4>New subscribers SAVE $12 off the annual subscription price and get a FREE book!</h4>
@@ -36,7 +41,7 @@ export default withRouteData(({ posts }) => (
     <section className="post-row split">
       {posts.slice(4, 6).map(p => <Post {...p} stackedLayout />)}
     </section>
-    <section className="more-articles">
+    <section className="more-articles-link">
       <h2>
         <Link to="/category/articles">
           <span>More Articles</span>
@@ -44,5 +49,6 @@ export default withRouteData(({ posts }) => (
         </Link>
       </h2>
     </section>
+    <Newsletter />
   </div>
 ));

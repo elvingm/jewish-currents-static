@@ -114,6 +114,13 @@ a {
   text-decoration: underline;
 }
 
+.g-button-filled {
+  color: var(--white);
+  background-color: var(--black);
+  font-size: 18px;
+  letter-spacing: -1.01px;
+}
+
 .g-underline-link {
   font-weight: normal;
   text-decoration: underline;

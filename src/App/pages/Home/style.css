@@ -71,7 +71,7 @@
     }
   }
 
-  & .shop-now-banner {
+  & .shop-now-ad {
     position: relative;
     border-bottom: 0;
 
@@ -90,7 +90,7 @@
     }
   }
 
-  & .newsletter {
+  & .subscription-callout {
     text-align: center;
     padding-bottom: 70px;
 
@@ -116,7 +116,7 @@
     }
   }
 
-  & .more-articles {
+  & .more-articles-link {
     text-align: center;
 
     & h2 {
@@ -133,5 +133,9 @@
         top: 3px;
       }
     }
+  }
+
+  & .newsletter-signup {
+    padding: 80px 0;
   }
 }

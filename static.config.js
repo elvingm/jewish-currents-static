@@ -1,10 +1,12 @@
+import React from 'react';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { getPosts, getCategories } from './src/wordpress/fetch';
 
 export default {
   // Global Site Data -
   getSiteData: () => ({
-    title: 'Jewish Currents | A Progressive, Secular Voice'
+    title: 'Jewish | A Progressive, Secular Voice',
+    description: 'A progressive, secular voice.'
   }),
   getRoutes: async () => {
     const posts = await getPosts();
@@ -72,5 +74,34 @@ export default {
       }
     ];
     return config;
-  }
+  },
+  Document: ({ Html, Head, Body, children, siteData }) => (
+    <Html lang="en-US">
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Jewish Currents » Feed"
+          href="http://jewishcurrents.org/feed/"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Jewish Currents » Comments Feed"
+          href="http://jewishcurrents.org/comments/feed/"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Jewish Currents » Articles Category Feed"
+          href="http://jewishcurrents.org/category/articles/feed/"
+        />
+        <title>{siteData.title}</title>
+        <meta name="description" content={siteData.description} />
+      </Head>
+      <Body>{children}</Body>
+    </Html>
+  )
 };

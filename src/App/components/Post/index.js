@@ -3,7 +3,7 @@ import { Link } from 'react-static';
 import classNames from 'classnames';
 //
 import { MONTH_NAMES } from '../../util/date';
-import './index.css';
+import './style.css';
 
 export default props => {
   const date = new Date(props.date);

@@ -9,10 +9,11 @@ export default props => {
   return (
     <div className="featured-post">
       <div className="image">
-        <img src="http://placehold.it/770x488" />
+        <img src="http://placehold.it/770x488" alt="Featured" />
       </div>
       <div className="details">
-        <h2 dangerouslySetInnerHTML={{ __html: props.titile }} />
+        <h3 className="label">Featured Article</h3>
+        <h2 className="title" dangerouslySetInnerHTML={{ __html: props.title }} />
         <p>
           <span className="date">{`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`}</span>
           <span className="author">Author Name</span>

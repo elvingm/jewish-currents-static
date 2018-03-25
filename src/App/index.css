@@ -1,27 +1,92 @@
+@font-face {
+  font-family: 'Moderat';
+  font-path: '/assets/font/moderat/regular';
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Moderat';
+  font-path: '/assets/font/moderat/regular-italic';
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Moderat';
+  font-path: '/assets/font/moderat/bold';
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Moderat';
+  font-path: '/assets/font/moderat/bold-italic';
+  font-weight: bold;
+  font-style: italic;
+}
+
 :root {
   --white: #FFF;
   --black: #000;
   --dandelion: #FFBF00;
 
+  /* block spacing */
+  --s-block-spacing: 20px;
+  --m-block-spacing: 30px;
   --l-block-spacing: 40px;
+
+  /* content */
+  --content-max-width: 1440px;
+
+  /* fonts */
+  --font-stack: 'Moderat', Helvetica, Arial, system-ui;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
-    'Lucida Grande', sans-serif;
+  font-family: var(--font-stack);
   font-weight: 300;
   font-size: 62.5%;
   margin: 0;
   padding: 0;
 }
 
+section {
+  padding-bottom: var(--l-block-spacing);
+  border-bottom: 3px solid var(--black);
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
 p {
-  font-size: 2.1em;
+  font-size: 21px;
 }
 
 a {
   text-decoration: none;
   color: var(--black);
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -31,5 +96,12 @@ img {
 }
 
 .content {
-  padding: 1rem;
+  padding: 36px var(--l-block-spacing) 0;
+  margin: 0 auto;
+  max-width: var(--content-max-width);
+}
+
+.g-button {
+  border: 3px solid var(--black);
+  padding: 10px var(--s-block-spacing);
 }

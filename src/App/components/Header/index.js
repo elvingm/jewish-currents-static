@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-static';
 //
 import './index.css';
-import JCLogo from '../../../img/logos/jewishcurrents.svg';
-import FacebookLogo from '../../../img/logos/facebook.svg';
-import TwitterLogo from '../../../img/logos/twitter.svg';
-import InstagramLogo from '../../../img/logos/instagram.svg';
+import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
+import FacebookLogo from '../../assets/img/logos/facebook.svg';
+import TwitterLogo from '../../assets/img/logos/twitter.svg';
+import InstagramLogo from '../../assets/img/logos/instagram.svg';
 
 export default () => (
   <header id="site-header">

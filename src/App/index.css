@@ -15,6 +15,10 @@ body {
   padding: 0;
 }
 
+p {
+  font-size: 2.1em;
+}
+
 a {
   text-decoration: none;
   color: var(--black);

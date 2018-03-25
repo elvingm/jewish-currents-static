@@ -11,4 +11,8 @@
     flex: 1 1 50%;
     padding-left: var(--l-block-spacing);
   }
-}
+
+  & author {
+    margin-left: 10px;
+  }
+} 

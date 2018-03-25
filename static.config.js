@@ -16,13 +16,15 @@ export default {
         path: '/',
         component: 'src/App/pages/Home',
         getData: async () => ({
+          currentPage: 'home',
           posts,
           categories
         }),
         children: posts.map(post => ({
-          path: `${post.slug}`,
+          path: `/${post.slug}`,
           component: 'src/App/pages/Post',
           getData: async () => ({
+            currentPage: 'post',
             post,
             categories
           })

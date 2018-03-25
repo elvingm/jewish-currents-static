@@ -16,7 +16,7 @@ export default withRouteData(({ title, description, posts }) => (
       <Post {...posts[0]} />
     </section>
     <section className="post-row">
-      {posts.slice(1, 4).map(p => <Post {...p} stackedLayout />)}
+      {posts.slice(1, 4).map(p => <Post {...p} key={p.id} stackedLayout />)}
     </section>
     <section className="shop-now-ad">
       <div className="g-border-wrap">
@@ -39,7 +39,7 @@ export default withRouteData(({ title, description, posts }) => (
       </div>
     </section>
     <section className="post-row split">
-      {posts.slice(4, 6).map(p => <Post {...p} stackedLayout />)}
+      {posts.slice(4, 6).map(p => <Post {...p} key={p.id} stackedLayout />)}
     </section>
     <section className="more-articles-link">
       <h2>

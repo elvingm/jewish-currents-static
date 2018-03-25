@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-static';
+import { Link, withRouteData } from 'react-static';
 //
 import './style.css';
 import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
@@ -7,8 +7,8 @@ import FacebookLogo from '../../assets/img/logos/facebook.svg';
 import TwitterLogo from '../../assets/img/logos/twitter.svg';
 import InstagramLogo from '../../assets/img/logos/instagram.svg';
 
-export default () => (
-  <header id="site-header">
+export default withRouteData(({ currentPage }) => (
+  <header id="site-header" className={`accent-${currentPage}`}>
     <div className="logo-wrap">
       <Link to="/" className="logo">
         <img src={JCLogo} alt="Jewish Currents Text Logo" />
@@ -60,4 +60,4 @@ export default () => (
       </Link>
     </nav>
   </header>
-);
+));

@@ -28,10 +28,14 @@
 
 /* Variables  */
 :root {
+  /* colors  */
   --white: #FFF;
   --black: #000;
-  --dandelion: #FFBF00;
 
+  /* theme colors */
+  --dandelion: #FFBF00;
+  --coral : #FF7F45;
+  
   /* block spacing */
   --s-block-spacing: 20px;
   --m-block-spacing: 30px;

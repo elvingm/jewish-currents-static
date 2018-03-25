@@ -1,5 +1,9 @@
 #home {
 
+  & section {
+    padding-top: var(--l-block-spacing);
+  }
+
   & .g-button {
     &:hover {
       background-color: var(--dandelion);
@@ -8,10 +12,6 @@
 
   & .g-accent {
     color: var(--dandelion);
-  }
-
-  & section {
-    padding-top: var(--l-block-spacing);
   }
 
   & .featured-post {

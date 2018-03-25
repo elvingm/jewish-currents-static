@@ -1,41 +1,24 @@
+import axios from 'axios';
 import wp from './config';
 import { transformPost, transformCategory } from './transformer';
 
 export async function getPosts() {
-  const response = await wp
-    .posts()
-    .then(data =>
-      data.map(post => ({
-        ...transformPost(post)
-      }))
-    )
-    .catch(err => {
-      console.log(err);
-    });
-
-  return response;
+  const posts = await wp.posts();
+  const transformed = await Promise.all(posts.map(transformPost));
+  return transformed;
 }
 
-export async function getPostById(id) {
-  const post = await wp
-    .posts()
-    .id(id)
-    .then(transformPost)
-    .catch(err => {
-      console.log(err);
-    });
-
-  return post;
+export async function getCategories() {
+  const categories = await wp.categories();
+  const transformed = await Promise.all(categories.map(transformCategory));
+  return transformed;
 }
 
-export async function getCategoryById(id) {
-  const category = await wp
-    .categories()
-    .id(id)
-    .then(transformCategory)
-    .catch(err => {
-      console.log(err);
-    });
+export function getCategoryById(id) {
+  return wp.categories().id(id);
+}
 
-  return category;
+export function getPostCategories(post) {
+  const link = post._links['wp:term'].find(term => term.taxonomy === 'category');
+  return axios.get(link.href).then(res => res.data);
 }

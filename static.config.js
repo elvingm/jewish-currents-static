@@ -1,5 +1,5 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import { getPosts } from './src/wordpress/fetch';
+import { getPosts, getCategories } from './src/wordpress/fetch';
 
 export default {
   // Global Site Data -
@@ -8,28 +8,31 @@ export default {
   }),
   getRoutes: async () => {
     const posts = await getPosts();
+    const categories = await getCategories();
     return [
       {
         path: '/',
-        component: 'src/App/containers/Home',
-        getData: () => ({
-          posts
+        component: 'src/App/pages/Home',
+        getData: async () => ({
+          posts,
+          categories
         }),
         children: posts.map(post => ({
-          path: `/${post.slug}`,
-          component: 'src/App/containers/Post',
-          getData: () => ({
-            post
+          path: `${post.slug}`,
+          component: 'src/App/pages/Post',
+          getData: async () => ({
+            post,
+            categories
           })
         }))
       },
       {
         path: '/about',
-        component: 'src/App/containers/About'
+        component: 'src/App/pages/About'
       },
       {
         is404: true,
-        component: 'src/App/containers/404'
+        component: 'src/App/pages/404'
       }
     ];
   },

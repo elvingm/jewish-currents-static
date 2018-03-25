@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-static';
 //
-import './index.css';
-import JCLogo from '../../../img/logos/jewishcurrents.svg';
-import FacebookLogo from '../../../img/logos/facebook.svg';
-import TwitterLogo from '../../../img/logos/twitter.svg';
-import InstagramLogo from '../../../img/logos/instagram.svg';
+import './style.css';
+import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
+import FacebookLogo from '../../assets/img/logos/facebook.svg';
+import TwitterLogo from '../../assets/img/logos/twitter.svg';
+import InstagramLogo from '../../assets/img/logos/instagram.svg';
 
 export default () => (
   <header id="site-header">
@@ -34,16 +34,28 @@ export default () => (
       </div>
     </div>
     <nav>
-      <Link to="/category/article">Article</Link>
-      <Link to="/category/blog">Blog</Link>
-      <Link to="/category/jewdayo">Jewdayo</Link>
-      <Link to="/jcultcha-gallery/multimedia">Gallery</Link>
+      <Link to="/category/article" activeClassName="active">
+        Article
+      </Link>
+      <Link to="/category/blog" activeClassName="active">
+        Blog
+      </Link>
+      <Link to="/category/jewdayo" activeClassName="active">
+        Jewdayo
+      </Link>
+      <Link to="/jcultcha-gallery/multimedia" activeClassName="active">
+        Gallery
+      </Link>
       <a href="http://jewishcurrents.bigcartel.com/" target="_blank" rel="noopener noreferrer">
         Shop
       </a>
-      <Link to="/archives">Archives</Link>
-      <Link to="/subscribe">Subscribe</Link>
-      <Link to="/contact" className="active">
+      <Link to="/archives" activeClassName="active">
+        Archives
+      </Link>
+      <Link to="/subscribe" activeClassName="active">
+        Subscribe
+      </Link>
+      <Link to="/" activeClassName="active">
         Contact
       </Link>
     </nav>

@@ -6,7 +6,7 @@
 
   & .logo-wrap {
     display: flex;
-    padding: var(--l-block-spacing);
+    padding: var(--s-block-spacing) var(--l-block-spacing);
     position: relative;
     
     & .logo {
@@ -22,7 +22,7 @@
 
       & a {
         display: inline-block;
-        margin-left: 5px;
+        margin-left: 10px;
 
         &:first-child {
           margin-left: 0;

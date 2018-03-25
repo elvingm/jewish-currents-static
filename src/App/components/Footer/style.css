@@ -1,0 +1,24 @@
+#site-footer {
+  padding: 34px var(--l-block-spacing);
+
+  & ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+  }
+
+  & li {
+    margin-left: 20px;
+
+    &:first-child {
+      font-size: 18px;
+      font-weight: bold;
+      margin-left: 0
+    }
+  }
+
+  & a {
+    font-weight: normal;
+  }
+}

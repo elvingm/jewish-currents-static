@@ -26,6 +26,7 @@
   font-style: italic;
 }
 
+/* Variables  */
 :root {
   --white: #FFF;
   --black: #000;
@@ -75,8 +76,14 @@ h2 {
   font-size: 35px;
 }
 
-h5 {
+h3 {
+  font-size: 22px;
+}
+
+h4 {
   font-size: 18px;
+  font-weight: normal;
+  letter-spacing: -1.97px;
 }
 
 p {
@@ -90,18 +97,38 @@ a {
   font-weight: bold;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
 .content {
   padding: 36px var(--l-block-spacing) 0;
   margin: 0 auto;
   max-width: var(--content-max-width);
 }
 
+.g-accent {
+  color: var(--black);
+}
+
 .g-button {
   border: 3px solid var(--black);
+  display: inline-block;
   padding: 10px var(--s-block-spacing);
+  text-decoration: underline;
+}
+
+.g-underline-link {
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+.g-bold-link {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.g-border-wrap {
+  border: 3px solid var(--black);
+
+  & img {
+    display: block;
+    max-width: 100%;
+  }
 }

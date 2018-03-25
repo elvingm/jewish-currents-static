@@ -1,0 +1,137 @@
+#home {
+
+  & .g-button {
+    &:hover {
+      background-color: var(--dandelion);
+    }
+  }
+
+  & .g-accent {
+    color: var(--dandelion);
+  }
+
+  & section {
+    padding-top: var(--l-block-spacing);
+  }
+
+  & .featured-post {
+    padding-top: 0;
+  }
+
+  & .post-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+    @media(max-width: 768px) {
+      flex-flow: wrap;
+    }
+
+    &.split {
+      & .g-post {
+        @media(max-width: 768px) {
+          padding: 0;
+        }
+
+        &:first-child {
+          flex: 1 1 100%;
+          max-width: 517px;
+          margin-right: var(--l-block-spacing);
+
+          @media(max-width: 768px) {
+            margin: 0;
+          }
+        }
+
+        &:last-child {
+          border-left: 3px solid var(--black);
+
+          @media(max-width: 768px) {
+            border-left: 0;
+          }
+        }
+      }
+    }
+
+    & .g-post {
+      padding-left: var(--l-block-spacing);
+
+      @media(max-width: 768px) {
+        padding-left: 0;
+        margin-bottom: var(--s-block-spacing);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+
+  & .shop-now-banner {
+    position: relative;
+    border-bottom: 0;
+
+    & .issue-details {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+      width: 33%;
+    }
+
+    & h2 {
+      letter-spacing: -1.97px;
+      line-height: .97;
+      margin-bottom: 10px;
+    }
+  }
+
+  & .newsletter {
+    text-align: center;
+    padding-bottom: 70px;
+
+    & .text {
+      max-width: 754px;
+      margin: 0 auto;
+    }
+
+    & .g-button {
+      display: block;
+      margin: 0 auto;
+      max-width: 200px;
+    }
+
+    & h2 {
+      margin: 0 0 35px;
+    }
+
+    & h4 {
+      font-size: 35px;
+      line-height: 1.29;
+      margin: 0 0 35px;
+    }
+  }
+
+  & .more-articles {
+    text-align: center;
+
+    & h2 {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+
+    & a {
+      font-size: 35px;
+
+      & .g-arrow {
+        margin-left: 10px;
+        position: relative;
+        top: 3px;
+      }
+    }
+  }
+}

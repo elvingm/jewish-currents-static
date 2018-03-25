@@ -1,6 +1,6 @@
 @custom-media --fp-stacked (max-width: 960px);
 
-.featured-post {
+.g-post {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,12 +9,27 @@
     flex-flow: wrap;
   }
 
+  /* Toggle to stacked layout by adding this class */
+  &.stacked {
+    flex-flow: wrap;
+
+    & .image {
+      flex-basis: auto;
+      width: 100%;
+      margin-bottom: var(--s-block-spacing);
+    }
+
+    & .details {
+      margin-left: 0;
+    }
+  }
+
   & .image {
     max-width: 770px;
     flex: 1 1 60%;
 
     @media(--fp-stacked) {
-      width: 100%;
+      flex-basis: auto;
       margin-bottom: var(--s-block-spacing);
     }
   }
@@ -53,8 +68,6 @@
 
   & .label {
     font-size: 22px;
-    font-weight: bold;
-    color: var(--dandelion);
     letter-spacing: -0.38px;
     margin-bottom: 15px;
   }

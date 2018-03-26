@@ -17,10 +17,12 @@ export default props => {
         <h2 className="title" dangerouslySetInnerHTML={{ __html: props.title }} />
         <p>
           <span className="date">{`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`}</span>
-          <span className="author">Author Name</span>
+          <a className="author g-underline-link" href="#">
+            Author Name
+          </a>
         </p>
         <div className="excerpt" dangerouslySetInnerHTML={{ __html: props.excerpt }} />
-        <Link to={`/${props.slug}`} className="read-more">
+        <Link to={`/${props.slug}`} className="g-bold-link">
           Read More
         </Link>
       </div>

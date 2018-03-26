@@ -17,8 +17,7 @@ export default {
         component: 'src/App/pages/Home',
         getData: async () => ({
           currentPage: 'home',
-          posts,
-          categories
+          posts
         }),
         children: posts.map(post => ({
           path: `/${post.slug}`,
@@ -32,7 +31,10 @@ export default {
       },
       {
         path: '/about',
-        component: 'src/App/pages/About'
+        component: 'src/App/pages/About',
+        getData: () => ({
+          currentPage: 'about'
+        })
       },
       {
         is404: true,

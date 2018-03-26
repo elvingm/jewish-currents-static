@@ -1,6 +1,10 @@
 #site-footer {
   padding: 34px var(--l-block-spacing);
 
+  &.accent-about {
+    background-color: var(--dandelion);
+  }
+
   & ul {
     margin: 0;
     padding: 0;

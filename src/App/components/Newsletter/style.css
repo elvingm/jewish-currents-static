@@ -15,7 +15,9 @@
   }
 
   & input {
+    border: none;
     font-size: 18px;
+    outline: none;
   }
 
   & input[type="email"] {

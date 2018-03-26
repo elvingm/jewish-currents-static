@@ -3,14 +3,15 @@
   flex-direction: column;
   justify-content: center;
   
-  &.accent-home {
+  &.accent-home,
+  &.accent-about {
     background-color: var(--dandelion);
   }
 
   &.accent-post {
     background-color: var(--coral);
   }
-
+  
   & .logo-wrap {
     display: flex;
     padding: var(--s-block-spacing) var(--l-block-spacing);

@@ -35,6 +35,11 @@
   /* theme colors */
   --dandelion: #FFBF00;
   --coral : #FF7F45;
+  --island-spice: #FFFAED;
+  --black-white: #FFFFFE;
+  --salomie: #FFE187;
+  --sycamore: #AB9040;
+  --pizza: #C39815;
   
   /* block spacing */
   --s-block-spacing: 20px;
@@ -76,6 +81,10 @@ h3 {
   margin-top: 0;
 }
 
+h1 {
+  font-size: 65px;
+}
+
 h2 {
   font-size: 35px;
 }
@@ -101,10 +110,10 @@ a {
   font-weight: bold;
 }
 
-.content {
-  padding: 36px var(--l-block-spacing) 0;
+.g-content-wrap {
   margin: 0 auto;
   max-width: var(--content-max-width);
+  padding: 0 var(--l-block-spacing);
 }
 
 .g-accent {
@@ -123,6 +132,16 @@ a {
   background-color: var(--black);
   font-size: 18px;
   letter-spacing: -1.01px;
+}
+
+.g-bold-link,
+.g-underline-link {
+  transition: opacity .25s ease-out;
+
+  &:hover,
+  &:focus {
+    opacity: .6;
+  }
 }
 
 .g-underline-link {

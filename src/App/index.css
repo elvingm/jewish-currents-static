@@ -33,13 +33,15 @@
   --black: #000;
 
   /* theme colors */
-  --dandelion: #FFBF00;
-  --coral : #FF7F45;
-  --island-spice: #FFFAED;
   --black-white: #FFFFFE;
-  --salomie: #FFE187;
-  --sycamore: #AB9040;
+  --coral : #FF7F45;
+  --dandelion: #FFBF00;
+  --island-spice: #FFFAED;
   --pizza: #C39815;
+  --salomie: #FFE187;
+  --soft-amber: #D8D0B9;
+  --sycamore: #AB9040;
+
   
   /* block spacing */
   --s-block-spacing: 20px;

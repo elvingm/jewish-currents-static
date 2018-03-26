@@ -46,15 +46,6 @@
     & > p {
       font-size: 18px;
       margin-bottom: 15px;
-
-      & span {
-        display: inline-block;
-
-        &:last-child {
-          margin-left: 10px;
-          text-decoration: underline;
-        }
-      }
     }
   }
 

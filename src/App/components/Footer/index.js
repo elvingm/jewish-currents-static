@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-static';
+import { Link, withRouteData } from 'react-static';
 //
 import './style.css';
 
-export default () => (
-  <footer id="site-footer">
+export default withRouteData(({ currentPage }) => (
+  <footer id="site-footer" className={`accent-${currentPage}`}>
     <ul>
       <li>Jewish Currents</li>
       <li>
@@ -24,4 +24,4 @@ export default () => (
       </li>
     </ul>
   </footer>
-);
+));

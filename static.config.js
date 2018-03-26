@@ -31,7 +31,10 @@ export default {
       },
       {
         path: '/about',
-        component: 'src/App/pages/About'
+        component: 'src/App/pages/About',
+        getData: () => ({
+          currentPage: 'about'
+        })
       },
       {
         is404: true,

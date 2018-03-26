@@ -36,6 +36,10 @@
   --dandelion: #FFBF00;
   --coral : #FF7F45;
   --island-spice: #FFFAED;
+  --black-white: #FFFFFE;
+  --salomie: #FFE187;
+  --sycamore: #AB9040;
+  --pizza: #C39815;
   
   /* block spacing */
   --s-block-spacing: 20px;
@@ -75,6 +79,10 @@ h1,
 h2,
 h3 {
   margin-top: 0;
+}
+
+h1 {
+  font-size: 65px;
 }
 
 h2 {
@@ -124,6 +132,16 @@ a {
   background-color: var(--black);
   font-size: 18px;
   letter-spacing: -1.01px;
+}
+
+.g-bold-link,
+.g-underline-link {
+  transition: opacity .25s ease-out;
+
+  &:hover,
+  &:focus {
+    opacity: .6;
+  }
 }
 
 .g-underline-link {

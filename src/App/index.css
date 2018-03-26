@@ -35,6 +35,7 @@
   /* theme colors */
   --dandelion: #FFBF00;
   --coral : #FF7F45;
+  --island-spice: #FFFAED;
   
   /* block spacing */
   --s-block-spacing: 20px;
@@ -101,10 +102,10 @@ a {
   font-weight: bold;
 }
 
-.content {
-  padding: 36px var(--l-block-spacing) 0;
+.g-content-wrap {
   margin: 0 auto;
   max-width: var(--content-max-width);
+  padding: 0 var(--l-block-spacing);
 }
 
 .g-accent {

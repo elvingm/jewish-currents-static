@@ -17,8 +17,7 @@ export default {
         component: 'src/App/pages/Home',
         getData: async () => ({
           currentPage: 'home',
-          posts,
-          categories
+          posts
         }),
         children: posts.map(post => ({
           path: `/${post.slug}`,

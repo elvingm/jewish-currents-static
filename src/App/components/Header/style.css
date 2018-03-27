@@ -57,6 +57,11 @@
       &.active {
         font-weight: bold;
       }
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
     }
   }
 

@@ -1,15 +1,16 @@
 #site-footer {
-  padding: 34px var(--l-block-spacing);
+  padding: 0 var(--l-block-spacing);
 
   &.accent-about {
     background-color: var(--dandelion);
   }
 
   & ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    border-top: 3px solid var(--black);
     display: flex;
+    margin: 0;
+    padding: 34px 0;
+    list-style: none;
   }
 
   & li {
@@ -24,5 +25,10 @@
 
   & a {
     font-weight: normal;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 }

@@ -75,6 +75,10 @@ body {
 section {
   padding-bottom: var(--l-block-spacing);
   border-bottom: 3px solid var(--black);
+
+  &:last-child {
+    border-bottom: 0;
+  }
 }
 
 h1,

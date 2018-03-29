@@ -29,6 +29,11 @@
     }
   }
 
+  & p,
+  & a {
+    word-wrap: break-word;
+  }
+  
   & .p-info-columns {
     display: flex;
     flex-flow: wrap;

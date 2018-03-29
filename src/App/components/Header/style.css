@@ -1,4 +1,4 @@
-@custom-media --header-mobile (max-width: 768px);
+@custom-media --header-desktop (min-width: 768px);
 
 #site-header {
   display: flex;
@@ -17,14 +17,30 @@
   & .logo-wrap {
     border-bottom: 3px solid var(--black);
     display: flex;
-    padding: var(--s-block-spacing) var(--l-block-spacing);
+    padding: var(--s-block-spacing);
     position: relative;
     
+    @media(--header-desktop) {
+      padding-left: var(--l-block-spacing);
+      padding-right: var(--l-block-spacing);
+    }
+
     & .logo {
       display: inline-block;
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
+
+      @media(--header-desktop) {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      & img {
+        max-width: 180px;
+
+        @media(--header-desktop) {
+          max-width: none;
+        }
+      }
     }
 
     & .social-icons,
@@ -33,9 +49,11 @@
     }
 
     & .social-icons {
-      align-self: flex-end;
-      @media(--header-mobile) {
-        display: none;
+      display: none;
+
+      @media(--header-desktop) {
+        align-self: flex-end;
+        display: block;
       }
 
       & a {
@@ -49,11 +67,11 @@
     }
 
     & .menu-toggle {
+      display: block;
       align-self: center;
-      display: none;
 
-      @media(--header-mobile) {
-        display: block;
+      @media(--header-desktop) {
+        display: none;
       }
 
       &.opened {
@@ -78,15 +96,16 @@
   }
 
   & nav {
+    height: 0;
+    overflow: hidden;
+    border-bottom: 0;
     width: 100%;
     background: var(--white);
-    border-bottom: 3px solid var(--black);
     text-align: center;
 
-    @media(--header-mobile) {
-      height: 0;
-      overflow: hidden;
-      border-bottom: 0;
+    @media(--header-desktop) {
+      border-bottom: 3px solid var(--black);
+      height: auto;
     }
 
     & a {
@@ -108,10 +127,10 @@
     }
 
     & .social-icons {
-      display: none;
+      display: block;
 
-      @media(--header-mobile) {
-        display: block;
+      @media(--header-desktop) {
+        display: none;
       }
     }
   }

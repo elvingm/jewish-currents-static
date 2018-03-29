@@ -1,3 +1,5 @@
+@import 'variables.css';
+
 @font-face {
   font-family: 'Moderat';
   src: url('/font/moderat/regular/regular.woff2') format('woff2'), 
@@ -28,35 +30,6 @@
        url('/font/moderat/bold-italic/bold-italic.woff') format('woff');
   font-weight: bold;
   font-style: italic;
-}
-
-/* Variables  */
-:root {
-  /* colors  */
-  --white: #FFF;
-  --black: #000;
-
-  /* theme colors */
-  --black-white: #FFFFFE;
-  --coral : #FF7F45;
-  --dandelion: #FFBF00;
-  --island-spice: #FFFAED;
-  --pizza: #C39815;
-  --salomie: #FFE187;
-  --soft-amber: #D8D0B9;
-  --sycamore: #AB9040;
-
-  
-  /* block spacing */
-  --s-block-spacing: 20px;
-  --m-block-spacing: 30px;
-  --l-block-spacing: 40px;
-
-  /* content */
-  --content-max-width: 1440px;
-
-  /* fonts */
-  --font-stack: 'Moderat', Helvetica, Arial, system-ui;
 }
 
 * {

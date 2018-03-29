@@ -16,8 +16,12 @@
 
   & input {
     border: none;
-    font-size: 18px;
     outline: none;
+    font-size: 14px;
+    
+    @media(--g-medium-viewport) {
+      font-size: 18px;
+    }
   }
 
   & input[type="email"] {
@@ -27,6 +31,11 @@
 
   & input[type="submit"] {
     border: 0;
-    padding: 12px 30px;
+    padding: 12px 8px;
+
+    @media(--g-medium-viewport) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 }

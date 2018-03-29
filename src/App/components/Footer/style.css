@@ -1,5 +1,11 @@
+@custom-media --footer-desktop (min-width: 835px);
+
 #site-footer {
-  padding: 0 var(--l-block-spacing);
+  padding: 0 var(--s-block-spacing);
+
+  @media(--g-large-viewport) {
+    padding: 0 var(--l-block-spacing);
+  }
 
   &.accent-about {
     background-color: var(--dandelion);
@@ -8,18 +14,30 @@
   & ul {
     border-top: 3px solid var(--black);
     display: flex;
+    flex-direction: column;
+    list-style: none;
     margin: 0;
     padding: 34px 0;
-    list-style: none;
+
+    @media(--footer-desktop) {
+      align-items: center;
+      flex-direction: row;
+    }
   }
 
   & li {
-    margin-left: 20px;
+    margin-top: 2px;
+    margin-left: 0;
+
+    @media(--footer-desktop) {
+      margin-top: 0;
+      margin-left: 20px;
+    }
 
     &:first-child {
       font-size: 18px;
       font-weight: bold;
-      margin-left: 0
+      margin: 0;
     }
   }
 

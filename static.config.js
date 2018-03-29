@@ -1,8 +1,10 @@
 import React from 'react';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import webpack from './webpack.config.js';
 import { getPosts, getCategories } from './src/wordpress/fetch';
 
 export default {
+  // Webpack config from file
+  webpack,
   // Global Site Data -
   getSiteData: () => ({
     title: 'Jewish | A Progressive, Secular Voice',
@@ -41,43 +43,6 @@ export default {
         component: 'src/App/pages/404'
       }
     ];
-  },
-  webpack: (config, { defaultLoaders, stage }) => {
-    config.module.rules = [
-      {
-        oneOf: [
-          {
-            test: /\.css$/, // support .sss files via postcss-loader
-            use:
-              stage === 'dev'
-                ? [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader', options: { importLoaders: 1 } },
-                    { loader: 'postcss-loader' }
-                  ]
-                : ExtractTextPlugin.extract({
-                    use: [
-                      {
-                        loader: 'css-loader',
-                        options: {
-                          importLoaders: 1,
-                          minimize: true,
-                          sourceMap: false
-                        }
-                      },
-                      {
-                        loader: 'postcss-loader'
-                      }
-                    ]
-                  })
-          },
-          defaultLoaders.cssLoader,
-          defaultLoaders.jsLoader,
-          defaultLoaders.fileLoader
-        ]
-      }
-    ];
-    return config;
   },
   Document: ({ Html, Head, Body, children, siteData }) => (
     <Html lang="en-US">

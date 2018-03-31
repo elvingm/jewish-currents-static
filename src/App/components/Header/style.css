@@ -15,7 +15,7 @@
   }
   
   & .logo-wrap {
-    border-bottom: 3px solid var(--black);
+    border-bottom: var(--black-border);
     display: flex;
     padding: var(--s-block-spacing);
     position: relative;
@@ -74,7 +74,7 @@
         display: none;
       }
 
-      &.opened {
+      &.menu-active {
         & .close-icon {
           display: block;
         }
@@ -96,25 +96,56 @@
   }
 
   & nav {
-    height: 0;
-    overflow: hidden;
+    background-color: inherit;
     border-bottom: 0;
+    height: 0;
     width: 100%;
-    background: var(--white);
-    text-align: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    overflow: hidden;
+    transition: height .15s ease-in;
 
     @media(--header-desktop) {
-      border-bottom: 3px solid var(--black);
+      background-color: var(--white);
+      border-bottom: var(--black-border);
       height: auto;
+      position: relative;
+      top: 0;
+      text-align: center;
     }
 
-    & a {
-      display: inline-block;
+    &.menu-active {
+      height: 100%;
+    }
+
+    & > a {
       color: var(--black);
-      font-size: 18px;
+      display: block;
+      font-size: 28px;
       font-weight: normal;
-      letter-spacing: -1.01px;
-      padding: 1rem;
+      letter-spacing: -1.57px;
+      line-height: 1.61;
+      margin: 0 var(--s-block-spacing);
+      padding: 0;
+
+      @media(--header-desktop) {
+        display: inline-block;
+        font-size: 18px;
+        letter-spacing: -1.01px;
+        padding: 1rem;
+        margin: 0;
+      }
+      
+      &:first-child {
+        border-top: var(--black-border);
+        padding-top: 7px;
+
+        @media(--header-desktop) {
+          border-top: 0;
+          padding-top: 0;
+        }
+      }
 
       &.active {
         font-weight: bold;
@@ -127,10 +158,29 @@
     }
 
     & .social-icons {
-      display: block;
+      border-top: var(--black-border);
+      border-bottom: var(--black-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px var(--s-block-spacing) 0;
+      padding: var(--s-block-spacing) 0;
 
       @media(--header-desktop) {
         display: none;
+      }
+
+      & a {
+        margin-left: 24px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      & svg {
+        width: 27px;
+        height: 27px;
       }
     }
   }

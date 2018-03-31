@@ -13,6 +13,8 @@
   --soft-amber: #D8D0B9;
   --sycamore: #AB9040;
 
+  /* borders */
+  --black-border: 3px solid var(--black);
   
   /* block spacing */
   --s-block-spacing: 20px;

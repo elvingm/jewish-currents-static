@@ -3,6 +3,7 @@ import { Head, Link, withRouteData } from 'react-static';
 //
 import Post from '../../components/Post';
 import Newsletter from '../../components/Newsletter';
+import SubscriptionPopup from '../../components/SubscriptionPopup';
 import arrowIcon from '../../assets/img/icons/arrow.svg';
 import './style.css';
 
@@ -53,5 +54,7 @@ export default withRouteData(({ title, description, posts }) => (
       </section>
       <Newsletter />
     </div>
+
+    <SubscriptionPopup wait={2500} />
   </div>
 ));

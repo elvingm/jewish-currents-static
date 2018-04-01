@@ -4,7 +4,9 @@ import { Head, Link, withRouteData } from 'react-static';
 import Post from '../../components/Post';
 import Newsletter from '../../components/Newsletter';
 import SubscriptionPopup from '../../components/SubscriptionPopup';
+import Image from '../../components/Image';
 import arrowIcon from '../../assets/img/icons/arrow.svg';
+import magazinesImg from '../../assets/img/magazines-collection.png';
 import './style.css';
 
 export default withRouteData(({ title, description, posts }) => (
@@ -23,13 +25,15 @@ export default withRouteData(({ title, description, posts }) => (
       </section>
       <section className="shop-now-ad">
         <div className="g-border-wrap">
-          <img src="http://placehold.it/1360x400" alt="Shop Now" />
-        </div>
-        <div className="issue-details">
-          <h2>Spring 2018 Issue</h2>
-          <a className="g-underline-link" href="#">
-            Shop Now
-          </a>
+          <div className="image-wrap">
+            <Image src={magazinesImg} />
+          </div>
+          <div className="issue-details">
+            <h2>Spring 2018 Issue</h2>
+            <a className="g-underline-link" href="#">
+              Shop Now
+            </a>
+          </div>
         </div>
       </section>
       <section className="subscription-callout">

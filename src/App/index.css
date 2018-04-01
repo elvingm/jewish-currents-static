@@ -50,11 +50,15 @@ body {
 }
 
 section {
-  padding-bottom: var(--l-block-spacing);
+  padding-bottom: var(--s-block-spacing);
   border-bottom: var(--black-border);
 
   &:last-child {
     border-bottom: 0;
+  }
+
+  @media(--g-medium-viewport) {
+    padding-bottom: var(--l-block-spacing);
   }
 }
 

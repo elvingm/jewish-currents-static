@@ -2,10 +2,17 @@
   text-align: center;
 
   & h2 {
-    margin-bottom: var(--l-block-spacing);
-    font-size: 40px;
-    letter-spacing: -2.25px;
-    line-height: 1.125;
+    font-size: 28px;
+    letter-spacing: -1.58px;
+    line-height: 1.1;
+    margin-bottom: var(--s-block-spacing);
+
+    @media(--g-medium-viewport) {      
+      font-size: 40px;
+      letter-spacing: -2.25px;
+      line-height: 1.125;
+      margin-bottom: var(--l-block-spacing);
+    }
   }
 
   & form {

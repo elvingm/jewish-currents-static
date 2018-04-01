@@ -1,6 +1,7 @@
 .subscription-popup {
+  z-index: 99;
   position: fixed;
-  top: 18%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;

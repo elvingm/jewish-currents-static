@@ -1,0 +1,28 @@
+.more-articles-link {
+  text-align: center;
+
+  & h2,
+  & a {
+    font-size: 28px;
+    letter-spacing: -1.57px;
+    line-height: 1.29;
+
+    @media(--g-large-viewport) {
+      font-size: 35px;
+      letter-spacing: -1.97px;
+    }
+  }
+
+  & h2 {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+
+  & a {
+    & .g-arrow {
+      margin-left: 10px;
+      position: relative;
+      top: 3px;
+    }
+  }
+}

@@ -28,6 +28,20 @@
     }
   }
 
+  & > section {
+    margin: 0 var(--s-block-spacing); 
+    padding: var(--s-block-spacing) 0;
+
+    @media(--g-large-viewport) {
+      margin: 0 var(--l-block-spacing); 
+      padding: var(--l-block-spacing) 0;
+    }
+
+    & > section {
+      border: 0;
+    }
+  }
+
   & article {
     max-width: 790px;
     
@@ -147,13 +161,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 var(--s-block-spacing); 
-    padding: var(--s-block-spacing) 0;
-
-    @media(--g-large-viewport) {
-      margin: 0 var(--l-block-spacing); 
-      padding: var(--l-block-spacing) 0;
-    }
 
     & .share-icons {
       display: flex;
@@ -187,6 +194,106 @@
       width: 27px;
       height: 27px;
       opacity: 1;
+    }
+  }
+
+  & .split-wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-bottom: 0;
+
+    @media(--post-desktop) {
+      border-bottom: var(--black-border);
+      flex-direction: row;
+    }
+
+    & > * {
+      @media(--post-desktop) {
+        flex: 1 1 50%; 
+      }
+    }
+  }
+
+  & .signup-wrap {
+    padding-bottom: 0;
+  }
+
+  & .further-reading {
+    & > h2 {
+      margin: 30px 0 20px;
+    }
+
+    & .line-divider {
+      height: 3px;
+      background-color: var(--black);
+      width: 76px;
+
+      @media(--post-desktop) {
+        width: 100%;
+      }
+    }
+  }
+
+  & .subscribe-callout {
+    background-color: var(--dandelion);
+    border: var(--black-border);
+    padding: var(--s-block-spacing);
+
+    @media(--post-desktop) {
+      border-top: 0;
+      border-bottom: 0;
+      padding-top: 140px;
+      padding-bottom: 120px;
+    }
+  }
+
+  & .newsletter-signup {
+    background-color: var(--soft-amber);
+    border: var(--black-border);
+    margin-bottom: var(--s-block-spacing);
+    padding: var(--s-block-spacing);
+    padding-top: 40px;
+
+    @media(--post-desktop) {
+      padding-top: 90px;
+      padding-bottom: 90px;
+    }
+
+    & h2 {
+      font-size: 28px;
+
+      @media(--post-desktop) {
+        font-size: 40px;
+      }
+    }
+
+    & input {
+      font-size: 14px;
+
+      @media(--post-desktop) {
+        font-size: 18px;
+      }
+    }
+
+    & input[type="email"] {
+      background-color: var(--soft-amber);
+      color: var(--black);
+
+      &::placeholder {
+        color: var(--black);
+      }
+    }
+  }
+
+  & .more-articles-link {
+    border-top: var(--black-border);
+    padding-top: var(--s-block-spacing);
+    padding-bottom: var(--s-block-spacing);
+
+    @media(--post-desktop) {
+      border-top: 0;
+      padding-bottom: var(--l-block-spacing);
     }
   }
 }

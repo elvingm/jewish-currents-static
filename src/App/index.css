@@ -73,7 +73,15 @@ h1 {
 }
 
 h2 {
-  font-size: 35px;
+  font-size: 28px;
+  letter-spacing: -1.57px;
+  line-height: 1.25;
+
+  @media(--g-medium-viewport) {
+    font-size: 35px;
+    letter-spacing: -1.97px;
+    line-height: 1.29;
+  }
 }
 
 h3 {

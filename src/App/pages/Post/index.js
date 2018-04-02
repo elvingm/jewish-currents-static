@@ -3,6 +3,10 @@ import { withRouteData } from 'react-static';
 //
 import './style.css';
 import { MONTH_NAMES } from '../../util/date';
+// import PostListCondensed from '../../components/PostListCondensed';
+import MoreArticlesLink from '../../components/MoreArticlesLink';
+import SubscribeCallout from '../../components/SubscribeCallout';
+import Newsletter from '../../components/Newsletter';
 import SocialLink from '../../components/SocialLink';
 
 export default withRouteData(({ post }) => {
@@ -48,7 +52,7 @@ export default withRouteData(({ post }) => {
           </div>
         </aside>
       </div>
-      <div className="share-article">
+      <section className="share-article">
         <h2>
           Share <span>this article</span>
         </h2>
@@ -65,7 +69,18 @@ export default withRouteData(({ post }) => {
             iconColor="#000"
           />
         </div>
-      </div>
+      </section>
+      <section className="split-wrap">
+        <div className="further-reading">
+          <h2>Further Reading</h2>
+          <div className="line-divider" />
+        </div>
+        <SubscribeCallout />
+      </section>
+      <section className="signup-wrap">
+        <Newsletter />
+        <MoreArticlesLink />
+      </section>
     </div>
   );
 });

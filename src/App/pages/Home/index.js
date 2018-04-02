@@ -1,11 +1,12 @@
 import React from 'react';
-import { Head, Link, withRouteData } from 'react-static';
+import { Head, withRouteData } from 'react-static';
 //
 import Post from '../../components/Post';
 import Newsletter from '../../components/Newsletter';
 import SubscriptionPopup from '../../components/SubscriptionPopup';
+import MoreArticlesLink from '../../components/MoreArticlesLink';
+import SubscribeCallout from '../../components/SubscribeCallout';
 import Image from '../../components/Image';
-import arrowIcon from '../../assets/img/icons/arrow.svg';
 import magazinesImg from '../../assets/img/magazines-collection.png';
 import './style.css';
 
@@ -36,29 +37,13 @@ export default withRouteData(({ title, description, posts }) => (
           </div>
         </div>
       </section>
-      <section className="subscription-callout">
-        <div className="text">
-          <h2>Subscribe</h2>
-          <h4>New subscribers SAVE $12 off the annual subscription price and get a FREE book!</h4>
-          <a className="g-button" href="#">
-            Subscribe Now!
-          </a>
-        </div>
-      </section>
+      <SubscribeCallout />
       <section className="post-row split">
         {posts.slice(4, 6).map(p => <Post {...p} key={p.id} stackedLayout />)}
       </section>
-      <section className="more-articles-link">
-        <h2>
-          <Link to="/category/articles">
-            <span>More Articles</span>
-            <img className="g-arrow" src={arrowIcon} alt="Go To Arrow" />
-          </Link>
-        </h2>
-      </section>
+      <MoreArticlesLink />
       <Newsletter />
     </div>
-
     <SubscriptionPopup wait={2500} />
   </div>
 ));

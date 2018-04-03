@@ -1,15 +1,13 @@
-// import { getPostCategories } from "./fetch";
-
-export async function transformPost(post) {
-  try {
-    post.title = post.title.rendered;
-    post.content = post.content.rendered;
-    post.excerpt = post.excerpt.rendered;
-    // post.categories = await getPostCategories(post)
-    return post;
-  } catch (err) {
-    console.error('Error in transformPost: ', err);
-  }
+export function transformPost(post) {
+  post.title = post.title.rendered;
+  post.content = post.content.rendered;
+  post.excerpt = post.excerpt.rendered;
+  post.author = post._embedded.author[0];
+  post.featuredMedia = post._embedded['wp:featuredmedia'][0];
+  const terms = post._embedded['wp:term'].reduce((a, b) => a.concat(b));
+  post.categories = terms.filter(t => t.taxonomy === 'category');
+  post.tags = terms.filter(t => t.taxonomy === 'post_tag');
+  return post;
 }
 
 export async function transformCategory(data) {

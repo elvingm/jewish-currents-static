@@ -21,7 +21,7 @@ export default withRouteData(({ title, description, posts }) => (
       <section className="featured-post">
         <Post {...posts[0]} />
       </section>
-      <section className="post-row">
+      <section className="post-row split-30">
         {posts.slice(1, 4).map(p => <Post {...p} key={p.id} stackedLayout />)}
       </section>
       <section className="shop-now-ad">
@@ -38,7 +38,7 @@ export default withRouteData(({ title, description, posts }) => (
         </div>
       </section>
       <SubscribeCallout />
-      <section className="post-row split">
+      <section className="post-row split-40x60">
         {posts.slice(4, 6).map(p => <Post {...p} key={p.id} stackedLayout />)}
       </section>
       <MoreArticlesLink />

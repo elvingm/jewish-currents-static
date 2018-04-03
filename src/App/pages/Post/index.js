@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouteData } from 'react-static';
+import { Link, withRouteData } from 'react-static';
 //
 import './style.css';
 import { MONTH_NAMES } from '../../util/date';
@@ -14,7 +14,7 @@ export default withRouteData(({ post }) => {
   return (
     <div id="post">
       <div className="featured-image g-border-wrap">
-        <img src="http://placehold.it/1450x730" alt="Post Feature" />
+        <img src={post.featuredMedia.source_url} alt={post.featuredMedia.alt_text} />
       </div>
       <div className="post-body">
         <article>
@@ -23,9 +23,9 @@ export default withRouteData(({ post }) => {
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />
             <p>
               <span className="date">{`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`}</span>
-              <a className="author g-underline-link" href="#">
-                Author Name
-              </a>
+              <Link className="author g-underline-link" to={`/author/${post.author.slug}`}>
+                {post.author.name}
+              </Link>
             </p>
           </header>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />

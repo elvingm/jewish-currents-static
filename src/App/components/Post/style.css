@@ -59,16 +59,11 @@
   }
 
   & .title {
-    font-size: 28px;
-    letter-spacing: -1.57px;
-    line-height: 1.1;
     margin-top: 0;
     margin-bottom: 15px;
     
     @media(--post-unstacked) {
       font-size: 35px;
-      letter-spacing: -1.97px;
-      line-height: 1.29;
     }
   }
 

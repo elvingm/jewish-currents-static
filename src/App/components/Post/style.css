@@ -27,6 +27,7 @@
 
   & .image {
     max-width: 770px;
+    overflow: hidden;
     flex: 1 1 100%;
 
     @media(--post-unstacked) {

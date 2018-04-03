@@ -10,16 +10,16 @@ export default props => {
   return (
     <div className={classNames({ 'g-post': true, stacked: props.stackedLayout })}>
       <div className="image g-border-wrap">
-        <img src="http://placehold.it/770x488" alt="Featured" />
+        <img src={props.featuredMedia.source_url} alt={props.featuredMedia.alt_text} />
       </div>
       <div className="details">
         <h3 className="label g-accent">Featured Article</h3>
         <h2 className="title" dangerouslySetInnerHTML={{ __html: props.title }} />
         <p>
           <span className="date">{`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`}</span>
-          <a className="author g-underline-link" href="#">
-            Author Name
-          </a>
+          <Link className="author g-underline-link" to={`/author/${props.author.slug}`}>
+            {props.author.name}
+          </Link>
         </p>
         <div className="excerpt" dangerouslySetInnerHTML={{ __html: props.excerpt }} />
         <Link to={`/${props.slug}`} className="g-bold-link">

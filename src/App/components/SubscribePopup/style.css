@@ -1,4 +1,4 @@
-.subscription-popup {
+.subscribe-popup {
   z-index: 99;
   position: fixed;
   top: 10%;
@@ -53,13 +53,10 @@
   }
 
   & h2 {
-    font-size: 28px;
-    letter-spacing: -1.57px;
     line-height: 1.61;
     margin: 0;
 
-
-    @media(--g-large-viewport) {
+    @media(--g-medium-viewport) {
       font-size: 40px;
       letter-spacing: -2.25px;
       line-height: 1.125;

@@ -29,7 +29,7 @@ export default class SubscriptionPopup extends React.Component {
 
   render() {
     return (
-      <div className={classNames({ 'subscription-popup': true, hidden: this.state.hidden })}>
+      <div className={classNames({ 'subscribe-popup': true, hidden: this.state.hidden })}>
         <div className="g-content-wrap">
           <div className="close-icon" onClick={this.closePopup}>
             <img src={CloseIcon} alt="Close Icon" />

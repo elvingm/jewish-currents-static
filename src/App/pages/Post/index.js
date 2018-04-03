@@ -3,6 +3,11 @@ import { withRouteData } from 'react-static';
 //
 import './style.css';
 import { MONTH_NAMES } from '../../util/date';
+// import PostListCondensed from '../../components/PostListCondensed';
+import MoreArticlesLink from '../../components/MoreArticlesLink';
+import SubscribeCallout from '../../components/SubscribeCallout';
+import Newsletter from '../../components/Newsletter';
+import SocialLink from '../../components/SocialLink';
 
 export default withRouteData(({ post }) => {
   const date = new Date(post.date);
@@ -11,7 +16,7 @@ export default withRouteData(({ post }) => {
       <div className="featured-image g-border-wrap">
         <img src="http://placehold.it/1450x730" alt="Post Feature" />
       </div>
-      <section className="post-content-area">
+      <div className="post-body">
         <article>
           <header>
             <h3 className="label">Featured Article</h3>
@@ -25,7 +30,20 @@ export default withRouteData(({ post }) => {
           </header>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
-        <aside>
+        <aside className="share-icons">
+          <SocialLink
+            url="https://www.facebook.com/jewishcurrents/"
+            network="facebook"
+            iconColor="#000"
+          />
+          <SocialLink url="https://twitter.com/JewishCurrents" network="twitter" iconColor="#000" />
+          <SocialLink
+            url="https://www.instagram.com/jewishcurrentsmag/"
+            network="instagram"
+            iconColor="#000"
+          />
+        </aside>
+        <aside className="sidebar">
           <div className="ad-placement_350x600 g-border-wrap">
             <h3>Ad</h3>
           </div>
@@ -33,6 +51,35 @@ export default withRouteData(({ post }) => {
             <h2 className="g-accent">Further Reading</h2>
           </div>
         </aside>
+      </div>
+      <section className="share-article">
+        <h2>
+          Share <span>this article</span>
+        </h2>
+        <div className="share-icons">
+          <SocialLink
+            url="https://www.facebook.com/jewishcurrents/"
+            network="facebook"
+            iconColor="#000"
+          />
+          <SocialLink url="https://twitter.com/JewishCurrents" network="twitter" iconColor="#000" />
+          <SocialLink
+            url="https://www.instagram.com/jewishcurrentsmag/"
+            network="instagram"
+            iconColor="#000"
+          />
+        </div>
+      </section>
+      <section className="split-wrap">
+        <div className="further-reading">
+          <h2>Further Reading</h2>
+          <div className="line-divider" />
+        </div>
+        <SubscribeCallout />
+      </section>
+      <section className="signup-wrap">
+        <Newsletter />
+        <MoreArticlesLink />
       </section>
     </div>
   );

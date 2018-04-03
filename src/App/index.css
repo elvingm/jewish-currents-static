@@ -50,11 +50,15 @@ body {
 }
 
 section {
-  padding-bottom: var(--l-block-spacing);
-  border-bottom: 3px solid var(--black);
+  padding-bottom: var(--s-block-spacing);
+  border-bottom: var(--black-border);
 
   &:last-child {
     border-bottom: 0;
+  }
+
+  @media(--g-medium-viewport) {
+    padding-bottom: var(--l-block-spacing);
   }
 }
 
@@ -69,7 +73,15 @@ h1 {
 }
 
 h2 {
-  font-size: 35px;
+  font-size: 28px;
+  letter-spacing: -1.57px;
+  line-height: 1.25;
+
+  @media(--g-medium-viewport) {
+    font-size: 35px;
+    letter-spacing: -1.97px;
+    line-height: 1.29;
+  }
 }
 
 h3 {
@@ -96,7 +108,13 @@ a {
 .g-content-wrap {
   margin: 0 auto;
   max-width: var(--content-max-width);
-  padding: 0 var(--l-block-spacing);
+  padding-left: var(--s-block-spacing);
+  padding-right: var(--s-block-spacing);
+
+  @media(--g-large-viewport) {
+    padding-left: var(--l-block-spacing);
+    padding-right: var(--l-block-spacing);
+  }
 }
 
 .g-accent {
@@ -104,9 +122,13 @@ a {
 }
 
 .g-button {
-  border: 3px solid var(--black);
+  border: var(--black-border);
+  cursor: pointer;
   display: inline-block;
+  font-size: 18px;
+  letter-spacing: -1.01px;
   padding: 10px var(--s-block-spacing);
+  text-align: center;
   text-decoration: underline;
 }
 
@@ -138,7 +160,7 @@ a {
 }
 
 .g-border-wrap {
-  border: 3px solid var(--black);
+  border: var(--black-border);
 
   & img {
     display: block;

@@ -1,6 +1,10 @@
 #home {
   & section {
-    padding-top: var(--l-block-spacing);
+    padding-top: var(--s-block-spacing);
+
+    @media(--g-medium-viewport) {
+      padding-top: var(--l-block-spacing);
+    }
   }
 
   & .g-button {
@@ -38,7 +42,7 @@
           margin-right: var(--l-block-spacing);
 
           @media(max-width: 768px) {
-            margin: 0;
+            margin-right: 0;
           }
         }
 
@@ -74,67 +78,81 @@
     position: relative;
     border-bottom: 0;
 
+    & .g-border-wrap {
+      background-color: var(--soft-amber);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+      position: relative;
+      height: 300px;
+
+      @media(--g-large-viewport) {
+        height: 400px;
+      }
+    }
+
     & .issue-details {
+      flex: 0 1 50%;
+      position: relative;
+      z-index: 1;
+
+      @media(--g-medium-viewport) {
+        flex-basis: 30%;
+      }
+    }
+    
+    & .image-wrap {
+      height: 100%;
+      overflow: hidden;
       position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translate(0, -50%);
-      width: 33%;
+      top: 0;
+      left: 0;
+      transform: translateX(-75%);
+
+      @media(--g-medium-viewport) {
+        left: 40%;
+      }
+    }
+
+    & picture, & img {
+      height: 100%;
+      max-width: initial;
     }
 
     & h2 {
-      letter-spacing: -1.97px;
-      line-height: .97;
+      font-size: 20px;
+      letter-spacing: -1.12px;
+      line-height: 1.7;
       margin-bottom: 10px;
-    }
-  }
 
-  & .subscription-callout {
-    text-align: center;
-    padding-bottom: 70px;
-
-    & .text {
-      max-width: 754px;
-      margin: 0 auto;
-    }
-
-    & .g-button {
-      display: block;
-      margin: 0 auto;
-      max-width: 200px;
-    }
-
-    & h2 {
-      margin: 0 0 35px;
-    }
-
-    & h4 {
-      font-size: 35px;
-      line-height: 1.29;
-      margin: 0 0 35px;
-    }
-  }
-
-  & .more-articles-link {
-    text-align: center;
-
-    & h2 {
-      display: inline-block;
-      margin-bottom: 0;
+      @media(--g-large-viewport) {
+        font-size: 35px;
+        letter-spacing: -1.97px;
+        line-height: .97;
+      }
     }
 
     & a {
-      font-size: 35px;
+      font-size: 14px;
+      letter-spacing: -0.79px;
 
-      & .g-arrow {
-        margin-left: 10px;
-        position: relative;
-        top: 3px;
+      @media(--g-large-viewport) {
+        font-size: 18px;
+        letter-spacing: -1.01px;
       }
     }
   }
 
+  & .subscribe-callout {
+    padding-bottom: 70px;
+  }
+
   & .newsletter-signup {
-    padding: 80px 0;
+    padding: var(--l-block-spacing) 0;
+
+    @media(--g-medium-viewport) {
+      padding: 80px 0;
+    }
   }
 }

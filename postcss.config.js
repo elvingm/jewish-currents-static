@@ -19,6 +19,7 @@ module.exports = {
     require('postcss-selector-matches'),
     require('postcss-selector-not'),
     require('postcss-pseudo-class-any-link'),
+    require('postcss-object-fit-images'),
     require('rucksack-css'),
     require('autoprefixer')
   ]

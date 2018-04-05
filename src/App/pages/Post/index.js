@@ -3,6 +3,7 @@ import { Link, withRouteData } from 'react-static';
 //
 import './style.css';
 import { MONTH_NAMES } from '../../util/date';
+import { SITE_DOMAIN } from '../../util/constants';
 // import PostListCondensed from '../../components/PostListCondensed';
 import MoreArticlesLink from '../../components/MoreArticlesLink';
 import SubscribeCallout from '../../components/SubscribeCallout';
@@ -11,6 +12,7 @@ import SocialLink from '../../components/SocialLink';
 
 export default withRouteData(({ post }) => {
   const date = new Date(post.date);
+  const postUrl = `${SITE_DOMAIN}/${post.slug}`;
   return (
     <div id="post">
       <div className="featured-image g-border-wrap">
@@ -32,14 +34,13 @@ export default withRouteData(({ post }) => {
         </article>
         <aside className="share-icons">
           <SocialLink
-            url="https://www.facebook.com/jewishcurrents/"
+            url={`https://www.facebook.com/sharer/sharer.php?u=${postUrl}`}
             network="facebook"
             iconColor="#000"
           />
-          <SocialLink url="https://twitter.com/JewishCurrents" network="twitter" iconColor="#000" />
           <SocialLink
-            url="https://www.instagram.com/jewishcurrentsmag/"
-            network="instagram"
+            url={`https://twitter.com/intent/tweet?url=${postUrl}`}
+            network="twitter"
             iconColor="#000"
           />
         </aside>
@@ -58,14 +59,13 @@ export default withRouteData(({ post }) => {
         </h2>
         <div className="share-icons">
           <SocialLink
-            url="https://www.facebook.com/jewishcurrents/"
+            url={`https://www.facebook.com/sharer/sharer.php?u=${postUrl}`}
             network="facebook"
             iconColor="#000"
           />
-          <SocialLink url="https://twitter.com/JewishCurrents" network="twitter" iconColor="#000" />
           <SocialLink
-            url="https://www.instagram.com/jewishcurrentsmag/"
-            network="instagram"
+            url={`https://twitter.com/intent/tweet?url=${postUrl}`}
+            network="twitter"
             iconColor="#000"
           />
         </div>

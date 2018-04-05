@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import objectFitImages from 'object-fit-images';
 
 // Your top level component
 import App from './App';
@@ -16,4 +17,9 @@ if (typeof document !== 'undefined') {
 
   // Render!
   render(App);
+}
+
+if (typeof window !== 'undefined') {
+  // fix object-fit images
+  objectFitImages();
 }

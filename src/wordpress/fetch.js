@@ -14,12 +14,32 @@ export async function getCategories() {
   return transformed;
 }
 
+export async function getAuthors() {
+  const authors = await wp.users();
+  return authors;
+}
+
 export function getCategoryById(id) {
-  return wp.categories().id(id);
+  return wp
+    .categories()
+    .id(id)
+    .get();
 }
 
 export function getAuthorById(id) {
-  return wp.users().id(id);
+  return wp
+    .users()
+    .id(id)
+    .get();
+}
+
+export async function getPostsByAuthor(id) {
+  const posts = await wp
+    .posts()
+    .author(id)
+    .embed();
+  const transformed = posts.map(transformPost);
+  return transformed;
 }
 
 export function getPostCategories(post) {

@@ -1,6 +1,19 @@
 import React from 'react';
 import webpack from './webpack.config.js';
-import { getPosts, getCategories } from './src/wordpress/fetch';
+import { getPosts, getCategories, getAuthors, getPostsByAuthor } from './src/wordpress/fetch';
+
+const makeAuthorRoutes = authors => {
+  const routes = authors.map(a => ({
+    path: `/author/${a.slug}`,
+    component: 'src/App/pages/Author',
+    getData: async () => ({
+      author: a,
+      posts: await getPostsByAuthor(a.id)
+    })
+  }));
+
+  return routes;
+};
 
 export default {
   // Webpack config from file
@@ -13,6 +26,7 @@ export default {
   getRoutes: async () => {
     const posts = await getPosts();
     const categories = await getCategories();
+    const authors = await getAuthors();
     return [
       {
         path: '/',
@@ -38,6 +52,7 @@ export default {
           currentPage: 'about'
         })
       },
+      ...makeAuthorRoutes(authors),
       {
         is404: true,
         component: 'src/App/pages/404'

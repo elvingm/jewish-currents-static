@@ -28,10 +28,6 @@
       }
     }
 
-    & img {
-      width: 100%;
-    }
-
     &.stacked {
       & .image {
         height: 300px;

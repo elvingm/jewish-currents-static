@@ -55,33 +55,23 @@ export default withRouteData(
             </div>
           </div>
           <nav className={classNames({ 'menu-active': this.state.menuActive })}>
-            <Link to="/category/article" activeClassName="active">
-              Article
-            </Link>
-            <Link to="/category/blog" activeClassName="active">
-              Blog
-            </Link>
-            <Link to="/category/jewdayo" activeClassName="active">
+            <a href="#" className="subscribe-trigger">
+              Subscribe
+            </a>
+            <a href="#" className="donate-trigger">
+              Donate
+            </a>
+            <Link to="/jewdayo-signup" activeClassName="active">
               Jewdayo
             </Link>
-            <Link to="/jcultcha-gallery/multimedia" activeClassName="active">
-              Gallery
-            </Link>
-            <a
-              href="http://jewishcurrents.bigcartel.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Shop
-            </a>
-            <Link to="/archives" activeClassName="active">
+            <a href="#" className="coming-soon-trigger">
               Archives
-            </Link>
-            <Link to="/subscribe" activeClassName="active">
-              Subscribe
-            </Link>
-            <Link to="/contact" activeClassName="active">
-              Contact
+            </a>
+            <a href="#" className="coming-soon-trigger">
+              Pushcart
+            </a>
+            <Link to="/about" activeClassName="active">
+              About Us
             </Link>
             <div className="social-icons">
               <SocialLink

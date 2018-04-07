@@ -11,13 +11,10 @@ export default withRouteData(({ currentPage }) => (
         <Link to="/about">About Us</Link>
       </li>
       <li>
-        <Link to="/contact">Contact Us</Link>
+        <Link to="/about">Contact Us</Link>
       </li>
       <li>
-        <Link to="/advertise">Advertise</Link>
-      </li>
-      <li>
-        <Link to="/join-mailing-list">Join Our Mailing List</Link>
+        <Link>Join Our Mailing List</Link>
       </li>
       <li>
         <Link to="/privacy-policy">Privacy Policy</Link>

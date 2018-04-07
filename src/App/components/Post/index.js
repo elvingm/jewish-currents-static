@@ -22,7 +22,7 @@ export default props => {
           </Link>
         </p>
         <div className="excerpt" dangerouslySetInnerHTML={{ __html: props.excerpt }} />
-        <Link to={`/${props.slug}`} className="g-bold-link">
+        <Link to={`/${props.categories[0].slug}/${props.slug}`} className="g-bold-link">
           Read More
         </Link>
       </div>

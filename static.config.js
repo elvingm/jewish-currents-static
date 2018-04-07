@@ -1,14 +1,33 @@
 import React from 'react';
 import webpack from './webpack.config.js';
-import { getPosts, getCategories, getAuthors, getPostsByAuthor } from './src/wordpress/fetch';
+import {
+  getPosts,
+  getCategories,
+  getAuthors,
+  getPostsByAuthor,
+  getPostsByCategory
+} from './src/wordpress/fetch';
 
 const makeAuthorRoutes = authors => {
-  const routes = authors.map(a => ({
-    path: `/author/${a.slug}`,
+  const routes = authors.map(author => ({
+    path: `/author/${author.slug}`,
     component: 'src/App/pages/Author',
     getData: async () => ({
-      author: a,
-      posts: await getPostsByAuthor(a.id)
+      author,
+      posts: await getPostsByAuthor(author.id)
+    })
+  }));
+
+  return routes;
+};
+
+const makeCategoryRoutes = categories => {
+  const routes = categories.map(category => ({
+    path: `/${category.slug}`,
+    component: 'src/App/pages/Category',
+    getData: async () => ({
+      category,
+      posts: await getPostsByCategory(category.id)
     })
   }));
 
@@ -24,7 +43,6 @@ export default {
     description: 'A progressive, secular voice.'
   }),
   getRoutes: async () => {
-    const posts = await getPosts();
     const categories = await getCategories();
     const authors = await getAuthors();
     return [
@@ -33,17 +51,8 @@ export default {
         component: 'src/App/pages/Home',
         getData: async () => ({
           currentPage: 'home',
-          posts
-        }),
-        children: posts.map(post => ({
-          path: `/${post.slug}`,
-          component: 'src/App/pages/Post',
-          getData: async () => ({
-            currentPage: 'post',
-            post,
-            categories
-          })
-        }))
+          posts: await getPosts(10)
+        })
       },
       {
         path: '/about',
@@ -53,6 +62,7 @@ export default {
         })
       },
       ...makeAuthorRoutes(authors),
+      ...makeCategoryRoutes(categories),
       {
         is404: true,
         component: 'src/App/pages/404'

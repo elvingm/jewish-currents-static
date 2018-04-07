@@ -27,6 +27,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
+    "lodash": "^4.17.5",
     "object-fit-images": "^3.2.3",
     "p-map": "^1.2.0",
     "react": "^16.0.0",

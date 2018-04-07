@@ -1,9 +1,25 @@
 import axios from 'axios';
+import { flatten } from 'lodash';
 import wp from './config';
 import { transformPost, transformCategory } from './transformer';
 
-export async function getPosts() {
-  const posts = await wp.posts().embed();
+function getAll(request) {
+  return request.then(response => {
+    if (!response._paging || !response._paging.next) {
+      return response;
+    }
+    // Request the next page and return both responses as one collection
+    return Promise.all([response, getAll(response._paging.next)]).then(responses =>
+      flatten(responses)
+    );
+  });
+}
+
+export async function getPosts(count) {
+  const posts = await wp
+    .posts()
+    .perPage(count || 10)
+    .embed();
   const transformed = posts.map(transformPost);
   return transformed;
 }
@@ -15,7 +31,7 @@ export async function getCategories() {
 }
 
 export async function getAuthors() {
-  const authors = await wp.users();
+  const authors = await getAll(wp.users());
   return authors;
 }
 
@@ -37,6 +53,15 @@ export async function getPostsByAuthor(id) {
   const posts = await wp
     .posts()
     .author(id)
+    .embed();
+  const transformed = posts.map(transformPost);
+  return transformed;
+}
+
+export async function getPostsByCategory(id) {
+  const posts = await wp
+    .posts()
+    .category(id)
     .embed();
   const transformed = posts.map(transformPost);
   return transformed;

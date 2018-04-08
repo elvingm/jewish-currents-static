@@ -6,7 +6,9 @@
   justify-content: center;
   
   &.accent-home,
-  &.accent-about {
+  &.accent-about,
+  &.accent-category,
+  &.accent-author {
     background-color: var(--dandelion);
   }
 

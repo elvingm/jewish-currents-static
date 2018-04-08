@@ -14,6 +14,7 @@ const makeAuthorRoutes = authors => {
     component: 'src/App/pages/Author',
     getData: async () => ({
       author,
+      currentPage: 'author',
       posts: await getPostsByAuthor(author.id)
     })
   }));
@@ -27,6 +28,7 @@ const makeCategoryRoutes = categories => {
     component: 'src/App/pages/Category',
     getData: async () => ({
       category,
+      currentPage: 'category',
       posts: await getPostsByCategory(category.id)
     })
   }));

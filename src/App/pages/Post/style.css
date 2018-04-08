@@ -18,7 +18,7 @@
 
   & .post-body {
     display: flex;
-    flex: 1 0 auto;
+    flex: 1 0 0%;
     flex-direction: column;
     padding: var(--s-block-spacing);
 
@@ -145,19 +145,6 @@
     @media(--post-desktop) {
       display: block;
       flex-basis: 21.875em;
-    }
-  }
-
-  & .ad-placement_350x600 {
-    background-color: var(--soft-amber);
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    width: 350px;
-    height: 600px;
-
-    & h3 {
-      display: inline-block;
     }
   }
 

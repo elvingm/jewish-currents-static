@@ -45,7 +45,7 @@ export default withRouteData(({ post }) => {
           />
         </aside>
         <aside className="sidebar">
-          <div className="ad-placement_350x600 g-border-wrap">
+          <div className=".g-ad_350x600 g-border-wrap">
             <h3>Ad</h3>
           </div>
           <div className="related-posts">

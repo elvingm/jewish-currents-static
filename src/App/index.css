@@ -171,3 +171,16 @@ a {
     height: 100%;
   }
 }
+
+.g-ad_350x600 {
+  background-color: var(--soft-amber);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  width: 350px;
+  height: 600px;
+
+  & h3 {
+    display: inline-block;
+  }
+}

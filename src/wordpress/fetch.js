@@ -61,6 +61,7 @@ export async function getPostsByAuthor(id) {
 export async function getPostsByCategory(id) {
   const posts = await wp
     .posts()
+    .perPage(100)
     .category(id)
     .embed();
   const transformed = posts.map(transformPost);

@@ -3,11 +3,11 @@ import { withRouteData } from 'react-static';
 import './style.css';
 import Post from '../../components/Post';
 
-export default withRouteData(({ author, posts }) => (
+const AuthorPage = ({ author, posts }) => (
   <div id="author">
     <div className="author-info">
       <div className="g-content-wrap">
-        <h1>{author.name}</h1>
+        <h1>{author.title}</h1>
       </div>
     </div>
     <div className="author-content g-content-wrap">
@@ -25,4 +25,6 @@ export default withRouteData(({ author, posts }) => (
       </aside>
     </div>
   </div>
-));
+);
+
+export default withRouteData(AuthorPage);

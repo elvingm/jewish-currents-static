@@ -3,6 +3,8 @@ import { Link, withRouteData } from 'react-static';
 import classNames from 'classnames';
 //
 import './style.css';
+import { SITE_PRIMARY_COLOR } from '../../util/constants';
+import { toRGBString } from '../../util/helpers';
 import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
 import MenuIcon from '../../assets/img/icons/menu.svg';
 import CloseIcon from '../../assets/img/icons/close.svg';
@@ -22,9 +24,10 @@ export default withRouteData(
     };
 
     render() {
-      const { currentPage } = this.props;
+      const { themePrimaryColor } = this.props;
+      const backgroundColor = themePrimaryColor || SITE_PRIMARY_COLOR;
       return (
-        <header id="site-header" className={`accent-${currentPage}`}>
+        <header id="site-header" style={{ backgroundColor: toRGBString(backgroundColor) }}>
           <div className="logo-wrap">
             <Link to="/" className="logo">
               <img src={JCLogo} alt="Jewish Currents Text Logo" />
@@ -61,9 +64,7 @@ export default withRouteData(
             <a href="#" className="donate-trigger">
               Donate
             </a>
-            <Link to="/jewdayo-signup" activeClassName="active">
-              Jewdayo
-            </Link>
+            <a href="/jewdayo-signup">Jewdayo</a>
             <a href="#" className="coming-soon-trigger">
               Archives
             </a>

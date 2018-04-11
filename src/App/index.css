@@ -162,7 +162,7 @@ a {
 .g-border-wrap {
   border: var(--black-border);
 
-  & img {
+  & picture, & img {
     display: block;
     max-width: 100%;
     object-fit: cover;

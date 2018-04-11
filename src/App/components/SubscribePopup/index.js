@@ -13,10 +13,8 @@ export default class SubscriptionPopup extends React.Component {
     };
   }
 
-  componentWillMount() {
-    setTimeout(() => {
-      this.showPopup();
-    }, this.props.wait);
+  componentDidMount() {
+    setTimeout(this.showPopup, this.props.wait);
   }
 
   showPopup = () => {

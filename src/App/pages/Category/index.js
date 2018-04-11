@@ -1,20 +1,43 @@
 import React from 'react';
-import { withRouteData } from 'react-static';
+import { Head, withRouteData } from 'react-static';
+
 import './style.css';
+import { toRGBString } from '../../util/helpers';
 import Post from '../../components/Post';
 
-export default withRouteData(({ category, posts }) => (
-  <div id="category">
-    <div className="category-info">
-      <h1>{category.name}</h1>
-    </div>
-    <div className="posts">
-      <ul>{posts.map(p => <Post key={p.id} {...p} />)}</ul>
-    </div>
-    <aside className="sidebar">
-      <div className="ad-placement_350x600 g-border-wrap">
-        <h3>Ad</h3>
+const CategoryPage = ({ category, posts, themePrimaryColor }) => {
+  const themeCss = `
+    .g-accent {
+      color: ${toRGBString(themePrimaryColor)});
+    }
+  `;
+
+  return (
+    <div id="category">
+      <Head>
+        <style>{themeCss}</style>
+      </Head>
+      <div className="category-info">
+        <div className="g-content-wrap">
+          <h1>{category.title}</h1>
+        </div>
       </div>
-    </aside>
-  </div>
-));
+      <div className="category-content g-content-wrap">
+        <ul className="posts">
+          {posts.map(p => (
+            <li key={p.id}>
+              <Post {...p} />
+            </li>
+          ))}
+        </ul>
+        <aside className="sidebar">
+          <div className="g-ad_350x600 g-border-wrap">
+            <h3>Ad</h3>
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+};
+
+export default withRouteData(CategoryPage);

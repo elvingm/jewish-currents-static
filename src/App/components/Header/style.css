@@ -5,17 +5,6 @@
   flex-direction: column;
   justify-content: center;
   
-  &.accent-home,
-  &.accent-about,
-  &.accent-category,
-  &.accent-author {
-    background-color: var(--dandelion);
-  }
-
-  &.accent-post {
-    background-color: var(--coral);
-  }
-  
   & .logo-wrap {
     border-bottom: var(--black-border);
     display: flex;

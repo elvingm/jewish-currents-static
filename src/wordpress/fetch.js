@@ -49,6 +49,14 @@ export function getAuthorById(id) {
     .get();
 }
 
+export async function getPostBySlug(slug) {
+  const post = await wp
+    .posts()
+    .slug(slug)
+    .embed();
+  return transformPost(post);
+}
+
 export async function getPostsByAuthor(id) {
   const posts = await wp
     .posts()
@@ -61,7 +69,7 @@ export async function getPostsByAuthor(id) {
 export async function getPostsByCategory(id) {
   const posts = await wp
     .posts()
-    .perPage(100)
+    .perPage(10)
     .category(id)
     .embed();
   const transformed = posts.map(transformPost);

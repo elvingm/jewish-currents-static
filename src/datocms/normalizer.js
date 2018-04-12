@@ -47,6 +47,7 @@ export default class DatoNormalizer {
         .forEach(key => {
           const links = item[key].map(link => this._resolveLinks(link, content, maxDepth));
           item[key] = links.length === 1 ? links[0] : links;
+          // console.log(`resolved ${key} for ${item.meta.contentType.name} ${item.id}`);
         });
 
       return item;
@@ -70,7 +71,7 @@ export default class DatoNormalizer {
       .forEach(key => {
         const links = clone[key].map(link => this._resolveLinks(link, items, maxDepth - 1));
         clone[key] = links.length === 1 ? links[0] : links;
-        console.log(`resolved ${clone[key]} for ${clone.id}`);
+        // console.log(`resolved ${key} for ${clone.meta.contentType.name} ${clone.id}`);
       });
 
     return clone;

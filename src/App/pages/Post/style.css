@@ -1,10 +1,9 @@
 @custom-media --post-desktop (min-width: 1024px);
+@custom-selector :--align-left .align-left, .alignleft;
+@custom-selector :--align-right .align-right, .alignright;
+@custom-selector :--align-center .align-center, .aligncenter;
 
-#post {
-  & .g-accent {
-    color: var(--coral);
-  }
-  
+#post {  
   & .featured-image {
     border-top: 0;
     border-left: 0;
@@ -18,7 +17,7 @@
 
   & .post-body {
     display: flex;
-    flex: 1 0 auto;
+    flex: 1 0 0%;
     flex-direction: column;
     padding: var(--s-block-spacing);
 
@@ -63,6 +62,18 @@
         margin-bottom: 10px;
       }
 
+      & h1 {
+        font-size: 28px;
+        letter-spacing: -1.57px;
+        line-height: 1.07;
+
+        @media(--post-desktop) {
+          font-size: 65px;
+          letter-spacing: -3.66px;
+          line-height: 1;
+        }
+      }
+
       & p {
         font-size: 18px;
         margin-bottom: 15px;
@@ -73,18 +84,57 @@
       }
     }
 
-    & h1 {
-      font-size: 28px;
-      letter-spacing: -1.57px;
-      line-height: 1.07;
+    & .content {
+      font-size: 21px;
+      line-height: 1.19;
+      letter-spacing: -0.55px;
 
-      @media(--post-desktop) {
-        font-size: 65px;
-        letter-spacing: -3.66px;
+      & > * {
+        margin: 20px 0;
+      }
+
+      & blockquote {
+        font-size: 35px;
         line-height: 1;
       }
-    }
 
+      & ol, & ul {
+        
+        & li {
+          font-size: 35px;
+          font-weight: bold;
+          line-height: 1.29;
+          letter-spacing: -1.97px;
+        }
+      }
+
+      & figure, & > img {
+        display: inline-block;
+
+        &:--align-left,
+        &:--align-right {
+          max-width: 50%;
+        }    
+
+        &:--align-left {
+          float: left;
+          margin-right: 20px;
+        }
+
+        &:--align-right {
+          float: right;
+          margin-left: 20px;
+        }
+
+        &:--align-center {
+          max-width: 100%;
+        }
+      }
+
+      & figcaption {
+        font-size: 14px;
+      }
+    }
   }
 
   & aside {
@@ -144,20 +194,7 @@
     
     @media(--post-desktop) {
       display: block;
-      flex-basis: 21.875em;
-    }
-  }
-
-  & .ad-placement_350x600 {
-    background-color: var(--soft-amber);
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    width: 350px;
-    height: 600px;
-
-    & h3 {
-      display: inline-block;
+      flex-basis: 35em;
     }
   }
 

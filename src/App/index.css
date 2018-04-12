@@ -162,12 +162,25 @@ a {
 .g-border-wrap {
   border: var(--black-border);
 
-  & img {
+  & picture, & img {
     display: block;
     max-width: 100%;
     object-fit: cover;
     object-position: center 25%;
     width: 100%;
     height: 100%;
+  }
+}
+
+.g-ad_350x600 {
+  background-color: var(--soft-amber);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  width: 350px;
+  height: 600px;
+
+  & h3 {
+    display: inline-block;
   }
 }

@@ -1,4 +1,3 @@
 {
-  "extends": "react-static/.babelrc",
-  "plugins": ["transform-class-properties"]
+  "extends": "react-static/.babelrc"
 }

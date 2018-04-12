@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouteData } from 'react-static';
 //
 import Newsletter from '../../components/Newsletter';
 import './style.css';
 
-export default () => (
+const AboutPage = () => (
   <div id="about">
     <section className="about-us">
       <h2>About Us</h2>
@@ -150,3 +151,5 @@ export default () => (
     <Newsletter />
   </div>
 );
+
+export default withRouteData(AboutPage);

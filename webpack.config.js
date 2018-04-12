@@ -1,6 +1,6 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-// sssLoader exports the webpack config for all styles
+// postcssLoader exports the webpack config for all styles
 const postcssLoader = env => {
   const loader = {
     // Local development server
@@ -37,6 +37,7 @@ export default (config, { defaultLoaders, stage }) => {
   } else if (stage === 'dev') {
     config.entry = ['babel-polyfill', ...config.entry];
   }
+
   config.module.rules = [
     {
       oneOf: [

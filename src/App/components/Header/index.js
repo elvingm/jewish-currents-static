@@ -3,6 +3,8 @@ import { Link, withRouteData } from 'react-static';
 import classNames from 'classnames';
 //
 import './style.css';
+import { SITE_PRIMARY_COLOR } from '../../util/constants';
+import { toRGBString } from '../../util/helpers';
 import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
 import MenuIcon from '../../assets/img/icons/menu.svg';
 import CloseIcon from '../../assets/img/icons/close.svg';
@@ -22,9 +24,10 @@ export default withRouteData(
     };
 
     render() {
-      const { currentPage } = this.props;
+      const { themePrimaryColor } = this.props;
+      const backgroundColor = themePrimaryColor || SITE_PRIMARY_COLOR;
       return (
-        <header id="site-header" className={`accent-${currentPage}`}>
+        <header id="site-header" style={{ backgroundColor: toRGBString(backgroundColor) }}>
           <div className="logo-wrap">
             <Link to="/" className="logo">
               <img src={JCLogo} alt="Jewish Currents Text Logo" />
@@ -55,33 +58,21 @@ export default withRouteData(
             </div>
           </div>
           <nav className={classNames({ 'menu-active': this.state.menuActive })}>
-            <Link to="/category/article" activeClassName="active">
-              Article
-            </Link>
-            <Link to="/category/blog" activeClassName="active">
-              Blog
-            </Link>
-            <Link to="/category/jewdayo" activeClassName="active">
-              Jewdayo
-            </Link>
-            <Link to="/jcultcha-gallery/multimedia" activeClassName="active">
-              Gallery
-            </Link>
-            <a
-              href="http://jewishcurrents.bigcartel.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Shop
-            </a>
-            <Link to="/archives" activeClassName="active">
-              Archives
-            </Link>
-            <Link to="/subscribe" activeClassName="active">
+            <a href="#" className="subscribe-trigger">
               Subscribe
-            </Link>
-            <Link to="/contact" activeClassName="active">
-              Contact
+            </a>
+            <a href="#" className="donate-trigger">
+              Donate
+            </a>
+            <a href="/jewdayo-signup">Jewdayo</a>
+            <a href="#" className="coming-soon-trigger">
+              Archives
+            </a>
+            <a href="#" className="coming-soon-trigger">
+              Pushcart
+            </a>
+            <Link to="/about" activeClassName="active">
+              About Us
             </Link>
             <div className="social-icons">
               <SocialLink

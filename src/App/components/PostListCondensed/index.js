@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-static';
 //
-import { MONTH_NAMES } from '../../util/date';
+import { MONTH_NAMES } from '../../util/constants';
 import './style.css';
 
 export default props => (

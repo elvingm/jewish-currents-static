@@ -1,36 +1,57 @@
 import React from 'react';
-import { Link, withRouteData } from 'react-static';
+import { Head, Link, withRouteData } from 'react-static';
+import { isArray } from 'lodash';
 //
 import './style.css';
-import { MONTH_NAMES } from '../../util/date';
-import { SITE_DOMAIN } from '../../util/constants';
+import { SITE_DOMAIN, MONTH_NAMES } from '../../util/constants';
+import { toRGBString } from '../../util/helpers';
 // import PostListCondensed from '../../components/PostListCondensed';
+import Image from '../../components/Image';
 import MoreArticlesLink from '../../components/MoreArticlesLink';
 import SubscribeCallout from '../../components/SubscribeCallout';
 import Newsletter from '../../components/Newsletter';
 import SocialLink from '../../components/SocialLink';
 
-export default withRouteData(({ post }) => {
-  const date = new Date(post.date);
+const PostPage = ({ post, themePrimaryColor }) => {
+  const date = new Date(post.publishedAt);
   const postUrl = `${SITE_DOMAIN}/${post.slug}`;
+  const category = isArray(post.categories) ? post.categories[0] : post.categories;
+  const themeCss = `
+    .g-accent {
+      color: ${toRGBString(themePrimaryColor)};
+    }
+    blockquote {
+      color: ${toRGBString(themePrimaryColor)};
+    }
+  `;
   return (
     <div id="post">
-      <div className="featured-image g-border-wrap">
-        <img src={post.featuredMedia.source_url} alt={post.featuredMedia.alt_text} />
-      </div>
+      <Head>
+        <style>{themeCss}</style>
+      </Head>
+      {post.featuredImage && (
+        <div className="featured-image g-border-wrap">
+          <Image src={post.featuredImage.path} alt={post.featuredImage.alt} />
+        </div>
+      )}
       <div className="post-body">
         <article>
           <header>
-            <h3 className="label">Featured Article</h3>
+            {post.featured && (
+              <div className="featured-image g-border-wrap">
+                <Image src={post.featuredImage.path} alt={post.featuredImage.alt} />
+              </div>
+            )}
+            <h3 className="label">{category.title}</h3>
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />
             <p>
               <span className="date">{`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`}</span>
-              <Link className="author g-underline-link" to={`/author/${post.author.slug}`}>
-                {post.author.name}
+              <Link className="author g-underline-link" to={`/author/${post.authors.slug}`}>
+                {post.authors.name}
               </Link>
             </p>
           </header>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
         <aside className="share-icons">
           <SocialLink
@@ -45,7 +66,7 @@ export default withRouteData(({ post }) => {
           />
         </aside>
         <aside className="sidebar">
-          <div className="ad-placement_350x600 g-border-wrap">
+          <div className=".g-ad_350x600 g-border-wrap">
             <h3>Ad</h3>
           </div>
           <div className="related-posts">
@@ -83,4 +104,6 @@ export default withRouteData(({ post }) => {
       </section>
     </div>
   );
-});
+};
+
+export default withRouteData(PostPage);

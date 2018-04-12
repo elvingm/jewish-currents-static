@@ -1,28 +1,23 @@
 import React from 'react';
-import { Head, withRouteData } from 'react-static';
+import { withRouteData } from 'react-static';
 //
 import Post from '../../components/Post';
 import Newsletter from '../../components/Newsletter';
-import SubscribePopup from '../../components/SubscribePopup';
 import MoreArticlesLink from '../../components/MoreArticlesLink';
+import SubscribePopup from '../../components/SubscribePopup';
 import SubscribeCallout from '../../components/SubscribeCallout';
 import Image from '../../components/Image';
 import magazinesImg from '../../assets/img/magazines-collection.png';
 import './style.css';
 
-export default withRouteData(({ title, description, posts }) => (
+const HomePage = ({ mainFeaturedPost, featuredPostColumns, featuredPostPaired }) => (
   <div id="home">
-    <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-    </Head>
-
     <div className="g-content-wrap">
       <section className="featured-post">
-        <Post {...posts[0]} />
+        <Post {...mainFeaturedPost} />
       </section>
       <section className="post-row split-30">
-        {posts.slice(1, 4).map(p => <Post {...p} key={p.id} stackedLayout />)}
+        {featuredPostColumns.map(p => <Post {...p} key={p.id} stackedLayout />)}
       </section>
       <section className="shop-now-ad">
         <div className="g-border-wrap">
@@ -39,11 +34,13 @@ export default withRouteData(({ title, description, posts }) => (
       </section>
       <SubscribeCallout />
       <section className="post-row split-40x60">
-        {posts.slice(4, 6).map(p => <Post {...p} key={p.id} stackedLayout />)}
+        {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout />)}
       </section>
       <MoreArticlesLink />
       <Newsletter />
     </div>
     <SubscribePopup wait={2500} />
   </div>
-));
+);
+
+export default withRouteData(HomePage);

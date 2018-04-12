@@ -59,6 +59,12 @@
     }
   }
 
+  & .title a,
+  & .label a {
+    font: inherit;
+    color: inherit;
+  }
+
   & .title {
     margin-top: 0;
     margin-bottom: 15px;

@@ -32,7 +32,7 @@ const wp_posts = {
           const next = new RegExp(/<(.*)>/).exec(
             response.headers.link.split(',').filter(link => link.match(/rel="next"/))[0]
           )[1];
-          return wp_tags.getAllTags(next, tags);
+          return wp_posts.getAllTags(next, tags);
         }
         return tags;
       })
@@ -68,8 +68,8 @@ const wp_posts = {
 };
 
 const main = () =>
-  wp_tags
+  wp_posts
     .getAllTags('http://jewishcurrents.org/wp-json/wp/v2/tags')
-    .then(wp_tags.saveTagsToDatoCMS);
+    .then(wp_posts.saveTagsToDatoCMS);
 
 main().then(console.log);

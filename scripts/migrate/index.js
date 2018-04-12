@@ -1,15 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const axios = require('axios');
 const { SiteClient } = require('datocms-client');
 
 const datocmsClient = new SiteClient('0ef9d273001e4484d53bec08550899');
 
-datocmsClient.items
-  .all({ 'filter[type]': 'tag', 'page[offset]': 25, 'page[limit]': 500 })
-  .then(items => {
-    items.forEach(i => console.log(i));
-  });
+datocmsClient.items.all({}, { allPages: true }).then(items => {
+  console.log(items.length);
+});
 
 // Dato Models
 // [ { id: '26697',

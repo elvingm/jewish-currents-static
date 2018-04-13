@@ -3,14 +3,17 @@ import { withRouteData } from 'react-static';
 //
 import Post from '../../components/Post';
 import Newsletter from '../../components/Newsletter';
-import MoreArticlesLink from '../../components/MoreArticlesLink';
 import SubscribePopup from '../../components/SubscribePopup';
 import SubscribeCallout from '../../components/SubscribeCallout';
 import Image from '../../components/Image';
-import magazinesImg from '../../assets/img/magazines-collection.png';
 import './style.css';
 
-const HomePage = ({ mainFeaturedPost, featuredPostColumns, featuredPostPaired }) => (
+const HomePage = ({
+  mainFeaturedPost,
+  featuredPostColumns,
+  featuredPostPaired,
+  currentIssueImage
+}) => (
   <div id="home">
     <div className="g-content-wrap">
       <section className="featured-post">
@@ -22,7 +25,7 @@ const HomePage = ({ mainFeaturedPost, featuredPostColumns, featuredPostPaired })
       <section className="shop-now-ad">
         <div className="g-border-wrap">
           <div className="image-wrap">
-            <Image src={magazinesImg} />
+            <Image src={currentIssueImage.path} alt={currentIssueImage.alt} />
           </div>
           <div className="issue-details">
             <h2>Spring 2018 Issue</h2>
@@ -36,7 +39,6 @@ const HomePage = ({ mainFeaturedPost, featuredPostColumns, featuredPostPaired })
       <section className="post-row split-40x60">
         {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout />)}
       </section>
-      <MoreArticlesLink />
       <Newsletter />
     </div>
     <SubscribePopup wait={2500} />

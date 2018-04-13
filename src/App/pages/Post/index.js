@@ -7,7 +7,6 @@ import { SITE_DOMAIN, MONTH_NAMES } from '../../util/constants';
 import { toRGBString } from '../../util/helpers';
 // import PostListCondensed from '../../components/PostListCondensed';
 import Image from '../../components/Image';
-import MoreArticlesLink from '../../components/MoreArticlesLink';
 import SubscribeCallout from '../../components/SubscribeCallout';
 import Newsletter from '../../components/Newsletter';
 import SocialLink from '../../components/SocialLink';
@@ -100,7 +99,6 @@ const PostPage = ({ post, themePrimaryColor }) => {
       </section>
       <section className="signup-wrap">
         <Newsletter />
-        <MoreArticlesLink />
       </section>
     </div>
   );

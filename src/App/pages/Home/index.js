@@ -2,8 +2,8 @@ import React from 'react';
 import { withRouteData } from 'react-static';
 //
 import Post from '../../components/Post';
-import Newsletter from '../../components/Newsletter';
-import SubscribePopup from '../../components/SubscribePopup';
+import NewsletterForm from '../../components/NewsletterForm';
+import NewsletterPopup from '../../components/NewsletterPopup';
 import SubscribeCallout from '../../components/SubscribeCallout';
 import Image from '../../components/Image';
 import './style.css';
@@ -39,9 +39,11 @@ const HomePage = ({
       <section className="post-row split-40x60">
         {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout />)}
       </section>
-      <Newsletter />
+      <section className="newsletter-signup">
+        <NewsletterForm />
+      </section>
     </div>
-    <SubscribePopup wait={2500} />
+    <NewsletterPopup wait={5000} />
   </div>
 );
 

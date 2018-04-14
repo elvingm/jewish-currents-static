@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouteData } from 'react-static';
 //
-import Newsletter from '../../components/Newsletter';
+import NewsletterForm from '../../components/NewsletterForm';
 import './style.css';
 
 const AboutPage = () => (
@@ -148,7 +148,9 @@ const AboutPage = () => (
         </div>
       </div>
     </section>
-    <Newsletter />
+    <section className="newsletter-signup">
+      <NewsletterForm />
+    </section>
   </div>
 );
 

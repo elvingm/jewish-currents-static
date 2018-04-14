@@ -191,7 +191,7 @@
     padding: var(--l-block-spacing) 0;
 
     @media(--g-medium-viewport) {
-      padding: 80px 0;
+      padding: 80px 0 50px;
     }
   }
 }

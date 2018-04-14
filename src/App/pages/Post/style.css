@@ -257,10 +257,6 @@
     }
   }
 
-  & .signup-wrap {
-    padding-bottom: 0;
-  }
-
   & .further-reading {
     & > h2 {
       margin: 30px 0 20px;
@@ -290,10 +286,9 @@
     }
   }
 
-  & .newsletter-signup {
+  & .newsletter-form {
     background-color: var(--soft-amber);
     border: var(--black-border);
-    margin-bottom: var(--s-block-spacing);
     padding: var(--s-block-spacing);
     padding-top: 40px;
 

@@ -78,8 +78,8 @@ const organizeContentByType = (content, models) => {
 export default {
   // Webpack config from file
   webpack,
-  siteRoot: 'https://jcurrents-stage.netlify.com',
-  stagingRoot: 'https://jcurrents-stage.netlify.com',
+  siteRoot: 'https://jewishcurrents-production.netlify.com',
+  stagingRoot: 'https://jewishcurrents-staging.netlify.com',
   // Global Site Data -
   getSiteData: () => ({
     title: 'Jewish | A Progressive, Secular Voice',

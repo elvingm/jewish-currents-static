@@ -54,7 +54,6 @@
 
   & h2 {
     line-height: 1.61;
-    margin: 0;
 
     @media(--g-medium-viewport) {
       font-size: 40px;

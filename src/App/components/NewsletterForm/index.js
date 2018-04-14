@@ -13,13 +13,14 @@ export default class NewsletterForm extends React.Component {
     this.state = { hideLabel: false };
   }
 
-  handleFocus = () => {
-    this.setState({ hideLabel: true });
+  handleFocus = event => {
+    const emailInput = event.currentTarget.querySelector('#email_address_1');
+    this.setState({ hideLabel: emailInput.value.length >= 0 });
   };
 
   handleBlur = event => {
-    const target = event.target;
-    if (target.type === 'email' && target.value > 0) {
+    const emailInput = event.currentTarget.querySelector('#email_address_1');
+    if (emailInput.value.length > 0) {
       this.setState({ hideLabel: true });
     } else {
       this.setState({ hideLabel: false });

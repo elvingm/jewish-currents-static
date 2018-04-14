@@ -83,19 +83,29 @@
     width: 120px;
     height: 46px;
 
-    &:hover,
-    &:active {
-      background-color: var(--black);
-      border: 0;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
     @media(--g-medium-viewport) {
       height: 52px;
     }
+
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+      background-color: var(--black);
+      border: 0;
+      outline: none;
+    }
+
+    &[disabled="disabled"] {
+      opacity: 1;
+    }
+  }
+
+  & div.ctct-form-embed div.ctct-form-defaults h2.ctct-form-header {
+    font-size: 28px;
+    letter-spacing: -1.58px;
+    line-height: 1.1;
+    margin-bottom: var(--s-block-spacing);
   }
 
   & div.ctct-form-embed form.ctct-form-custom .ctct-form-errorMessage {
@@ -131,7 +141,8 @@
 
   & div.ctct-form-embed form.ctct-form-custom div.ctct-form-field,
   & div.ctct-form-embed form.ctct-form-custom input.ctct-form-element,
-  & div.ctct-form-embed form.ctct-form-custom button.ctct-form-button {
+  & div.ctct-form-embed form.ctct-form-custom button.ctct-form-button,
+  & div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text {
     font-family: var(--font-stack);
     font-size: 14px;
     line-height: 1.22;

@@ -46,7 +46,7 @@ const makeCategoryRoutes = (categories, posts) => {
   return routes;
 };
 
-const makePostRoutes = posts => {
+const makePostRoutes = (posts, furtherReadingUnit) => {
   const routes = posts.map(post => {
     const category = isArray(post.categories) ? post.categories[0] : post.categories;
     return {
@@ -55,6 +55,7 @@ const makePostRoutes = posts => {
       getData: () => ({
         themePrimaryColor: post.themePrimaryColor || POST_PRIMARY_COLOR,
         currentPage: 'post',
+        furtherReadingUnit,
         post
       })
     };
@@ -87,14 +88,21 @@ export default {
   }),
   getRoutes: async () => {
     const { models, content } = await fetchData();
-    const { post, author, category, home_page } = organizeContentByType(content, models);
+    const {
+      post,
+      author,
+      category,
+      home_page: homePage,
+      further_reading_unit: furtherReadingUnit
+    } = organizeContentByType(content, models);
+
     return [
       {
         path: '/',
         component: 'src/App/pages/Home',
         getData: () => ({
           currentPage: 'home',
-          ...home_page[0]
+          ...homePage[0]
         })
       },
       {
@@ -107,7 +115,7 @@ export default {
       },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),
-      ...makePostRoutes(post),
+      ...makePostRoutes(post, furtherReadingUnit[0]),
       {
         is404: true,
         component: 'src/App/pages/404'

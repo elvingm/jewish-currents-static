@@ -79,7 +79,7 @@ export default {
   // Webpack config from file
   webpack,
   siteRoot: 'https://jewishcurrents-production.netlify.com',
-  stagingRoot: 'https://jewishcurrents-staging.netlify.com',
+  stagingSiteRoot: 'https://jewishcurrents-staging.netlify.com',
   // Global Site Data -
   getSiteData: () => ({
     title: 'Jewish | A Progressive, Secular Voice',

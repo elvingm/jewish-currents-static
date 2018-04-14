@@ -1,0 +1,160 @@
+.newsletter-form {
+  text-align: center;
+
+  & h2 {
+    font-size: 28px;
+    letter-spacing: -1.58px;
+    line-height: 1.1;
+    margin-bottom: var(--s-block-spacing);
+
+    @media(--g-medium-viewport) {      
+      font-size: 40px;
+      letter-spacing: -2.25px;
+      line-height: 1.125;
+      margin-bottom: var(--l-block-spacing);
+    }
+  }
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+  }
+
+  & input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    
+    @media(--g-medium-viewport) {
+      font-size: 18px;
+    }
+  }
+
+  & input[type="email"] {
+    flex: 1 1 auto;
+    padding: 12px 20px;
+  }
+
+  & input[type="submit"] {
+    border: 0;
+    padding: 12px 8px;
+    cursor: pointer;
+    
+    @media(--g-medium-viewport) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
+  /* Constant Contact Style Overrides */
+  & .ctct-inline-form.focused {
+    & div.ctct-form-embed form.ctct-form-custom div.ctct-form-field:before { display: none; }
+  }
+
+  & div.ctct-form-embed form.ctct-form-custom {
+    min-height: 80px;
+  }
+
+  & div.ctct-form-embed form.ctct-form-custom div.ctct-form-field {
+    border: var(--black-border);
+    margin-bottom: 0;
+
+    &:before {
+      content: 'Email';
+      display: block;
+      position: absolute;
+      top: 13px;
+      left: 20px;
+    }
+  }
+
+  & div.ctct-form-embed form.ctct-form-custom button.ctct-form-button {
+    background-color: var(--black);
+    border: var(--black-border);
+    border-radius: 0;
+    color: var(--white);
+    padding: 0 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 46px;
+
+    @media(--g-medium-viewport) {
+      height: 52px;
+    }
+
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+      background-color: var(--black);
+      border: 0;
+      outline: none;
+    }
+
+    &[disabled="disabled"] {
+      opacity: 1;
+    }
+  }
+
+  & div.ctct-form-embed div.ctct-form-defaults h2.ctct-form-header {
+    font-size: 28px;
+    letter-spacing: -1.58px;
+    line-height: 1.1;
+    margin-bottom: var(--s-block-spacing);
+  }
+
+  & div.ctct-form-embed form.ctct-form-custom .ctct-form-errorMessage {
+    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+  }
+
+  & div.ctct-form-embed div.ctct-form-defaults {
+    background-color: transparent;
+    border: 0;
+    color: var(--black);
+    font: var(--font-stack);
+    padding: 0;
+    line-height: normal;
+  }
+
+  & div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+    font-size: inherit;
+    height: 40px;
+    
+    @media(--g-medium-viewport) {
+      height: 46px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & div.ctct-form-embed form.ctct-form-custom div.ctct-form-field,
+  & div.ctct-form-embed form.ctct-form-custom input.ctct-form-element,
+  & div.ctct-form-embed form.ctct-form-custom button.ctct-form-button,
+  & div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text {
+    font-family: var(--font-stack);
+    font-size: 14px;
+    line-height: 1.22;
+
+    @media(--g-medium-viewport) {
+      font-size: 18px;
+    }
+  }
+
+  & .g-recaptcha,
+  & div.ctct-form-embed div.ctct-form-defaults p.ctct-form-footer,
+  & div.ctct-form-embed form.ctct-form-custom label.ctct-form-label {
+    display: none;
+  }
+}

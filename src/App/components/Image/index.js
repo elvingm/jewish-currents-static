@@ -7,7 +7,7 @@ export default ({ alt, src, steps = [250, 500, 750, 1000, 1500, 2000, 2500], siz
   return (
     <picture>
       <source type="image/webp" srcSet={srcwebp} sizes={sizes} />
-      <img src={src} srcSet={srcjpg} sizes={sizes} alt={alt} />
+      <img src={`${base}${src}?q=80`} srcSet={srcjpg} sizes={sizes} alt={alt} />
     </picture>
   );
 };

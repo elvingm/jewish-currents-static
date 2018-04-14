@@ -78,8 +78,8 @@ const organizeContentByType = (content, models) => {
 export default {
   // Webpack config from file
   webpack,
-  siteRoot: 'https://jcurrents-stage.netlify.com',
-  stagingRoot: 'https://jcurrents-stage.netlify.com',
+  siteRoot: 'https://jewishcurrents-production.netlify.com',
+  stagingSiteRoot: 'https://jewishcurrents-staging.netlify.com',
   // Global Site Data -
   getSiteData: () => ({
     title: 'Jewish | A Progressive, Secular Voice',
@@ -122,7 +122,20 @@ export default {
         <title>{siteData.title}</title>
         <meta name="description" content={siteData.description} />
       </Head>
-      <Body>{children}</Body>
+      <Body>
+        {children}
+        {/* <!-- Begin Constant Contact Active Forms --> */}
+        <script
+          dangerouslySetInnerHTML={{ __html: `var _ctct_m = "21a5ee28f6c0fefe44a395c76e74b213";` }}
+        />
+        <script
+          id="signupScript"
+          src="//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js"
+          async
+          defer
+        />
+        {/* <!-- End Constant Contact Active Forms --> */}
+      </Body>
     </Html>
   )
 };

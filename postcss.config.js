@@ -2,6 +2,7 @@ module.exports = {
   plugins: [
     require('postcss-import'),
     require('postcss-custom-properties'),
+    require('postcss-custom-selectors'),
     require('postcss-calc'),
     require('postcss-image-set-polyfill'),
     require('postcss-nesting'),

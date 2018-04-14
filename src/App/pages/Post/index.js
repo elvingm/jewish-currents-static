@@ -7,9 +7,8 @@ import { SITE_DOMAIN, MONTH_NAMES } from '../../util/constants';
 import { toRGBString } from '../../util/helpers';
 // import PostListCondensed from '../../components/PostListCondensed';
 import Image from '../../components/Image';
-import MoreArticlesLink from '../../components/MoreArticlesLink';
 import SubscribeCallout from '../../components/SubscribeCallout';
-import Newsletter from '../../components/Newsletter';
+import NewsletterForm from '../../components/NewsletterForm';
 import SocialLink from '../../components/SocialLink';
 
 const PostPage = ({ post, themePrimaryColor }) => {
@@ -98,9 +97,8 @@ const PostPage = ({ post, themePrimaryColor }) => {
         </div>
         <SubscribeCallout />
       </section>
-      <section className="signup-wrap">
-        <Newsletter />
-        <MoreArticlesLink />
+      <section className="newsletter-signup">
+        <NewsletterForm />
       </section>
     </div>
   );

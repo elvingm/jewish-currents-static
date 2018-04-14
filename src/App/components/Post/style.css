@@ -46,9 +46,9 @@
       margin-left: var(--l-block-spacing);
     }
 
-    & > p,
-    & > p > span,
-    & > p > a {
+    & .info,
+    & .info span,
+    & .info a {
       font-size: 12px;
       letter-spacing: -0.68px;
       margin-bottom: 15px;
@@ -91,15 +91,11 @@
 
   & .excerpt {
     margin-bottom: 45px;
+    font-size: 18px;
+    letter-spacing: -0.47px;
 
-    & p {
-      margin: 0;
-      font-size: 18px;
-      letter-spacing: -0.47px;
-
-      @media(--post-unstacked) {
-        font-size: 21px;
-      }
+    @media(--post-unstacked) {
+      font-size: 21px;
     }
   }
 } 

@@ -10,7 +10,7 @@ import Image from '../Image';
 
 export default props => {
   const date = new Date(props.publishedAt);
-  const excerpt = props.excerpt ? props.excerpt : striptags(props.content).slice(0, 400);
+  const excerpt = props.excerpt ? props.excerpt : striptags(props.content).slice(0, 500);
   const category = isArray(props.categories) ? props.categories[0] : props.categories;
 
   return (
@@ -29,7 +29,7 @@ export default props => {
         <h2 className="title">
           <Link to={`/${category.slug}/${props.slug}`}>{props.title}</Link>
         </h2>
-        <p>
+        <p className="info">
           <span className="date">{`${
             MONTH_NAMES[date.getMonth()]
           } ${date.getDate()}, ${date.getYear()}`}</span>
@@ -37,7 +37,7 @@ export default props => {
             {props.authors.name}
           </Link>
         </p>
-        <p className="excerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
+        <p className="excerpt" dangerouslySetInnerHTML={{ __html: `${excerpt}...` }} />
         <Link to={`/${category.slug}/${props.slug}`} className="g-bold-link">
           Read More
         </Link>

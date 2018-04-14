@@ -5,13 +5,14 @@ import { isArray } from 'lodash';
 import './style.css';
 import { SITE_DOMAIN, MONTH_NAMES } from '../../util/constants';
 import { toRGBString } from '../../util/helpers';
-// import PostListCondensed from '../../components/PostListCondensed';
+import FurtherReadingUnit from '../../components/FurtherReadingUnit';
 import Image from '../../components/Image';
 import SubscribeCallout from '../../components/SubscribeCallout';
 import NewsletterForm from '../../components/NewsletterForm';
 import SocialLink from '../../components/SocialLink';
+import PostListCondensed from '../../components/PostListCondensed';
 
-const PostPage = ({ post, themePrimaryColor }) => {
+const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const date = new Date(post.publishedAt);
   const postUrl = `${SITE_DOMAIN}/${post.slug}`;
   const category = isArray(post.categories) ? post.categories[0] : post.categories;
@@ -68,9 +69,7 @@ const PostPage = ({ post, themePrimaryColor }) => {
           <div className=".g-ad_350x600 g-border-wrap">
             <h3>Ad</h3>
           </div>
-          <div className="related-posts">
-            <h2 className="g-accent">Further Reading</h2>
-          </div>
+          <FurtherReadingUnit {...furtherReadingUnit} />
         </aside>
       </div>
       <section className="share-article">
@@ -93,7 +92,7 @@ const PostPage = ({ post, themePrimaryColor }) => {
       <section className="split-wrap">
         <div className="further-reading">
           <h2>Further Reading</h2>
-          <div className="line-divider" />
+          <PostListCondensed posts={furtherReadingUnit.posts} />
         </div>
         <SubscribeCallout />
       </section>

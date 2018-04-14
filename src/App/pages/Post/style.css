@@ -255,6 +255,11 @@
         flex: 1 1 50%; 
       }
     }
+
+    & .g-post-condensed {
+      border-top: 0;
+      padding: 10px 0;
+    }
   }
 
   & .further-reading {

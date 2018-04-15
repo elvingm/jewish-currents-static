@@ -138,6 +138,7 @@ export default {
       category,
       home_page: homePage,
       privacy_policy: privacyPolicy,
+      submissions_page: submissionsPage,
       further_reading_unit: furtherReadingUnit
     } = organizeContentByType(content, models);
 
@@ -162,6 +163,11 @@ export default {
         path: '/about/privacy-policy',
         component: 'src/App/pages/PrivacyPolicy',
         getData: () => privacyPolicy[0]
+      },
+      {
+        path: '/submit',
+        component: 'src/App/pages/Submissions',
+        getData: () => submissionsPage[0]
       },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),

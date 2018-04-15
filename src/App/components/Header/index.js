@@ -80,7 +80,13 @@ export default withRouteData(
             <a href="#" className="subscribe-trigger">
               Subscribe
             </a>
-            <a href="/jewdayo-signup">Jewdayo</a>
+            <a
+              href="https://visitor.r20.constantcontact.com/d.jsp?llr=i4bnxifab&p=oi&m=1105173317608&sit=he77xk6fb&f=28bfcc5c-c9c2-4990-b570-dc893dd16623"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Jewdayo
+            </a>
             <a href="#" onClick={this.handleArchiveOpen}>
               Archives
             </a>
@@ -89,6 +95,9 @@ export default withRouteData(
             </a>
             <Link to="/about" activeClassName="active">
               About Us
+            </Link>
+            <Link to="/submit" activeClassName="active">
+              Submissions
             </Link>
             <div className="social-icons">
               <SocialLink

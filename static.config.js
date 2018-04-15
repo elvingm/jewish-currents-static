@@ -1,49 +1,93 @@
 import React from 'react';
-import { isArray } from 'lodash';
+import { isArray, flatten } from 'lodash';
 import webpack from './webpack.config.js';
 import fetchData from './src/datocms/fetch';
 import { SITE_PRIMARY_COLOR, POST_PRIMARY_COLOR } from './src/App/util/constants';
 
-const makeAuthorRoutes = (authors, posts) => {
-  const routes = authors.map(author => {
-    const authorPosts = posts.filter(p => p.authors.id === author.id).slice(0, 50);
-    return {
-      path: `/author/${author.slug}`,
-      component: 'src/App/pages/Author',
-      getData: async () => ({
-        themePrimaryColor: author.themePrimaryColor || SITE_PRIMARY_COLOR,
-        currentPage: 'author',
-        posts: authorPosts,
-        author
-      })
-    };
-  });
+const paginateItems = ({ items, parent, pageSize, pageToken = 'page', route, decorate }) => {
+  const itemsCopy = [...items]; // Make a copy of the items
+  const pages = []; // Make an array for all of the different pages
+
+  while (itemsCopy.length) {
+    // Splice out all of the items into separate pages using a set pageSize
+    pages.push(itemsCopy.splice(0, pageSize));
+  }
+
+  // Move the first page out of pagination. This is so page one doesn't require a page number.
+  const firstPage = pages.shift();
+
+  const routes = [
+    {
+      ...route,
+      ...decorate(firstPage, parent)
+    },
+    // map over each page to create an array of page routes, and spread it!
+    ...pages.map((page, i) => ({
+      ...route, // route defaults
+      path: `${route.path}/${pageToken}/${i + 2}`,
+      ...decorate(page, parent)
+    }))
+  ];
 
   return routes;
 };
 
-const makeCategoryRoutes = (categories, posts) => {
-  const routes = categories.map(category => {
-    const categoryPosts = posts
-      .filter(p => {
-        const postCategory = isArray(p.categories) ? p.categories[0] : p.categories;
-        return postCategory.id === category.id;
-      })
-      .slice(0, 50);
+const makeAuthorRoutes = (authors, posts) => {
+  const routes = authors.map(author => {
+    const authorPosts = posts.filter(p => {
+      const postAuthor = isArray(p.authors) ? p.authors[0] : p.authors;
+      return postAuthor.id === author.id;
+    });
 
-    return {
-      path: `/${category.slug}`,
-      component: 'src/App/pages/Category',
-      getData: async () => ({
-        themePrimaryColor: category.themePrimaryColor || SITE_PRIMARY_COLOR,
-        currentPage: 'category',
-        posts: categoryPosts,
-        category
+    return paginateItems({
+      items: authorPosts,
+      parent: author,
+      pageSize: 20,
+      route: {
+        path: `/author/${author.slug}`,
+        component: 'src/App/pages/Author'
+      },
+      decorate: (posts, author) => ({
+        getData: () => ({
+          themePrimaryColor: author.themePrimaryColor || SITE_PRIMARY_COLOR,
+          currentPage: 'author',
+          author,
+          posts
+        })
       })
-    };
+    });
   });
 
-  return routes;
+  return flatten(routes);
+};
+
+const makeCategoryRoutes = (categories, posts) => {
+  const routes = categories.map(category => {
+    const categoryPosts = posts.filter(p => {
+      const postCategory = isArray(p.categories) ? p.categories[0] : p.categories;
+      return postCategory.id === category.id;
+    });
+
+    return paginateItems({
+      items: categoryPosts,
+      parent: category,
+      pageSize: 20,
+      route: {
+        path: `/category/${category.slug}`,
+        component: 'src/App/pages/Category'
+      },
+      decorate: (posts, category) => ({
+        getData: () => ({
+          themePrimaryColor: category.themePrimaryColor || SITE_PRIMARY_COLOR,
+          currentPage: 'category',
+          category,
+          posts
+        })
+      })
+    });
+  });
+
+  return flatten(routes);
 };
 
 const makePostRoutes = (posts, furtherReadingUnit) => {

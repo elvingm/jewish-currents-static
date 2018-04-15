@@ -26,7 +26,7 @@ export default props => {
       )}
       <div className="details">
         <h3 className="label g-accent">
-          <Link to={`/${category.slug}`}>{category.title}</Link>
+          <Link to={`/category/${category.slug}`}>{category.title}</Link>
         </h3>
         <h2 className="title">
           <Link to={`/${category.slug}/${props.slug}`}>{props.title}</Link>

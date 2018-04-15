@@ -48,7 +48,9 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
             <h3 className="label">{category.title}</h3>
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />
             <p>
-              <span className="date">{`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`}</span>
+              <span className="date">{`${
+                MONTH_NAMES[date.getMonth()]
+              } ${date.getDate()}, ${date.getFullYear()}`}</span>
               <Link className="author g-underline-link" to={`/author/${post.authors.slug}`}>
                 {post.authors.name}
               </Link>

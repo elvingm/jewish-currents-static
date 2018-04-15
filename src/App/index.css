@@ -105,6 +105,19 @@ a {
   font-weight: bold;
 }
 
+#root,
+#root > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  & .content {
+    display: flex;
+    flex: 1 0 auto; /* 2 */
+    flex-direction: column;
+  }
+}
+
 .g-content-wrap {
   margin: 0 auto;
   max-width: var(--content-max-width);

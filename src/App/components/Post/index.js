@@ -32,7 +32,7 @@ export default props => {
         <p className="info">
           <span className="date">{`${
             MONTH_NAMES[date.getMonth()]
-          } ${date.getDate()}, ${date.getYear()}`}</span>
+          } ${date.getDate()}, ${date.getFullYear()}`}</span>
           <Link className="author g-underline-link" to={`/author/${props.authors.slug}`}>
             {props.authors.name}
           </Link>

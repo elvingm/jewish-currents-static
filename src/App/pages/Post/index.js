@@ -29,7 +29,7 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
       <Head>
         <style>{themeCss}</style>
       </Head>
-      {post.featuredImage && (
+      {post.featuredPost && (
         <div className="featured-image g-border-wrap">
           <Image src={post.featuredImage.path} alt={post.featuredImage.alt} />
         </div>
@@ -37,9 +37,12 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
       <div className="post-body">
         <article>
           <header>
-            {post.featured && (
-              <div className="featured-image g-border-wrap">
-                <Image src={post.featuredImage.path} alt={post.featuredImage.alt} />
+            {!post.featuredPost && (
+              <div className="post-image g-border-wrap">
+                <Image
+                  src={post.postImage ? post.postImage.path : post.featuredImage.path}
+                  alt={post.postImage ? post.postImage.alt : post.featuredImage.alt}
+                />
               </div>
             )}
             <h3 className="label">{category.title}</h3>

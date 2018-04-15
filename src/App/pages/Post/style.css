@@ -15,6 +15,10 @@
     justify-content: center;
   }
 
+  & .post-image {
+    margin-bottom: 20px;
+  }
+
   & .post-body {
     display: flex;
     flex: 1 0 0%;

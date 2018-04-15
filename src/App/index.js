@@ -17,8 +17,10 @@ class App extends React.Component {
   constructor() {
     super();
 
-    ReactGA.initialize('UA-35060516-1');
-    ReactGA.pageview(window.location.pathname);
+    if (typeof window !== 'undefined') {
+      ReactGA.initialize('UA-35060516-1');
+      ReactGA.pageview(window.location.pathname);
+    }
   }
 
   render() {

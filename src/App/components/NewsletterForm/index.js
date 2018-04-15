@@ -14,18 +14,38 @@ export default class NewsletterForm extends React.Component {
   }
 
   handleFocus = event => {
-    const emailInput = event.currentTarget.querySelector('#email_address_1');
+    const emailInput = event.currentTarget.querySelector('input[type="email"]');
     this.setState({ hideLabel: emailInput.value.length >= 0 });
   };
 
   handleBlur = event => {
-    const emailInput = event.currentTarget.querySelector('#email_address_1');
+    const emailInput = event.currentTarget.querySelector('input[type="email"]');
     if (emailInput.value.length > 0) {
       this.setState({ hideLabel: true });
     } else {
       this.setState({ hideLabel: false });
     }
   };
+
+  /**
+   * When unmounted, check for Constant Contact widget object, and clean up
+   * instances of the signup form.
+   */
+  componentWillUnmount() {
+    if (typeof window !== 'undefined' && window.SignUpFormWidget) {
+      window.SignUpFormWidget.Api.destroyAll();
+    }
+  }
+
+  /**
+   * When mounted, make sure to call the main() function to initialize signup
+   * forms on page. This is necessary to get the form reinjected.
+   */
+  componentDidMount() {
+    if (typeof window !== 'undefined' && window.SignUpFormWidget) {
+      window.SignUpFormWidget.main();
+    }
+  }
 
   render() {
     return (

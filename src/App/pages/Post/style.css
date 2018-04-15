@@ -260,27 +260,27 @@
         flex: 1 1 50%; 
       }
     }
-  }
+  
+    & .further-reading {
+      & > h2 {
+        margin: 30px 0 20px;
+      }
 
-  & .further-reading {
-    & > h2 {
-      margin: 30px 0 20px;
-    }
+      & .line-divider {
+        height: 3px;
+        background-color: var(--black);
+        width: 76px;
+      }
 
-    & .line-divider {
-      height: 3px;
-      background-color: var(--black);
-      width: 76px;
-    }
+      & .g-post-list-condensed {
+        padding: 20px;
+        padding-left: 0;
+      }
 
-    & .g-post-list-condensed {
-      padding: 20px;
-      padding-left: 0;
-    }
-
-    & .g-post-condensed {
-      border-top: 0;
-      padding: 10px 0;
+      & .g-post-condensed {
+        border-top: 0;
+        padding: 10px 0;
+      }
     }
   }
 

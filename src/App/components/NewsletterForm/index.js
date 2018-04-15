@@ -32,8 +32,8 @@ export default class NewsletterForm extends React.Component {
    * instances of the signup form.
    */
   componentWillUnmount() {
-    if (typeof window !== 'undefined' && window.SignUpFormWidget) {
-      if (window.SignUpFormWidget.Api) {
+    if (typeof window !== 'undefined') {
+      if (window.SignUpFormWidget && window.SignUpFormWidget.Api) {
         window.SignUpFormWidget.Api.destroyAll();
       }
     }
@@ -44,8 +44,10 @@ export default class NewsletterForm extends React.Component {
    * forms on page. This is necessary to get the form reinjected.
    */
   componentDidMount() {
-    if (typeof window !== 'undefined' && window.SignUpFormWidget) {
-      window.SignUpFormWidget.main();
+    if (typeof window !== 'undefined') {
+      if (window.SignUpFormWidget && window.SignUpFormWidget.main) {
+        window.SignUpFormWidget.main();
+      }
     }
   }
 

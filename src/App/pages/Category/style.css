@@ -6,6 +6,8 @@
   }
 
   & .category-info {
+    margin-bottom: 20px;
+    
     & h1 {
       margin-bottom: 0;
     }

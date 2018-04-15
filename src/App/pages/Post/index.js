@@ -29,22 +29,24 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
       <Head>
         <style>{themeCss}</style>
       </Head>
-      {post.featuredPost && (
-        <div className="featured-image g-border-wrap">
-          <Image src={post.featuredImage.path} alt={post.featuredImage.alt} />
-        </div>
-      )}
+      {post.featuredPost &&
+        post.featuredImage && (
+          <div className="featured-image g-border-wrap">
+            <Image src={post.featuredImage.path} alt={post.featuredImage.alt} />
+          </div>
+        )}
       <div className="post-body">
         <article>
           <header>
-            {!post.featuredPost && (
-              <div className="post-image g-border-wrap">
-                <Image
-                  src={post.postImage ? post.postImage.path : post.featuredImage.path}
-                  alt={post.postImage ? post.postImage.alt : post.featuredImage.alt}
-                />
-              </div>
-            )}
+            {!post.featuredPost &&
+              (post.postImage || post.featuredImage) && (
+                <div className="post-image g-border-wrap">
+                  <Image
+                    src={post.postImage ? post.postImage.path : post.featuredImage.path}
+                    alt={post.postImage ? post.postImage.alt : post.featuredImage.alt}
+                  />
+                </div>
+              )}
             <h3 className="label">{category.title}</h3>
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />
             <p>

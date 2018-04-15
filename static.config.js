@@ -137,6 +137,7 @@ export default {
       author,
       category,
       home_page: homePage,
+      privacy_policy: privacyPolicy,
       further_reading_unit: furtherReadingUnit
     } = organizeContentByType(content, models);
 
@@ -156,6 +157,11 @@ export default {
           currentPage: 'about',
           footerColor: { red: 255, green: 191, blue: 0 }
         })
+      },
+      {
+        path: '/about/privacy-policy',
+        component: 'src/App/pages/PrivacyPolicy',
+        getData: () => privacyPolicy[0]
       },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),

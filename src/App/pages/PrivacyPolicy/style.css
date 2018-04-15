@@ -1,0 +1,44 @@
+#privacy-policy {
+
+  & article {
+    padding-left: var(--s-block-spacing);
+    padding-right: var(--s-block-spacing);
+
+    @media(--g-medium-viewport) {
+      padding-left: var(--l-block-spacing);
+      padding-right: var(--l-block-spacing);
+    }    
+
+    & .content {
+      font-size: 21px;
+      line-height: 1.19;
+      letter-spacing: -0.55px;
+
+      & > * {
+        margin: 20px 0;
+      }
+    }
+  }
+
+  & h2 {
+    font-size: 28px;
+    letter-spacing: -1.57px;
+    line-height: 1.61;
+
+    @media(--g-medium-viewport) {
+      font-size: 40px;
+      letter-spacing: -2.25px;
+      line-height: 1.13;
+    }
+  }
+
+  & ol, & ul {
+
+    & li {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.29;
+      letter-spacing: -1.97px;
+    }
+  }
+}

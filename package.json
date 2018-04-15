@@ -14,6 +14,7 @@
     "precommit": "lint-staged",
     "serve": "serve dist -p 1111",
     "start": "react-static start",
+    "freshstart": "REFRESH_FILE_CACHE=true react-static start",
     "stage": "react-static build --staging",
     "migrate": "node scripts/migrate/index.js"
   },

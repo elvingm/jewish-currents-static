@@ -5,6 +5,12 @@
     padding: var(--l-block-spacing) 0;
   }
 
+  & .author-info {
+    & h1 {
+      margin-bottom: 0;
+    }
+  }
+
   & .author-content {
     display: flex;
     flex-direction: column;

@@ -2,14 +2,21 @@ import React from 'react';
 //
 import './style.css';
 
-export default () => (
+const SubscribeCallout = () => (
   <section className="subscribe-callout">
     <div className="text">
       <h2>Subscribe ---> Keep it current!</h2>
       <h4>Subscribe to Jewish Currents and get four print issues a year for $18.</h4>
-      <a className="g-button" href="#">
+      <a
+        className="g-button"
+        href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ATPREV8BDC4"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Subscribe Now!
       </a>
     </div>
   </section>
 );
+
+export default SubscribeCallout;

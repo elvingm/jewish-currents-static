@@ -77,7 +77,7 @@ h2 {
   letter-spacing: -1.57px;
   line-height: 1.25;
 
-  @media(--g-medium-viewport) {
+  @media(--g-large-viewport) {
     font-size: 35px;
     letter-spacing: -1.97px;
     line-height: 1.29;

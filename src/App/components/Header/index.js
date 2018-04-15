@@ -77,7 +77,11 @@ export default withRouteData(
             </div>
           </div>
           <nav className={classNames({ 'menu-active': this.state.menuActive })}>
-            <a href="#" className="subscribe-trigger">
+            <a
+              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UCKPHGTHEGGMC"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Subscribe
             </a>
             <a

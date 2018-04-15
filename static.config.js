@@ -36,7 +36,7 @@ const makeAuthorRoutes = (authors, posts) => {
   const routes = authors.map(author => {
     const authorPosts = posts.filter(p => {
       const postAuthor = isArray(p.authors) ? p.authors[0] : p.authors;
-      return postAuthor.id === author.id;
+      return postAuthor && postAuthor.id === author.id;
     });
 
     return paginateItems({
@@ -65,7 +65,7 @@ const makeCategoryRoutes = (categories, posts) => {
   const routes = categories.map(category => {
     const categoryPosts = posts.filter(p => {
       const postCategory = isArray(p.categories) ? p.categories[0] : p.categories;
-      return postCategory.id === category.id;
+      return postCategory && postCategory.id === category.id;
     });
 
     return paginateItems({

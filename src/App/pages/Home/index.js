@@ -17,10 +17,10 @@ const HomePage = ({
   <div id="home">
     <div className="g-content-wrap">
       <section className="featured-post">
-        <Post {...mainFeaturedPost} />
+        <Post {...mainFeaturedPost} useThumbnail />
       </section>
       <section className="post-row split-30">
-        {featuredPostColumns.map(p => <Post {...p} key={p.id} stackedLayout />)}
+        {featuredPostColumns.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
       </section>
       <section className="shop-now-ad">
         <div className="g-border-wrap">
@@ -41,7 +41,7 @@ const HomePage = ({
       </section>
       <SubscribeCallout />
       <section className="post-row split-40x60">
-        {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout />)}
+        {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
       </section>
       <section className="newsletter-signup">
         <NewsletterForm />

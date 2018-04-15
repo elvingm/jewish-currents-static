@@ -12,13 +12,15 @@ export default props => {
   const date = new Date(props.publishedAt);
   const excerpt = props.excerpt ? props.excerpt : striptags(props.content).slice(0, 500);
   const category = isArray(props.categories) ? props.categories[0] : props.categories;
-
+  const postImage = props.useThumbnail
+    ? props.thumbnailImage || props.featuredImage
+    : props.featuredImage;
   return (
     <div className={classNames({ 'g-post': true, stacked: props.stackedLayout })}>
-      {props.featuredImage && (
+      {postImage && (
         <div className="image g-border-wrap">
           <Link to={`/${category.slug}/${props.slug}`}>
-            <Image src={props.featuredImage.path} alt={props.featuredImage.alt} />
+            <Image src={postImage.path} alt={postImage.alt} />
           </Link>
         </div>
       )}

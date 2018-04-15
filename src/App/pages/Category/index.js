@@ -31,9 +31,9 @@ const CategoryPage = ({ category, posts, themePrimaryColor }) => {
           ))}
         </ul>
         <aside className="sidebar">
-          <div className="g-ad_350x600 g-border-wrap">
+          {/* <div className="g-ad_350x600 g-border-wrap">
             <h3>Ad</h3>
-          </div>
+          </div> */}
         </aside>
       </div>
     </div>

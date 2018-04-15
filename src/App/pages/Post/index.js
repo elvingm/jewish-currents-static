@@ -11,6 +11,7 @@ import SubscribeCallout from '../../components/SubscribeCallout';
 import NewsletterForm from '../../components/NewsletterForm';
 import SocialLink from '../../components/SocialLink';
 import PostListCondensed from '../../components/PostListCondensed';
+import NewsletterPopup from '../../components/NewsletterPopup';
 
 const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const date = new Date(post.publishedAt);
@@ -73,9 +74,9 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
           />
         </aside>
         <aside className="sidebar">
-          <div className=".g-ad_350x600 g-border-wrap">
+          {/* <div className=".g-ad_350x600 g-border-wrap">
             <h3>Ad</h3>
-          </div>
+          </div> */}
           <FurtherReadingUnit {...furtherReadingUnit} />
         </aside>
       </div>
@@ -107,6 +108,7 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
       <section className="newsletter-signup">
         <NewsletterForm />
       </section>
+      <NewsletterPopup wait={5000} />
     </div>
   );
 };

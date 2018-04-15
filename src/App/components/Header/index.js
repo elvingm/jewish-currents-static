@@ -9,18 +9,37 @@ import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
 import MenuIcon from '../../assets/img/icons/menu.svg';
 import CloseIcon from '../../assets/img/icons/close.svg';
 import SocialLink from '../SocialLink';
+import NoticePopup from '../NoticePopup';
 
 export default withRouteData(
   class Header extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        menuActive: false
+        menuActive: false,
+        showPushcartNotice: false,
+        showArchivesNotice: false
       };
     }
 
     handleMenuClick = () => {
       this.setState({ menuActive: !this.state.menuActive });
+    };
+
+    handleArchiveOpen = () => {
+      this.setState({ showArchivesNotice: true });
+    };
+
+    handleArchiveClose = () => {
+      this.setState({ showArchivesNotice: false });
+    };
+
+    handlePushcartOpen = () => {
+      this.setState({ showPushcartNotice: true });
+    };
+
+    handlePushcartClose = () => {
+      this.setState({ showPushcartNotice: false });
     };
 
     render() {
@@ -61,14 +80,11 @@ export default withRouteData(
             <a href="#" className="subscribe-trigger">
               Subscribe
             </a>
-            <a href="#" className="donate-trigger">
-              Donate
-            </a>
             <a href="/jewdayo-signup">Jewdayo</a>
-            <a href="#" className="coming-soon-trigger">
+            <a href="#" onClick={this.handleArchiveOpen}>
               Archives
             </a>
-            <a href="#" className="coming-soon-trigger">
+            <a href="#" onClick={this.handlePushcartOpen}>
               Pushcart
             </a>
             <Link to="/about" activeClassName="active">
@@ -92,6 +108,15 @@ export default withRouteData(
               />
             </div>
           </nav>
+          <NoticePopup onCloseClick={this.handleArchiveClose} show={this.state.showArchivesNotice}>
+            <h2>
+              We will soon be relaunching our extensive Sid Resnick Memorial Archives and Schappes
+              Center for Cultural Jewish Life, stay tuned!
+            </h2>
+          </NoticePopup>
+          <NoticePopup onCloseClick={this.handlePushcartClose} show={this.state.showPushcartNotice}>
+            <h2>Stay tuned for our "Pushcart," our store of unique gifts, books and more.</h2>
+          </NoticePopup>
         </header>
       );
     }

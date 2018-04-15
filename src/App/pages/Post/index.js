@@ -3,7 +3,7 @@ import { Head, Link, withRouteData } from 'react-static';
 import { isArray } from 'lodash';
 //
 import './style.css';
-import { SITE_DOMAIN, MONTH_NAMES } from '../../util/constants';
+import { MONTH_NAMES } from '../../util/constants';
 import { toRGBString } from '../../util/helpers';
 import FurtherReadingUnit from '../../components/FurtherReadingUnit';
 import Image from '../../components/Image';
@@ -14,8 +14,8 @@ import PostListCondensed from '../../components/PostListCondensed';
 
 const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const date = new Date(post.publishedAt);
-  const postUrl = `${SITE_DOMAIN}/${post.slug}`;
   const category = isArray(post.categories) ? post.categories[0] : post.categories;
+  const shareUrl = `${SITE_BASE_URL}/${category.slug}/${post.slug}`; // eslint-disable-line no-undef
   const themeCss = `
     .g-accent {
       color: ${toRGBString(themePrimaryColor)};
@@ -62,12 +62,12 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
         </article>
         <aside className="share-icons">
           <SocialLink
-            url={`https://www.facebook.com/sharer/sharer.php?u=${postUrl}`}
+            url={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
             network="facebook"
             iconColor="#000"
           />
           <SocialLink
-            url={`https://twitter.com/intent/tweet?url=${postUrl}`}
+            url={`https://twitter.com/intent/tweet?url=${shareUrl}`}
             network="twitter"
             iconColor="#000"
           />
@@ -85,12 +85,12 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
         </h2>
         <div className="share-icons">
           <SocialLink
-            url={`https://www.facebook.com/sharer/sharer.php?u=${postUrl}`}
+            url={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
             network="facebook"
             iconColor="#000"
           />
           <SocialLink
-            url={`https://twitter.com/intent/tweet?url=${postUrl}`}
+            url={`https://twitter.com/intent/tweet?url=${shareUrl}`}
             network="twitter"
             iconColor="#000"
           />

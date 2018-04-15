@@ -33,7 +33,9 @@ export default class NewsletterForm extends React.Component {
    */
   componentWillUnmount() {
     if (typeof window !== 'undefined' && window.SignUpFormWidget) {
-      window.SignUpFormWidget.Api.destroyAll();
+      if (window.SignUpFormWidget.Api) {
+        window.SignUpFormWidget.Api.destroyAll();
+      }
     }
   }
 

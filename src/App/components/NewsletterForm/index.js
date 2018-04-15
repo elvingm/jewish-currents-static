@@ -50,7 +50,7 @@ export default class NewsletterForm extends React.Component {
   render() {
     return (
       <div className="newsletter-form">
-        <h2>Sign up for our mailing list</h2>
+        <h2>Sign up for our (very occasional) mailing list</h2>
         <div
           className={classNames({ 'ctct-inline-form': true, focused: this.state.hideLabel })}
           data-form-id="a3ab65eb-bed1-456e-a221-7310a4bf4d7e"

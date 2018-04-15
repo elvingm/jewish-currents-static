@@ -115,7 +115,7 @@ export default {
       },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),
-      ...makePostRoutes(post, furtherReadingUnit[0]),
+      ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
       {
         is404: true,
         component: 'src/App/pages/404'
@@ -132,7 +132,7 @@ export default {
       </Head>
       <Body>
         {children}
-        {/* <!-- Begin Constant Contact Active Forms --> */}
+        <script id="stripe-js" src="https://js.stripe.com/v3/" async />
         <script
           dangerouslySetInnerHTML={{ __html: `var _ctct_m = "21a5ee28f6c0fefe44a395c76e74b213";` }}
         />
@@ -142,7 +142,6 @@ export default {
           async
           defer
         />
-        {/* <!-- End Constant Contact Active Forms --> */}
       </Body>
     </Html>
   )

@@ -259,11 +259,6 @@
         flex: 1 1 50%; 
       }
     }
-
-    & .g-post-condensed {
-      border-top: 0;
-      padding: 10px 0;
-    }
   }
 
   & .further-reading {
@@ -275,10 +270,16 @@
       height: 3px;
       background-color: var(--black);
       width: 76px;
+    }
 
-      @media(--post-desktop) {
-        width: 100%;
-      }
+    & .g-post-list-condensed {
+      padding: 20px;
+      padding-left: 0;
+    }
+
+    & .g-post-condensed {
+      border-top: 0;
+      padding: 10px 0;
     }
   }
 

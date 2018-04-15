@@ -99,6 +99,7 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
       <section className="split-wrap">
         <div className="further-reading">
           <h2>Further Reading</h2>
+          <div className="line-divider" />
           <PostListCondensed posts={furtherReadingUnit.posts} />
         </div>
         <SubscribeCallout />

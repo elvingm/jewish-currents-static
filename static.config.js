@@ -90,6 +90,38 @@ const makeCategoryRoutes = (categories, posts) => {
   return flatten(routes);
 };
 
+const makeTagRoutes = (tags, posts) => {
+  const routes = tags.map(tag => {
+    const tagPosts = posts.filter(p => {
+      if (isArray(p.tags)) {
+        return p.tags.find(postTag => tag.id === postTag.id);
+      }
+
+      return p.tags.id === tag.id;
+    });
+
+    return paginateItems({
+      items: tagPosts,
+      parent: tag,
+      pageSize: 20,
+      route: {
+        path: `/tag/${tag.slug}`,
+        component: 'src/App/pages/Tag'
+      },
+      decorate: (posts, tag) => ({
+        getData: () => ({
+          themePrimaryColor: SITE_PRIMARY_COLOR,
+          currentPage: 'tag',
+          tag,
+          posts
+        })
+      })
+    });
+  });
+
+  return flatten(routes);
+};
+
 const makePostRoutes = (posts, furtherReadingUnit) => {
   const routes = posts.map(post => {
     const category = isArray(post.categories) ? post.categories[0] : post.categories;
@@ -136,6 +168,7 @@ export default {
       post,
       author,
       category,
+      tag,
       home_page: homePage,
       privacy_policy: privacyPolicy,
       submissions_page: submissionsPage,
@@ -171,6 +204,7 @@ export default {
       },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),
+      ...makeTagRoutes(tag, post),
       ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
       {
         is404: true,

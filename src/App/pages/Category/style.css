@@ -5,6 +5,14 @@
     padding: var(--l-block-spacing) 0;
   }
 
+  & .category-info {
+    margin-bottom: 20px;
+    
+    & h1 {
+      margin-bottom: 0;
+    }
+  }
+
   & .category-content {
     display: flex;
     flex-direction: column;

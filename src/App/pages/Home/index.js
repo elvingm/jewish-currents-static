@@ -17,15 +17,21 @@ const HomePage = ({
   <div id="home">
     <div className="g-content-wrap">
       <section className="featured-post">
-        <Post {...mainFeaturedPost} />
+        <Post {...mainFeaturedPost} useThumbnail />
       </section>
       <section className="post-row split-30">
-        {featuredPostColumns.map(p => <Post {...p} key={p.id} stackedLayout />)}
+        {featuredPostColumns.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
       </section>
       <section className="shop-now-ad">
         <div className="g-border-wrap">
           <div className="image-wrap">
-            <Image src={currentIssueImage.path} alt={currentIssueImage.alt} />
+            {currentIssueImage && (
+              <Image
+                src={currentIssueImage.path}
+                alt={currentIssueImage.alt}
+                fmt={currentIssueImage.format}
+              />
+            )}
           </div>
           <div className="issue-details">
             <h2>Spring 2018 Issue</h2>
@@ -37,7 +43,7 @@ const HomePage = ({
       </section>
       <SubscribeCallout />
       <section className="post-row split-40x60">
-        {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout />)}
+        {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
       </section>
       <section className="newsletter-signup">
         <NewsletterForm />

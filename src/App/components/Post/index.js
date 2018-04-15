@@ -10,21 +10,23 @@ import Image from '../Image';
 
 export default props => {
   const date = new Date(props.publishedAt);
-  const excerpt = props.excerpt ? props.excerpt : striptags(props.content).slice(0, 500);
+  const excerpt = props.excerpt ? props.excerpt : `${striptags(props.content).slice(0, 500)}...`;
   const category = isArray(props.categories) ? props.categories[0] : props.categories;
-
+  const postImage = props.useThumbnail
+    ? props.thumbnailImage || props.featuredImage
+    : props.featuredImage;
   return (
     <div className={classNames({ 'g-post': true, stacked: props.stackedLayout })}>
-      {props.featuredImage && (
+      {postImage && (
         <div className="image g-border-wrap">
           <Link to={`/${category.slug}/${props.slug}`}>
-            <Image src={props.featuredImage.path} alt={props.featuredImage.alt} />
+            <Image src={postImage.path} alt={postImage.alt} />
           </Link>
         </div>
       )}
       <div className="details">
         <h3 className="label g-accent">
-          <Link to={`/${category.slug}`}>{category.title}</Link>
+          <Link to={`/category/${category.slug}`}>{category.title}</Link>
         </h3>
         <h2 className="title">
           <Link to={`/${category.slug}/${props.slug}`}>{props.title}</Link>
@@ -32,12 +34,12 @@ export default props => {
         <p className="info">
           <span className="date">{`${
             MONTH_NAMES[date.getMonth()]
-          } ${date.getDate()}, ${date.getYear()}`}</span>
+          } ${date.getDate()}, ${date.getFullYear()}`}</span>
           <Link className="author g-underline-link" to={`/author/${props.authors.slug}`}>
             {props.authors.name}
           </Link>
         </p>
-        <p className="excerpt" dangerouslySetInnerHTML={{ __html: `${excerpt}...` }} />
+        <p className="excerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
         <Link to={`/${category.slug}/${props.slug}`} className="g-bold-link">
           Read More
         </Link>

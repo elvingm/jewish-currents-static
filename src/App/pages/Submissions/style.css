@@ -1,0 +1,41 @@
+#submissions {
+
+  & article {
+    padding: var(--s-block-spacing);
+
+    @media(--g-medium-viewport) {
+      padding: var(--l-block-spacing);
+    }    
+
+    & .content {
+      font-size: 21px;
+      line-height: 1.19;
+      letter-spacing: -0.55px;
+
+      & > * {
+        margin: 20px 0;
+      }
+    }
+  }
+
+  & h1 {
+    font-size: 28px;
+    letter-spacing: -1.57px;
+    line-height: 1.07;
+
+    @media(--g-medium-viewport) {
+      font-size: 65px;
+      letter-spacing: -3.66px;
+      line-height: 1;
+    }
+  }
+
+  & ol, & ul {
+    & li {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.29;
+      letter-spacing: -1.97px;
+    }
+  }
+}

@@ -9,18 +9,37 @@ import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
 import MenuIcon from '../../assets/img/icons/menu.svg';
 import CloseIcon from '../../assets/img/icons/close.svg';
 import SocialLink from '../SocialLink';
+import NoticePopup from '../NoticePopup';
 
 export default withRouteData(
   class Header extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        menuActive: false
+        menuActive: false,
+        showPushcartNotice: false,
+        showArchivesNotice: false
       };
     }
 
     handleMenuClick = () => {
       this.setState({ menuActive: !this.state.menuActive });
+    };
+
+    handleArchiveOpen = () => {
+      this.setState({ showArchivesNotice: true });
+    };
+
+    handleArchiveClose = () => {
+      this.setState({ showArchivesNotice: false });
+    };
+
+    handlePushcartOpen = () => {
+      this.setState({ showPushcartNotice: true });
+    };
+
+    handlePushcartClose = () => {
+      this.setState({ showPushcartNotice: false });
     };
 
     render() {
@@ -58,21 +77,31 @@ export default withRouteData(
             </div>
           </div>
           <nav className={classNames({ 'menu-active': this.state.menuActive })}>
-            <a href="#" className="subscribe-trigger">
+            <a
+              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UCKPHGTHEGGMC"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Subscribe
             </a>
-            <a href="#" className="donate-trigger">
-              Donate
+            <a
+              href="https://visitor.r20.constantcontact.com/d.jsp?llr=i4bnxifab&p=oi&m=1105173317608&sit=he77xk6fb&f=28bfcc5c-c9c2-4990-b570-dc893dd16623"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Jewdayo
             </a>
-            <a href="/jewdayo-signup">Jewdayo</a>
-            <a href="#" className="coming-soon-trigger">
+            <a href="#" onClick={this.handleArchiveOpen}>
               Archives
             </a>
-            <a href="#" className="coming-soon-trigger">
+            <a href="#" onClick={this.handlePushcartOpen}>
               Pushcart
             </a>
             <Link to="/about" activeClassName="active">
               About Us
+            </Link>
+            <Link to="/submit" activeClassName="active">
+              Submissions
             </Link>
             <div className="social-icons">
               <SocialLink
@@ -92,6 +121,15 @@ export default withRouteData(
               />
             </div>
           </nav>
+          <NoticePopup onCloseClick={this.handleArchiveClose} show={this.state.showArchivesNotice}>
+            <h2>
+              We will soon be relaunching our extensive Sid Resnick Memorial Archives and Schappes
+              Center for Cultural Jewish Life, stay tuned!
+            </h2>
+          </NoticePopup>
+          <NoticePopup onCloseClick={this.handlePushcartClose} show={this.state.showPushcartNotice}>
+            <h2>Stay tuned for our "Pushcart," our store of unique gifts, books and more.</h2>
+          </NoticePopup>
         </header>
       );
     }

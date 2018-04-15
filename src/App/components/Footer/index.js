@@ -15,10 +15,7 @@ export default withRouteData(({ footerColor }) => {
           <Link to="/about">Contact Us</Link>
         </li>
         <li>
-          <Link>Join Our Mailing List</Link>
-        </li>
-        <li>
-          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/about/privacy-policy">Privacy Policy</Link>
         </li>
       </ul>
     </footer>

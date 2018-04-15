@@ -17,9 +17,9 @@ export default class extends React.Component {
   };
   render() {
     return this.state.ready ? (
-      <div>
-        <h1>404 - Oh no's! We couldn't find that page :(</h1>
-      </div>
+      <section className="g-content-wrap">
+        <h2>Whoops. We can't find that page.</h2>
+      </section>
     ) : null;
   }
 }

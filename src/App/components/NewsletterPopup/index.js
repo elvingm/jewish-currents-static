@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 import classNames from 'classnames';
 //-
 import './style.css';
@@ -14,14 +15,24 @@ export default class NewsletterPopup extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.showPopup, this.props.wait);
+    setTimeout(() => {
+      this.showPopup();
+    }, this.props.wait);
   }
 
   showPopup = () => {
+    ReactGA.event({
+      category: 'Newsletter Popup',
+      action: 'open'
+    });
     this.setState({ hidden: false });
   };
 
   closePopup = () => {
+    ReactGA.event({
+      category: 'Newsletter Popup',
+      action: 'close'
+    });
     this.setState({ hidden: true });
   };
 

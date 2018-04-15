@@ -14,12 +14,12 @@ export default class NewsletterForm extends React.Component {
   }
 
   handleFocus = event => {
-    const emailInput = event.currentTarget.querySelector('#email_address_1');
+    const emailInput = event.currentTarget.querySelector('input[type="email"]');
     this.setState({ hideLabel: emailInput.value.length >= 0 });
   };
 
   handleBlur = event => {
-    const emailInput = event.currentTarget.querySelector('#email_address_1');
+    const emailInput = event.currentTarget.querySelector('input[type="email"]');
     if (emailInput.value.length > 0) {
       this.setState({ hideLabel: true });
     } else {
@@ -27,10 +27,34 @@ export default class NewsletterForm extends React.Component {
     }
   };
 
+  /**
+   * When unmounted, check for Constant Contact widget object, and clean up
+   * instances of the signup form.
+   */
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      if (window.SignUpFormWidget && window.SignUpFormWidget.Api) {
+        window.SignUpFormWidget.Api.destroyAll();
+      }
+    }
+  }
+
+  /**
+   * When mounted, make sure to call the main() function to initialize signup
+   * forms on page. This is necessary to get the form reinjected.
+   */
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      if (window.SignUpFormWidget && window.SignUpFormWidget.main) {
+        window.SignUpFormWidget.main();
+      }
+    }
+  }
+
   render() {
     return (
       <div className="newsletter-form">
-        <h2>Sign up for our mailing list</h2>
+        <h2>Sign up for our (very occasional) mailing list</h2>
         <div
           className={classNames({ 'ctct-inline-form': true, focused: this.state.hideLabel })}
           data-form-id="a3ab65eb-bed1-456e-a221-7310a4bf4d7e"

@@ -15,6 +15,10 @@
     justify-content: center;
   }
 
+  & .post-image {
+    margin-bottom: 20px;
+  }
+
   & .post-body {
     display: flex;
     flex: 1 0 0%;
@@ -114,6 +118,7 @@
         &:--align-left,
         &:--align-right {
           max-width: 50%;
+          overflow: hidden;
         }    
 
         &:--align-left {
@@ -255,20 +260,26 @@
         flex: 1 1 50%; 
       }
     }
-  }
+  
+    & .further-reading {
+      & > h2 {
+        margin: 30px 0 20px;
+      }
 
-  & .further-reading {
-    & > h2 {
-      margin: 30px 0 20px;
-    }
+      & .line-divider {
+        height: 3px;
+        background-color: var(--black);
+        width: 76px;
+      }
 
-    & .line-divider {
-      height: 3px;
-      background-color: var(--black);
-      width: 76px;
+      & .g-post-list-condensed {
+        padding: 20px;
+        padding-left: 0;
+      }
 
-      @media(--post-desktop) {
-        width: 100%;
+      & .g-post-condensed {
+        border-top: 0;
+        padding: 10px 0;
       }
     }
   }
@@ -286,39 +297,43 @@
     }
   }
 
-  & .newsletter-form {
-    background-color: var(--soft-amber);
-    border: var(--black-border);
-    padding: var(--s-block-spacing);
-    padding-top: 40px;
+  & .newsletter-signup {
+    border-bottom: 0;
 
-    @media(--post-desktop) {
-      padding-top: 90px;
-      padding-bottom: 90px;
-    }
-
-    & h2 {
-      font-size: 28px;
-
-      @media(--post-desktop) {
-        font-size: 40px;
-      }
-    }
-
-    & input {
-      font-size: 14px;
-
-      @media(--post-desktop) {
-        font-size: 18px;
-      }
-    }
-
-    & input[type="email"] {
+    & .newsletter-form {
       background-color: var(--soft-amber);
-      color: var(--black);
+      border: var(--black-border);
+      padding: var(--s-block-spacing);
+      padding-top: 40px;
 
-      &::placeholder {
+      @media(--post-desktop) {
+        padding-top: 90px;
+        padding-bottom: 90px;
+      }
+
+      & h2 {
+        font-size: 28px;
+
+        @media(--post-desktop) {
+          font-size: 40px;
+        }
+      }
+
+      & input {
+        font-size: 14px;
+
+        @media(--post-desktop) {
+          font-size: 18px;
+        }
+      }
+
+      & input[type="email"] {
+        background-color: var(--soft-amber);
         color: var(--black);
+
+        &::placeholder {
+          color: var(--black);
+        }
       }
     }
   }

@@ -1,52 +1,96 @@
 import React from 'react';
-import { isArray } from 'lodash';
+import { isArray, flatten } from 'lodash';
 import webpack from './webpack.config.js';
 import fetchData from './src/datocms/fetch';
 import { SITE_PRIMARY_COLOR, POST_PRIMARY_COLOR } from './src/App/util/constants';
 
-const makeAuthorRoutes = (authors, posts) => {
-  const routes = authors.map(author => {
-    const authorPosts = posts.filter(p => p.authors.id === author.id).slice(0, 50);
-    return {
-      path: `/author/${author.slug}`,
-      component: 'src/App/pages/Author',
-      getData: async () => ({
-        themePrimaryColor: author.themePrimaryColor || SITE_PRIMARY_COLOR,
-        currentPage: 'author',
-        posts: authorPosts,
-        author
-      })
-    };
-  });
+const paginateItems = ({ items, parent, pageSize, pageToken = 'page', route, decorate }) => {
+  const itemsCopy = [...items]; // Make a copy of the items
+  const pages = []; // Make an array for all of the different pages
+
+  while (itemsCopy.length) {
+    // Splice out all of the items into separate pages using a set pageSize
+    pages.push(itemsCopy.splice(0, pageSize));
+  }
+
+  // Move the first page out of pagination. This is so page one doesn't require a page number.
+  const firstPage = pages.shift();
+
+  const routes = [
+    {
+      ...route,
+      ...decorate(firstPage, parent)
+    },
+    // map over each page to create an array of page routes, and spread it!
+    ...pages.map((page, i) => ({
+      ...route, // route defaults
+      path: `${route.path}/${pageToken}/${i + 2}`,
+      ...decorate(page, parent)
+    }))
+  ];
 
   return routes;
+};
+
+const makeAuthorRoutes = (authors, posts) => {
+  const routes = authors.map(author => {
+    const authorPosts = posts.filter(p => {
+      const postAuthor = isArray(p.authors) ? p.authors[0] : p.authors;
+      return postAuthor && postAuthor.id === author.id;
+    });
+
+    return paginateItems({
+      items: authorPosts,
+      parent: author,
+      pageSize: 20,
+      route: {
+        path: `/author/${author.slug}`,
+        component: 'src/App/pages/Author'
+      },
+      decorate: (posts, author) => ({
+        getData: () => ({
+          themePrimaryColor: author.themePrimaryColor || SITE_PRIMARY_COLOR,
+          currentPage: 'author',
+          author,
+          posts
+        })
+      })
+    });
+  });
+
+  return flatten(routes);
 };
 
 const makeCategoryRoutes = (categories, posts) => {
   const routes = categories.map(category => {
-    const categoryPosts = posts
-      .filter(p => {
-        const postCategory = isArray(p.categories) ? p.categories[0] : p.categories;
-        return postCategory.id === category.id;
-      })
-      .slice(0, 50);
+    const categoryPosts = posts.filter(p => {
+      const postCategory = isArray(p.categories) ? p.categories[0] : p.categories;
+      return postCategory && postCategory.id === category.id;
+    });
 
-    return {
-      path: `/${category.slug}`,
-      component: 'src/App/pages/Category',
-      getData: async () => ({
-        themePrimaryColor: category.themePrimaryColor || SITE_PRIMARY_COLOR,
-        currentPage: 'category',
-        posts: categoryPosts,
-        category
+    return paginateItems({
+      items: categoryPosts,
+      parent: category,
+      pageSize: 20,
+      route: {
+        path: `/category/${category.slug}`,
+        component: 'src/App/pages/Category'
+      },
+      decorate: (posts, category) => ({
+        getData: () => ({
+          themePrimaryColor: category.themePrimaryColor || SITE_PRIMARY_COLOR,
+          currentPage: 'category',
+          category,
+          posts
+        })
       })
-    };
+    });
   });
 
-  return routes;
+  return flatten(routes);
 };
 
-const makePostRoutes = posts => {
+const makePostRoutes = (posts, furtherReadingUnit) => {
   const routes = posts.map(post => {
     const category = isArray(post.categories) ? post.categories[0] : post.categories;
     return {
@@ -55,6 +99,7 @@ const makePostRoutes = posts => {
       getData: () => ({
         themePrimaryColor: post.themePrimaryColor || POST_PRIMARY_COLOR,
         currentPage: 'post',
+        furtherReadingUnit,
         post
       })
     };
@@ -82,19 +127,28 @@ export default {
   stagingSiteRoot: 'https://jewishcurrents-staging.netlify.com',
   // Global Site Data -
   getSiteData: () => ({
-    title: 'Jewish | A Progressive, Secular Voice',
+    title: 'Jewish Currents',
     description: 'A progressive, secular voice.'
   }),
   getRoutes: async () => {
     const { models, content } = await fetchData();
-    const { post, author, category, home_page } = organizeContentByType(content, models);
+    const {
+      post,
+      author,
+      category,
+      home_page: homePage,
+      privacy_policy: privacyPolicy,
+      submissions_page: submissionsPage,
+      further_reading_unit: furtherReadingUnit
+    } = organizeContentByType(content, models);
+
     return [
       {
         path: '/',
         component: 'src/App/pages/Home',
         getData: () => ({
           currentPage: 'home',
-          ...home_page[0]
+          ...homePage[0]
         })
       },
       {
@@ -105,9 +159,19 @@ export default {
           footerColor: { red: 255, green: 191, blue: 0 }
         })
       },
+      {
+        path: '/about/privacy-policy',
+        component: 'src/App/pages/PrivacyPolicy',
+        getData: () => privacyPolicy[0]
+      },
+      {
+        path: '/submit',
+        component: 'src/App/pages/Submissions',
+        getData: () => submissionsPage[0]
+      },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),
-      ...makePostRoutes(post),
+      ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
       {
         is404: true,
         component: 'src/App/pages/404'
@@ -118,13 +182,18 @@ export default {
     <Html lang="en-US">
       <Head>
         <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />
         <title>{siteData.title}</title>
         <meta name="description" content={siteData.description} />
       </Head>
       <Body>
         {children}
-        {/* <!-- Begin Constant Contact Active Forms --> */}
         <script
           dangerouslySetInnerHTML={{ __html: `var _ctct_m = "21a5ee28f6c0fefe44a395c76e74b213";` }}
         />
@@ -134,7 +203,6 @@ export default {
           async
           defer
         />
-        {/* <!-- End Constant Contact Active Forms --> */}
       </Body>
     </Html>
   )

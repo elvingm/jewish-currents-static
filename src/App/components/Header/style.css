@@ -1,10 +1,6 @@
 @custom-media --header-desktop (min-width: 768px);
 
-#site-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
+#site-header {  
   & .logo-wrap {
     border-bottom: var(--black-border);
     display: flex;

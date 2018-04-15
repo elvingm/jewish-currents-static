@@ -111,7 +111,7 @@ a {
   flex-direction: column;
   height: 100%;
 
-  & .content {
+  & > .content {
     display: flex;
     flex: 1 0 auto; /* 2 */
     flex-direction: column;

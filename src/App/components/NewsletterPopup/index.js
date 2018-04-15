@@ -14,7 +14,11 @@ export default class NewsletterPopup extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.showPopup, this.props.wait);
+    setTimeout(() => {
+      if (this.popup.length) {
+        this.showPopup();
+      }
+    }, this.props.wait);
   }
 
   showPopup = () => {
@@ -27,7 +31,12 @@ export default class NewsletterPopup extends React.Component {
 
   render() {
     return (
-      <div className={classNames({ 'newsletter-popup': true, hidden: this.state.hidden })}>
+      <div
+        className={classNames({ 'newsletter-popup': true, hidden: this.state.hidden })}
+        ref={el => {
+          this.popup = el;
+        }}
+      >
         <div className="g-content-wrap">
           <div className="close-icon" onClick={this.closePopup}>
             <img src={CloseIcon} alt="Close Icon" />

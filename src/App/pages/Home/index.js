@@ -25,11 +25,13 @@ const HomePage = ({
       <section className="shop-now-ad">
         <div className="g-border-wrap">
           <div className="image-wrap">
-            <Image
-              src={currentIssueImage.path}
-              alt={currentIssueImage.alt}
-              fmt={currentIssueImage.format}
-            />
+            {currentIssueImage && (
+              <Image
+                src={currentIssueImage.path}
+                alt={currentIssueImage.alt}
+                fmt={currentIssueImage.format}
+              />
+            )}
           </div>
           <div className="issue-details">
             <h2>Spring 2018 Issue</h2>

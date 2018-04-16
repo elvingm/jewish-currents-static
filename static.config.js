@@ -42,7 +42,7 @@ const makeAuthorRoutes = (authors, posts) => {
     return paginateItems({
       items: authorPosts,
       parent: author,
-      pageSize: 20,
+      pageSize: 50,
       route: {
         path: `/author/${author.slug}`,
         component: 'src/App/pages/Author'
@@ -90,37 +90,37 @@ const makeCategoryRoutes = (categories, posts) => {
   return flatten(routes);
 };
 
-const makeTagRoutes = (tags, posts) => {
-  const routes = tags.map(tag => {
-    const tagPosts = posts.filter(p => {
-      if (isArray(p.tags)) {
-        return p.tags.find(postTag => tag.id === postTag.id);
-      }
+// const makeTagRoutes = (tags, posts) => {
+//   const routes = tags.map(tag => {
+//     const tagPosts = posts.filter(p => {
+//       if (isArray(p.tags)) {
+//         return p.tags.find(postTag => tag.id === postTag.id);
+//       }
 
-      return p.tags.id === tag.id;
-    });
+//       return p.tags.id === tag.id;
+//     });
 
-    return paginateItems({
-      items: tagPosts,
-      parent: tag,
-      pageSize: 20,
-      route: {
-        path: `/tag/${tag.slug}`,
-        component: 'src/App/pages/Tag'
-      },
-      decorate: (posts, tag) => ({
-        getData: () => ({
-          themePrimaryColor: SITE_PRIMARY_COLOR,
-          currentPage: 'tag',
-          tag,
-          posts
-        })
-      })
-    });
-  });
+//     return paginateItems({
+//       items: tagPosts,
+//       parent: tag,
+//       pageSize: 20,
+//       route: {
+//         path: `/tag/${tag.slug}`,
+//         component: 'src/App/pages/Tag'
+//       },
+//       decorate: (posts, tag) => ({
+//         getData: () => ({
+//           themePrimaryColor: SITE_PRIMARY_COLOR,
+//           currentPage: 'tag',
+//           tag,
+//           posts
+//         })
+//       })
+//     });
+//   });
 
-  return flatten(routes);
-};
+//   return flatten(routes);
+// };
 
 const makePostRoutes = (posts, furtherReadingUnit) => {
   const routes = posts.map(post => {
@@ -155,7 +155,7 @@ const organizeContentByType = (content, models) => {
 export default {
   // Webpack config from file
   webpack,
-  siteRoot: 'https://jewishcurrents-production.netlify.com',
+  siteRoot: 'https://jewishcurrents.org',
   stagingSiteRoot: 'https://jewishcurrents-staging.netlify.com',
   // Global Site Data -
   getSiteData: () => ({

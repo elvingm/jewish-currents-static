@@ -191,6 +191,29 @@ export default {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
+        <meta name="image" content="https://jewishcurrents.org/img/share-image-salmon.png" />
+
+        {/* Schema.org for Google */}
+        <meta item="name" content={siteData.title} />
+        <meta item="description" content={siteData.description} />
+        <meta item="image" content="https://jewishcurrents.org/img/share-image-salmon.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={siteData.title} />
+        <meta name="twitter:description" content={siteData.description} />
+        <meta
+          name="twitter:image:src"
+          content="https://jewishcurrents.org/img/share-image-green.png"
+        />
+
+        {/* Open Graph general (Facebook, Pinterest & Google+) */}
+        <meta name="og:title" content={siteData.title} />
+        <meta name="og:description" content={siteData.description} />
+        <meta name="og:image" content="https://jewishcurrents.org/img/share-image-green.png" />
+        <meta name="og:url" content="https://jewishcurrents.org" />
+        <meta name="og:site_name" content={siteData.title} />
+        <meta name="og:type" content="website" />
         <title>{siteData.title}</title>
         <meta name="description" content={siteData.description} />
       </Head>

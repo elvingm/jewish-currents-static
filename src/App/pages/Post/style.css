@@ -176,6 +176,7 @@
       flex-basis: 12.5em;
       flex-direction: column;
       margin: 0;
+      margin-left: auto;
       padding: 0;
     }
     
@@ -187,7 +188,12 @@
       }
 
       @media(--post-desktop) {
+        margin-top: 10px;
         margin-left: 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
       }
     }
 

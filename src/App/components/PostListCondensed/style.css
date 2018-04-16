@@ -14,6 +14,11 @@
   & a {
     font: inherit;
     color: inherit;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
   }
 
   & .title {

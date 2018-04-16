@@ -17,6 +17,12 @@
 
   & .post-image {
     margin-bottom: 20px;
+    text-align: right;
+
+    & figcaption {
+      font-size: 14px;
+      margin-top: 10px;
+    }
   }
 
   & .post-body {

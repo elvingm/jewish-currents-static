@@ -25,7 +25,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router onUpdate={fireTracking} autoScrollToTop={false} scrollToHashDuration={500}>
+      <Router onUpdate={fireTracking} scrollToHashDuration={500}>
         <div>
           <Header />
           <div className="content">

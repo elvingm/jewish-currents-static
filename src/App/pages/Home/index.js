@@ -34,7 +34,10 @@ const HomePage = ({
             )}
           </div>
           <div className="issue-details">
-            <h2>Spring 2018 Issue</h2>
+            <h2>
+              One Year of <br />
+              <em>Jewish Currents</em>
+            </h2>
             <a
               className="g-underline-link"
               href="https://www.paypal.com/webapps/hermes?token=9C343602L9292974Y&useraction=commit&rm=1&mfid=1523898170030_8e4a011c8a5d1"

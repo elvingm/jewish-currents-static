@@ -27,8 +27,6 @@ const AboutPage = () => (
             Maia Ipp, Editor for Public Programs <br />
             Noah Kulwin, News and Features Editor
           </p>
-        </div>
-        <div className="column">
           <h3>Arts Consultant</h3>
           <p>Esther Cohen</p>
         </div>

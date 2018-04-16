@@ -22,7 +22,7 @@ const HomePage = ({
       <section className="post-row split-30">
         {featuredPostColumns.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
       </section>
-      <section className="shop-now-ad">
+      <section id="shop-now-ad">
         <div className="g-border-wrap">
           <div className="image-wrap">
             {currentIssueImage && (

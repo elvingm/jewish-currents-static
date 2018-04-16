@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouteData } from 'react-static';
+import { Link, withRouteData, scrollTo } from 'react-static';
 import classNames from 'classnames';
 //
 import './style.css';
@@ -21,6 +21,14 @@ export default withRouteData(
         showArchivesNotice: false
       };
     }
+
+    handleSubscribeClick = event => {
+      if (typeof document !== 'undefined') {
+        event.preventDefault();
+        const element = document.querySelector(event.target.hash);
+        scrollTo(element, { duration: 500 });
+      }
+    };
 
     handleMenuClick = () => {
       this.setState({ menuActive: !this.state.menuActive });
@@ -77,13 +85,13 @@ export default withRouteData(
             </div>
           </div>
           <nav className={classNames({ 'menu-active': this.state.menuActive })}>
-            <a
-              href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UCKPHGTHEGGMC"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Subscribe
-            </a>
+            {this.props.currentPage === 'home' ? (
+              <a href="#shop-now-ad" onClick={this.handleSubscribeClick}>
+                Subscribe
+              </a>
+            ) : (
+              <Link to="/#shop-now-ad">Subscribe</Link>
+            )}
             <a
               href="https://visitor.r20.constantcontact.com/d.jsp?llr=i4bnxifab&p=oi&m=1105173317608&sit=he77xk6fb&f=28bfcc5c-c9c2-4990-b570-dc893dd16623"
               target="_blank"

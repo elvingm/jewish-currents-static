@@ -106,7 +106,7 @@
     }
   }
 
-  & .shop-now-ad {
+  & #shop-now-ad {
     position: relative;
     border-bottom: 0;
 

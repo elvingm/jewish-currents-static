@@ -10,6 +10,7 @@
   }
 
   & .g-button {
+    color: var(--black);
     display: block;
     margin: 0 auto;
     max-width: 200px;

@@ -168,7 +168,6 @@ export default {
       post,
       author,
       category,
-      tag,
       home_page: homePage,
       privacy_policy: privacyPolicy,
       submissions_page: submissionsPage,
@@ -204,7 +203,6 @@ export default {
       },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),
-      ...makeTagRoutes(tag, post),
       ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
       {
         is404: true,

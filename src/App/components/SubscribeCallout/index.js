@@ -5,7 +5,7 @@ import './style.css';
 const SubscribeCallout = () => (
   <section className="subscribe-callout">
     <div className="text">
-      <h2>Subscribe ---> Keep it current!</h2>
+      <h2>Keep it current! ---> Subscribe!</h2>
       <h4>Subscribe to Jewish Currents and get four print issues a year for $18.</h4>
       <a
         className="g-button"

@@ -27,7 +27,9 @@ export default props => {
           <Link to={`/category/${category.slug}`}>{category.title}</Link>
         </h3>
         <h2 className="title">
-          <Link to={`/${category.slug}/${props.slug}`}>{props.title}</Link>
+          <Link to={`/${category.slug}/${props.slug}`} className="g-bold-link">
+            {props.title}
+          </Link>
         </h2>
         <p className="info">
           <span className="date">{`${

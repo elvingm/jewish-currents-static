@@ -35,8 +35,29 @@ const HomePage = ({
           </div>
           <div className="issue-details">
             <h2>Spring 2018 Issue</h2>
-            <a className="g-underline-link" href="#">
-              Shop Now
+            <a
+              className="g-underline-link"
+              href="https://www.paypal.com/webapps/hermes?token=9C343602L9292974Y&useraction=commit&rm=1&mfid=1523898170030_8e4a011c8a5d1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              US: $18
+            </a>
+            <a
+              className="g-underline-link"
+              href="https://www.paypal.com/webapps/hermes?token=94N68153JG388735J&useraction=commit&rm=1&mfid=1523898174086_af976cc85b63"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              International: $40
+            </a>
+            <a
+              className="g-underline-link"
+              href="https://www.paypal.com/webapps/hermes?token=0X363501YP711713G&useraction=commit&mfid=1523898171684_bf2549893656a"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Gift Subscriptions
             </a>
           </div>
         </div>

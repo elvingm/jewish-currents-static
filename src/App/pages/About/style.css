@@ -113,7 +113,7 @@
       letter-spacing: -1.01px;
       line-height: 1.22;
       margin: 0 auto;
-      max-width: 828px;
+      max-width: 875px;
 
       @media (--about-page-desktop) {
         font-size: 35px;

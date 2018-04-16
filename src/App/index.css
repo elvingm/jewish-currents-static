@@ -100,8 +100,11 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--black);
   font-size: 18px;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 #root,
@@ -131,6 +134,10 @@ a {
 
 .g-accent {
   color: var(--black);
+
+  & a:hover {
+    text-decoration: none;
+  }
 }
 
 .g-button {
@@ -162,13 +169,20 @@ a {
 }
 
 .g-underline-link {
+  color: var(--black);
   font-weight: normal;
   text-decoration: underline;
 }
 
 .g-bold-link {
+  color: var(--black);
   font-size: 18px;
   font-weight: bold;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
 }
 
 .g-border-wrap {

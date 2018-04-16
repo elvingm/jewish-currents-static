@@ -24,11 +24,12 @@ const TagPage = ({ tag, posts, themePrimaryColor }) => {
       </div>
       <div className="tag-content g-content-wrap">
         <ul className="posts">
-          {posts.map(p => (
-            <li key={p.id}>
-              <Post {...p} />
-            </li>
-          ))}
+          {posts &&
+            posts.map(p => (
+              <li key={p.id}>
+                <Post {...p} />
+              </li>
+            ))}
         </ul>
         <aside className="sidebar">
           {/* <div className="g-ad_350x600 g-border-wrap">

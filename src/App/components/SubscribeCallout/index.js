@@ -1,22 +1,32 @@
 import React from 'react';
+import { Link, withRouteData, scrollTo } from 'react-static';
 //
 import './style.css';
 
-const SubscribeCallout = () => (
+const handleSubscribeClick = event => {
+  if (typeof document !== 'undefined') {
+    event.preventDefault();
+    const element = document.querySelector(event.target.hash);
+    scrollTo(element, { duration: 500 });
+  }
+};
+
+const SubscribeCallout = ({ currentPage }) => (
   <section className="subscribe-callout">
     <div className="text">
       <h2>Keep it current! ---> Subscribe!</h2>
       <h4>Subscribe to Jewish Currents and get four print issues a year for $18.</h4>
-      <a
-        className="g-button"
-        href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W8ATPREV8BDC4"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Subscribe Now!
-      </a>
+      {currentPage === 'home' ? (
+        <a className="g-button" href="#shop-now-ad" onClick={handleSubscribeClick}>
+          Subscribe Now!
+        </a>
+      ) : (
+        <Link to="/#shop-now-ad" className="g-button">
+          Subscribe Now!
+        </Link>
+      )}
     </div>
   </section>
 );
 
-export default SubscribeCallout;
+export default withRouteData(SubscribeCallout);

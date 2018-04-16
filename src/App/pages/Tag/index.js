@@ -5,7 +5,7 @@ import './style.css';
 import { toRGBString } from '../../util/helpers';
 import Post from '../../components/Post';
 
-const CategoryPage = ({ category, posts, themePrimaryColor }) => {
+const TagPage = ({ tag, posts, themePrimaryColor }) => {
   const themeCss = `
     .g-accent {
       color: ${toRGBString(themePrimaryColor)});
@@ -13,16 +13,16 @@ const CategoryPage = ({ category, posts, themePrimaryColor }) => {
   `;
 
   return (
-    <div id="category">
+    <div id="tag">
       <Head>
         <style>{themeCss}</style>
       </Head>
-      <div className="category-info">
+      <div className="tag-info">
         <div className="g-content-wrap">
-          <h1>{category.title}</h1>
+          <h1>{tag.title}</h1>
         </div>
       </div>
-      <div className="category-content g-content-wrap">
+      <div className="tag-content g-content-wrap">
         <ul className="posts">
           {posts &&
             posts.map(p => (
@@ -41,4 +41,4 @@ const CategoryPage = ({ category, posts, themePrimaryColor }) => {
   );
 };
 
-export default withRouteData(CategoryPage);
+export default withRouteData(TagPage);

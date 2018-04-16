@@ -17,6 +17,12 @@
 
   & .post-image {
     margin-bottom: 20px;
+    text-align: right;
+
+    & figcaption {
+      font-size: 14px;
+      margin-top: 10px;
+    }
   }
 
   & .post-body {
@@ -100,6 +106,12 @@
       & blockquote {
         font-size: 35px;
         line-height: 1;
+      }
+
+      & a {
+        text-decoration: underline;
+        font-size: inherit;
+        color: blue;
       }
 
       & ol, & ul {

@@ -14,7 +14,7 @@ const AboutPage = () => (
       </p>
     </section>
     <section className="staff">
-      <h2>Staff</h2>
+      <h2>Who We Are</h2>
       <div className="p-info-columns">
         <div className="column">
           <h3>Editor</h3>

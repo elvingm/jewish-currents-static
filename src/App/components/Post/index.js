@@ -12,9 +12,7 @@ export default props => {
   const date = new Date(props.publishedAt);
   const excerpt = props.excerpt ? props.excerpt : `${striptags(props.content).slice(0, 500)}...`;
   const category = isArray(props.categories) ? props.categories[0] : props.categories;
-  const postImage = props.useThumbnail
-    ? props.thumbnailImage || props.featuredImage
-    : props.featuredImage;
+  const postImage = props.thumbnailImage || props.featuredImage || props.postImage;
   return (
     <div className={classNames({ 'g-post': true, stacked: props.stackedLayout })}>
       {postImage && (

@@ -41,12 +41,15 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
           <header>
             {!post.featuredPost &&
               (post.postImage || post.featuredImage) && (
-                <div className="post-image g-border-wrap">
-                  <Image
-                    src={post.postImage ? post.postImage.path : post.featuredImage.path}
-                    alt={post.postImage ? post.postImage.alt : post.featuredImage.alt}
-                  />
-                </div>
+                <figure className="post-image">
+                  <div className="g-border-wrap">
+                    <Image
+                      src={post.postImage ? post.postImage.path : post.featuredImage.path}
+                      alt={post.postImage ? post.postImage.alt : post.featuredImage.alt}
+                    />
+                  </div>
+                  {post.postImageCaption && <figcaption>{post.postImageCaption}</figcaption>}
+                </figure>
               )}
             <h3 className="label">{category.title}</h3>
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />

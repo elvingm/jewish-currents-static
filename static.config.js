@@ -90,6 +90,38 @@ const makeCategoryRoutes = (categories, posts) => {
   return flatten(routes);
 };
 
+const makeTagRoutes = (tags, posts) => {
+  const routes = tags.map(tag => {
+    const tagPosts = posts.filter(p => {
+      if (isArray(p.tags)) {
+        return p.tags.find(postTag => tag.id === postTag.id);
+      }
+
+      return p.tags.id === tag.id;
+    });
+
+    return paginateItems({
+      items: tagPosts,
+      parent: tag,
+      pageSize: 20,
+      route: {
+        path: `/tag/${tag.slug}`,
+        component: 'src/App/pages/Tag'
+      },
+      decorate: (posts, tag) => ({
+        getData: () => ({
+          themePrimaryColor: SITE_PRIMARY_COLOR,
+          currentPage: 'tag',
+          tag,
+          posts
+        })
+      })
+    });
+  });
+
+  return flatten(routes);
+};
+
 const makePostRoutes = (posts, furtherReadingUnit) => {
   const routes = posts.map(post => {
     const category = isArray(post.categories) ? post.categories[0] : post.categories;
@@ -136,6 +168,7 @@ export default {
       post,
       author,
       category,
+      tag,
       home_page: homePage,
       privacy_policy: privacyPolicy,
       submissions_page: submissionsPage,
@@ -171,6 +204,7 @@ export default {
       },
       ...makeAuthorRoutes(author, post),
       ...makeCategoryRoutes(category, post),
+      ...makeTagRoutes(tag, post),
       ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
       {
         is404: true,
@@ -182,6 +216,8 @@ export default {
     <Html lang="en-US">
       <Head>
         <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -189,6 +225,29 @@ export default {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#ffffff" />
+        <meta name="image" content="https://jewishcurrents.org/img/share-image-salmon.png" />
+
+        {/* Schema.org for Google */}
+        <meta item="name" content={siteData.title} />
+        <meta item="description" content={siteData.description} />
+        <meta item="image" content="https://jewishcurrents.org/img/share-image-salmon.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={siteData.title} />
+        <meta name="twitter:description" content={siteData.description} />
+        <meta
+          name="twitter:image:src"
+          content="https://jewishcurrents.org/img/share-image-green.png"
+        />
+
+        {/* Open Graph general (Facebook, Pinterest & Google+) */}
+        <meta name="og:title" content={siteData.title} />
+        <meta name="og:description" content={siteData.description} />
+        <meta name="og:image" content="https://jewishcurrents.org/img/share-image-green.png" />
+        <meta name="og:url" content="https://jewishcurrents.org" />
+        <meta name="og:site_name" content={siteData.title} />
+        <meta name="og:type" content="website" />
         <title>{siteData.title}</title>
         <meta name="description" content={siteData.description} />
       </Head>

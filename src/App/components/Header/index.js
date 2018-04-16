@@ -123,12 +123,12 @@ export default withRouteData(
           </nav>
           <NoticePopup onCloseClick={this.handleArchiveClose} show={this.state.showArchivesNotice}>
             <h2>
-              We will soon be relaunching our extensive Sid Resnick Memorial Archives and Schappes
-              Center for Cultural Jewish Life, stay tuned!
+              We will soon relaunch the extensive Sid Resnick Memorial Archives and Schappes Center
+              for Cultural Jewish Life. Stay tuned!
             </h2>
           </NoticePopup>
           <NoticePopup onCloseClick={this.handlePushcartClose} show={this.state.showPushcartNotice}>
-            <h2>Stay tuned for our "Pushcart," our store of unique gifts, books and more.</h2>
+            <h2>Stay tuned for our online store for unique gifts, books, and more.</h2>
           </NoticePopup>
         </header>
       );

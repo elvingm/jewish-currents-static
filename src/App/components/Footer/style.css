@@ -38,8 +38,9 @@
   }
 
   & a {
+    color: var(--black);
     font-weight: normal;
-
+    
     &:hover,
     &:focus {
       text-decoration: underline;

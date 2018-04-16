@@ -30,6 +30,13 @@
     }
   }
 
+  & p {
+    & > a,
+    & > span {
+      font-size: inherit;
+    }
+  }
+
   & ol, & ul {
     & li {
       font-size: 24px;

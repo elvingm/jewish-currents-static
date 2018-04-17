@@ -32,6 +32,9 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   return (
     <div id="post">
       <Head>
+        <style>{themeCss}</style>
+        <meta name="description" content={excerpt} />
+
         {/* Schema.org for Google */}
         <meta item="name" content={post.title} />
         <meta item="description" content={excerpt} />
@@ -50,7 +53,6 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
         <meta name="og:url" content={shareUrl} />
         <meta name="og:site_name" content="Jewish Currents" />
         <meta name="og:type" content="website" />
-        <style>{themeCss}</style>
       </Head>
       {post.featuredPost &&
         post.featuredImage && (

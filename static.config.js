@@ -254,8 +254,8 @@ export default {
         <meta name="og:url" content="https://jewishcurrents.org" data-react-helmet="true" />
         <meta name="og:site_name" content="Jewish Currents" data-react-helmet="true" />
         <meta name="og:type" content="website" data-react-helmet="true" />
-        <title>{siteData.title}</title>
-        <meta name="description" content={siteData.description} />
+        <title data-react-helmet="true">{siteData.title}</title>
+        <meta name="description" content={siteData.description} data-react-helmet="true" />
       </Head>
       <Body>
         {children}

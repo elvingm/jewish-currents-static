@@ -57,7 +57,7 @@ export default class NewsletterForm extends React.Component {
         <h2>Sign up for our (very occasional) mailing list</h2>
         <div
           className={classNames({ 'ctct-inline-form': true, focused: this.state.hideLabel })}
-          data-form-id="a3ab65eb-bed1-456e-a221-7310a4bf4d7e"
+          data-form-id={this.props.formId}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
         />

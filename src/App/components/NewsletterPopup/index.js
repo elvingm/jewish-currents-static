@@ -49,7 +49,7 @@ export default class NewsletterPopup extends React.Component {
             <img src={CloseIcon} alt="Close Icon" />
           </div>
           <div className="content">
-            <NewsletterForm />
+            <NewsletterForm formId="7401b4d5-a13e-43e7-b18f-ae0b4bc82e7b" />
           </div>
         </div>
       </div>

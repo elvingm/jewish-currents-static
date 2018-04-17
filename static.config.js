@@ -244,16 +244,16 @@ export default {
         />
 
         {/* Open Graph general (Facebook, Pinterest & Google+) */}
-        <meta name="og:title" content={siteData.title} data-react-helmet="true" />
-        <meta name="og:description" content={siteData.description} data-react-helmet="true" />
+        <meta property="og:title" content={siteData.title} data-react-helmet="true" />
+        <meta property="og:description" content={siteData.description} data-react-helmet="true" />
         <meta
-          name="og:image"
+          property="og:image"
           content="https://jewishcurrents.org/img/share-image-green.png"
           data-react-helmet="true"
         />
-        <meta name="og:url" content="https://jewishcurrents.org" data-react-helmet="true" />
-        <meta name="og:site_name" content="Jewish Currents" data-react-helmet="true" />
-        <meta name="og:type" content="website" data-react-helmet="true" />
+        <meta property="og:url" content="https://jewishcurrents.org" data-react-helmet="true" />
+        <meta property="og:site_name" content="Jewish Currents" data-react-helmet="true" />
+        <meta property="og:type" content="website" data-react-helmet="true" />
         <title data-react-helmet="true">{siteData.title}</title>
         <meta name="description" content={siteData.description} data-react-helmet="true" />
       </Head>

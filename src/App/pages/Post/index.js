@@ -19,7 +19,7 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const category = isArray(post.categories) ? post.categories[0] : post.categories;
   const excerpt = post.excerpt ? post.excerpt : `${striptags(post.content).slice(0, 200)}`;
   const shareImage = post.featuredImage || post.postImage || post.thumbnailImage;
-  const shareImageURL = shareImage && `https://www.datocms-assets.com/${shareImage.path}`;
+  const shareImageURL = shareImage && `https://www.datocms-assets.com${shareImage.path}`;
   const shareUrl = `${SITE_BASE_URL}/${category.slug}/${post.slug}`; // eslint-disable-line no-undef
   const themeCss = `
     .g-accent {
@@ -47,12 +47,12 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
         {shareImageURL && <meta name="twitter:image:src" content={shareImageURL} />}
 
         {/* Open Graph general (Facebook, Pinterest & Google+) */}
-        <meta name="og:title" content={post.title} />
-        <meta name="og:description" content={excerpt} />
-        {shareImageURL && <meta name="og:image" content={shareImageURL} />}
-        <meta name="og:url" content={shareUrl} />
-        <meta name="og:site_name" content="Jewish Currents" />
-        <meta name="og:type" content="website" />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={excerpt} />
+        {shareImageURL && <meta property="og:image" content={shareImageURL} />}
+        <meta property="og:url" content={shareUrl} />
+        <meta property="og:site_name" content="Jewish Currents" />
+        <meta property="og:type" content="website" />
       </Head>
       {post.featuredPost &&
         post.featuredImage && (

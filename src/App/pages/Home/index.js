@@ -70,7 +70,7 @@ const HomePage = ({
         {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
       </section>
       <section className="newsletter-signup">
-        <NewsletterForm />
+        <NewsletterForm formId="a3ab65eb-bed1-456e-a221-7310a4bf4d7e" />
       </section>
     </div>
     <NewsletterPopup wait={5000} />

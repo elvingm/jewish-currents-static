@@ -182,6 +182,36 @@
         letter-spacing: -1.01px;
       }
     }
+
+    & form {
+      
+      & table {
+        margin-bottom: 10px;
+      }
+
+      & tr {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      & td {
+        font-size: 14px;
+      }
+
+      & input[type="text"] {
+        border: 0;
+        border-radius: 4px;
+        min-height: 30px;
+        width: 100%;
+      }
+
+      & select {
+        height: 30px;
+      }
+    }
   }
 
   & .subscribe-callout {

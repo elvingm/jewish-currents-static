@@ -38,30 +38,62 @@ const HomePage = ({
               One Year of <br />
               <em>Jewish Currents</em>
             </h2>
-            <a
-              className="g-underline-link"
-              href="https://www.paypal.com/webapps/hermes?token=9C343602L9292974Y&useraction=commit&rm=1&mfid=1523898170030_8e4a011c8a5d1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              US: $18
-            </a>
-            <a
-              className="g-underline-link"
-              href="https://www.paypal.com/webapps/hermes?token=94N68153JG388735J&useraction=commit&rm=1&mfid=1523898174086_af976cc85b63"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              International: $40
-            </a>
-            <a
-              className="g-underline-link"
-              href="https://www.paypal.com/webapps/hermes?token=0X363501YP711713G&useraction=commit&mfid=1523898171684_bf2549893656a"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Gift Subscriptions
-            </a>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick" />
+              <input type="hidden" name="hosted_button_id" value="DW98Q7N7CR46W" />
+              <table>
+                <tr>
+                  <td>
+                    <input type="hidden" name="on0" value="Subscription type" />
+                    Subscription Type
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select name="os0">
+                      <option value="This sub is for me! (US)">
+                        This sub is for me! (US) $18.00 USD
+                      </option>
+                      <option value="This sub is a gift! (US)">
+                        This sub is a gift! (US) $18.00 USD
+                      </option>
+                      <option value="This sub is for me! (International)">
+                        This sub is for me! (International) $40.00 USD
+                      </option>
+                      <option value="This sub is a gift! (International)">
+                        This sub is a gift! (International) $40.00 USD
+                      </option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="hidden" name="on1" value="Mailing address" />
+                    Mailing address
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" name="os1" maxLength="200" />
+                  </td>
+                </tr>
+              </table>
+              <input type="hidden" name="currency_code" value="USD" />
+              <input
+                type="image"
+                src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"
+                border="0"
+                name="submit"
+                alt="PayPal - The safer, easier way to pay online!"
+              />
+              <img
+                alt=""
+                border="0"
+                src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+                width="1"
+                height="1"
+              />
+            </form>
           </div>
         </div>
       </section>

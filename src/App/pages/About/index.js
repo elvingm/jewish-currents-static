@@ -10,7 +10,7 @@ const AboutPage = () => (
       <h2>About Us</h2>
       <p>
         Founded in 1946, <em>Jewish Currents</em> is a magazine committed to the rich tradition of
-        Left Jewish thought, activism, and culture.
+        thought, activism, and culture of the Jewish left.
       </p>
     </section>
     <section className="staff">

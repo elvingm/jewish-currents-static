@@ -127,8 +127,12 @@
 
         &:--align-left,
         &:--align-right {
-          max-width: 50%;
+          max-width: 100%;
           overflow: hidden;
+
+          @media(--g-medium-viewport) {
+            max-width: 50%;
+          }
         }    
 
         &:--align-left {
@@ -146,8 +150,14 @@
         }
       }
 
+      & img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
       & figcaption {
         font-size: 14px;
+        margin-top: 10px;
       }
     }
   }

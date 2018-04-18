@@ -140,22 +140,22 @@
       @media(--g-large-viewport) {
         flex-basis: 70%;
       }
-    }
 
-    & picture, & img {
-      object-fit: cover;
-      object-position: right;
-      max-width: none;
-      position: relative;
-      left: -10%;
-      transform: scale(1.3);
-
-      @media(--g-large-viewport) {
+      & picture, & img {
         object-fit: cover;
-        object-position: center 50%;
-        left: -15%;
-        width: 115%;
-        transform: none;
+        object-position: right;
+        max-width: none;
+        position: relative;
+        left: -10%;
+        transform: scale(1.3);
+
+        @media(--g-large-viewport) {
+          object-fit: cover;
+          object-position: center 50%;
+          left: -15%;
+          width: 115%;
+          transform: none;
+        }
       }
     }
 
@@ -210,6 +210,10 @@
 
       & select {
         height: 30px;
+      }
+
+      & img.pixel {
+        height: 1px;
       }
     }
   }

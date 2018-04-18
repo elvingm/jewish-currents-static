@@ -87,6 +87,7 @@ const HomePage = ({
                 alt="PayPal - The safer, easier way to pay online!"
               />
               <img
+                className="pixel"
                 alt=""
                 border="0"
                 src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"

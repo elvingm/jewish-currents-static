@@ -20,7 +20,9 @@ const HomePage = ({
         <Post {...mainFeaturedPost} useThumbnail />
       </section>
       <section className="post-row split-30">
-        {featuredPostColumns.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
+        {featuredPostColumns
+          .slice(0, 3)
+          .map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
       </section>
       <section id="shop-now-ad">
         <div className="g-border-wrap">

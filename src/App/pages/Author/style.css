@@ -24,6 +24,7 @@
 
     @media(--g-large-viewport) {
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-between;
     }
   }
@@ -55,6 +56,16 @@
     @media(--g-large-viewport) {
       display: block;
       flex-basis: 35em;
+    }
+  }
+
+  & .paginator {
+    flex: 1 1 100%;
+    margin-top: var(--s-block-spacing);
+    max-width: 99.5em;
+
+    @media(--g-large-viewport) {
+      margin-top: var(--l-block-spacing);
     }
   }
 

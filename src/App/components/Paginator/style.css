@@ -1,0 +1,13 @@
+.paginator {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--s-block-spacing) 0;
+
+  @media(--g-large-viewport) {
+    padding: var(--l-block-spacing) 0;
+  }
+
+  & .next {
+    margin-left: auto;
+  }
+}

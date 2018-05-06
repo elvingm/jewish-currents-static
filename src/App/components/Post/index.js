@@ -13,6 +13,7 @@ export default props => {
   const excerpt = props.excerpt ? props.excerpt : `${striptags(props.content).slice(0, 500)}...`;
   const category = isArray(props.categories) ? props.categories[0] : props.categories;
   const postImage = props.thumbnailImage || props.featuredImage || props.postImage;
+
   return (
     <div className={classNames({ 'g-post': true, stacked: props.stackedLayout })}>
       {postImage && (
@@ -27,9 +28,11 @@ export default props => {
           <Link to={`/category/${category.slug}`}>{category.title}</Link>
         </h3>
         <h2 className="title">
-          <Link to={`/${category.slug}/${props.slug}`} className="g-bold-link">
-            {props.title}
-          </Link>
+          <Link
+            to={`/${category.slug}/${props.slug}`}
+            className="g-bold-link"
+            dangerouslySetInnerHTML={{ __html: props.title }}
+          />
         </h2>
         <p className="info">
           <span className="date">{`${

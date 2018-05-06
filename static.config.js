@@ -19,13 +19,16 @@ const paginateItems = ({ items, parent, pageSize, pageToken = 'page', route, dec
   const routes = [
     {
       ...route,
-      ...decorate(firstPage, parent)
+      ...decorate(firstPage, parent, { totalPages: pages.length, currentPage: 1 })
     },
     // map over each page to create an array of page routes, and spread it!
-    ...pages.map((page, i) => ({
+    ...pages.map((pageItems, i) => ({
       ...route, // route defaults
       path: `${route.path}/${pageToken}/${i + 2}`,
-      ...decorate(page, parent)
+      ...decorate(pageItems, parent, {
+        totalPages: pages.length,
+        currentPage: i + 2
+      })
     }))
   ];
 
@@ -47,12 +50,13 @@ const makeAuthorRoutes = (authors, posts) => {
         path: `/author/${author.slug}`,
         component: 'src/App/pages/Author'
       },
-      decorate: (posts, author) => ({
+      decorate: (posts, author, paginator) => ({
         getData: () => ({
           themePrimaryColor: author.themePrimaryColor || SITE_PRIMARY_COLOR,
           currentPage: 'author',
           author,
-          posts
+          posts,
+          paginator
         })
       })
     });
@@ -71,17 +75,18 @@ const makeCategoryRoutes = (categories, posts) => {
     return paginateItems({
       items: categoryPosts,
       parent: category,
-      pageSize: 20,
+      pageSize: 50,
       route: {
         path: `/category/${category.slug}`,
         component: 'src/App/pages/Category'
       },
-      decorate: (posts, category) => ({
+      decorate: (posts, category, paginator) => ({
         getData: () => ({
           themePrimaryColor: category.themePrimaryColor || SITE_PRIMARY_COLOR,
           currentPage: 'category',
           category,
-          posts
+          posts,
+          paginator
         })
       })
     });

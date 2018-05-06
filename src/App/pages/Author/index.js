@@ -8,6 +8,7 @@ const AuthorPage = ({ author, posts }) => (
     <div className="author-info">
       <div className="g-content-wrap">
         <h1>{author.name}</h1>
+        <div className="description" dangerouslySetInnerHTML={{ __html: author.description }} />
       </div>
     </div>
     <div className="author-content g-content-wrap">

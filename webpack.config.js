@@ -42,7 +42,8 @@ export default (config, { defaultLoaders, stage }) => {
   config.plugins.push(
     new DefinePlugin({
       SITE_BASE_URL: JSON.stringify(process.env.SITE_BASE_URL),
-      SITE_SEARCH_TOKEN: JSON.stringify(process.env.SITE_SEARCH_TOKEN)
+      SITE_SEARCH_TOKEN: JSON.stringify(process.env.SITE_SEARCH_TOKEN),
+      STRIPE_API_KEY: JSON.stringify(process.env.STRIPE_API_KEY)
     })
   );
 

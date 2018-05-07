@@ -41,6 +41,8 @@
     "react-hot-loader": "^4.0.0-beta.21",
     "react-router": "^4.2.0",
     "react-static": "^5.5.14",
+    "react-stripe-elements": "^1.6.0",
+    "stripe": "^5.8.0",
     "striptags": "^2.2.1",
     "wpapi": "^1.1.2"
   },
@@ -51,6 +53,7 @@
     "eslint-config-react-tools": "1.x.x",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
+    "netlify-lambda": "^0.3.1",
     "postcss-calc": "^6.0.1",
     "postcss-color-function": "^4.0.1",
     "postcss-custom-media": "^6.0.0",

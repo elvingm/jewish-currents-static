@@ -102,9 +102,14 @@
         margin: 20px 0;
       }
 
-      & blockquote {
+      & .pullquote {
         font-size: 35px;
         line-height: 1;
+      }
+      
+      & blockquote {
+        padding-left: 20px;
+        font-style: italic;
       }
 
       & a {

@@ -25,7 +25,7 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
     .g-accent {
       color: ${toRGBString(themePrimaryColor)};
     }
-    blockquote {
+    .pullquote {
       color: ${toRGBString(themePrimaryColor)};
     }
   `;
@@ -72,15 +72,17 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
                       alt={post.postImage ? post.postImage.alt : post.featuredImage.alt}
                     />
                   </div>
-                  {post.postImageCaption && <figcaption>{post.postImageCaption}</figcaption>}
+                  {post.headerImageCaption && (
+                    <figcaption dangerouslySetInnerHTML={{ __html: post.headerImageCaption }} />
+                  )}
                 </figure>
               )}
             <h3 className="label">{category.title}</h3>
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />
             <p>
-              <span className="date">{`${
-                MONTH_NAMES[date.getMonth()]
-              } ${date.getDate()}, ${date.getFullYear()}`}</span>
+              <span className="date">
+                {`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
+              </span>
               <Link className="author g-underline-link" to={`/author/${post.authors.slug}`}>
                 {post.authors.name}
               </Link>
@@ -90,12 +92,14 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
         </article>
         <aside className="share-icons">
           <SocialLink
-            url={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+            shareUrl={shareUrl}
+            shareText={post.title}
             network="facebook"
             iconColor="#000"
           />
           <SocialLink
-            url={`https://twitter.com/intent/tweet?url=${shareUrl}`}
+            shareUrl={shareUrl}
+            shareText={post.title}
             network="twitter"
             iconColor="#000"
           />
@@ -112,13 +116,10 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
           Share <span>this article</span>
         </h2>
         <div className="share-icons">
+          <SocialLink shareUrl={shareUrl} network="facebook" iconColor="#000" />
           <SocialLink
-            url={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
-            network="facebook"
-            iconColor="#000"
-          />
-          <SocialLink
-            url={`https://twitter.com/intent/tweet?url=${shareUrl}`}
+            shareUrl={shareUrl}
+            shareText={post.title}
             network="twitter"
             iconColor="#000"
           />

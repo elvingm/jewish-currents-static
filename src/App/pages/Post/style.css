@@ -16,8 +16,7 @@
   }
 
   & .post-image {
-    margin-bottom: 20px;
-    text-align: right;
+    margin: 0 0 20px;
 
     & figcaption {
       font-size: 14px;

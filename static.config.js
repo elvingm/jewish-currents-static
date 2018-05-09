@@ -129,8 +129,7 @@ const makeCategoryRoutes = (categories, posts) => {
 
 const makePostRoutes = (posts, furtherReadingUnit) => {
   const routes = posts.map(post => {
-    const category = isArray(post.categories) ? post.categories[0] : post.categories;
-    return {
+    const getPostRoute = category => ({
       path: `/${category.slug}/${post.slug}`,
       component: 'src/App/pages/Post',
       getData: () => ({
@@ -139,10 +138,15 @@ const makePostRoutes = (posts, furtherReadingUnit) => {
         furtherReadingUnit,
         post
       })
-    };
+    });
+
+    if (isArray(post.categories)) {
+      return post.categories.map(getPostRoute);
+    }
+    return getPostRoute(post.categories);
   });
 
-  return routes;
+  return flatten(routes);
 };
 
 const organizeContentByType = (content, models) => {

@@ -34,14 +34,29 @@ export default props => {
             dangerouslySetInnerHTML={{ __html: props.title }}
           />
         </h2>
-        <p className="info">
+        <div className="info">
           <span className="date">{`${
             MONTH_NAMES[date.getMonth()]
           } ${date.getDate()}, ${date.getFullYear()}`}</span>
-          <Link className="author g-underline-link" to={`/author/${props.authors.slug}`}>
-            {props.authors.name}
-          </Link>
-        </p>
+          {isArray(props.authors) ? (
+            <div className="authors">
+              {props.authors.map((author, idx) => (
+                <Link
+                  className="author g-underline-link"
+                  to={`/author/${author.slug}`}
+                  key={author.id}
+                >
+                  <span>{author.name}</span>
+                  {idx >= 0 && idx < props.authors.length - 1 && <span>,</span>}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Link className="author g-underline-link" to={`/author/${props.authors.slug}`}>
+              {props.authors.name}
+            </Link>
+          )}
+        </div>
         <p className="excerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
         <Link to={`/${category.slug}/${props.slug}`} className="g-bold-link">
           Read More

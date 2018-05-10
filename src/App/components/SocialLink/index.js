@@ -2,25 +2,25 @@ import React from 'react';
 
 import FacebookIcon from './Facebook';
 import TwitterIcon from './Twitter';
-import InstagramIcon from './Instagram';
 
-export default props => {
+export default ({ url, network, iconColor, shareUrl, shareText }) => {
   let SocialIcon;
-  switch (props.network) {
+  switch (network) {
     case 'facebook':
-      SocialIcon = <FacebookIcon fill={props.iconColor} />;
+      SocialIcon = <FacebookIcon fill={iconColor} />;
+      url = shareUrl ? `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}` : url;
       break;
     case 'twitter':
-      SocialIcon = <TwitterIcon fill={props.iconColor} />;
-      break;
-    case 'instagram':
-      SocialIcon = <InstagramIcon fill={props.iconColor} />;
+      SocialIcon = <TwitterIcon fill={iconColor} />;
+      url = shareUrl ? `https://twitter.com/intent/tweet?url=${shareUrl}` : url;
+      if (shareText) url += `&text=${shareText} via @jewishcurrents`;
       break;
     default:
       break;
   }
+
   return (
-    <a href={props.url} target="_blank" rel="noopener noreferrer">
+    <a href={url} target="_blank" rel="noopener noreferrer">
       {SocialIcon}
     </a>
   );

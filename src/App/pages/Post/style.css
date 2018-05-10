@@ -16,8 +16,7 @@
   }
 
   & .post-image {
-    margin-bottom: 20px;
-    text-align: right;
+    margin: 0 0 20px;
 
     & figcaption {
       font-size: 14px;
@@ -89,8 +88,21 @@
         margin-bottom: 15px;
       }
 
-      & .author {
-        margin-left: 10px;
+      & .date {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+
+      & .authors {
+        display: inline;
+
+        & .author {
+          margin-left: 10px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
       }
     }
 
@@ -103,9 +115,14 @@
         margin: 20px 0;
       }
 
-      & blockquote {
+      & .pullquote {
         font-size: 35px;
         line-height: 1;
+      }
+      
+      & blockquote {
+        padding-left: 20px;
+        font-style: italic;
       }
 
       & a {
@@ -115,8 +132,6 @@
       & ol, & ul {
         
         & li {
-          font-size: 35px;
-          font-weight: bold;
           line-height: 1.29;
           letter-spacing: -1.97px;
         }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouteData } from 'react-static';
+import { Head, withRouteData } from 'react-static';
 import { chunk } from 'lodash';
 //
 import Post from '../../components/Post';
@@ -13,12 +13,33 @@ const HomePage = ({
   mainFeaturedPost,
   featuredPostColumns,
   featuredPostPaired,
-  currentIssueImage
+  currentIssueImage,
+  pageMeta
 }) => {
   const postRowChunks = chunk(featuredPostColumns, 3);
+  const shareImageURL = pageMeta.image && `https://www.datocms-assets.com${pageMeta.image.path}`;
 
   return (
     <div id="home">
+      <Head>
+        <meta name="description" content={pageMeta.description} />
+
+        {/* Schema.org for Google */}
+        <meta item="name" content={pageMeta.title} />
+        <meta item="description" content={pageMeta.description} />
+        {shareImageURL && <meta item="image" content={shareImageURL} />}
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={pageMeta.title} />
+        <meta name="twitter:description" content={pageMeta.description} />
+        {shareImageURL && <meta name="twitter:image:src" content={shareImageURL} />}
+
+        {/* Open Graph general (Facebook, Pinterest & Google+) */}
+        <meta property="og:title" content={pageMeta.title} />
+        <meta property="og:description" content={pageMeta.description} />
+        {shareImageURL && <meta property="og:image" content={shareImageURL} />}
+      </Head>
       <div className="g-content-wrap">
         <section className="featured-post">
           <Post {...mainFeaturedPost} useThumbnail />

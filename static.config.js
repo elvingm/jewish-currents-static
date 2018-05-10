@@ -38,7 +38,9 @@ const paginateItems = ({ items, parent, pageSize, pageToken = 'page', route, dec
 const makeAuthorRoutes = (authors, posts) => {
   const routes = authors.map(author => {
     const authorPosts = posts.filter(p => {
-      const postAuthor = isArray(p.authors) ? p.authors[0] : p.authors;
+      const postAuthor = isArray(p.authors)
+        ? p.authors.filter(pa => pa.id === author.id)[0]
+        : p.authors;
       return postAuthor && postAuthor.id === author.id;
     });
 
@@ -62,13 +64,17 @@ const makeAuthorRoutes = (authors, posts) => {
     });
   });
 
-  return flatten(routes);
+  const final = flatten(routes);
+  console.log(`Processed ${final.length} Author routes`);
+  return final;
 };
 
 const makeCategoryRoutes = (categories, posts) => {
   const routes = categories.map(category => {
     const categoryPosts = posts.filter(p => {
-      const postCategory = isArray(p.categories) ? p.categories[0] : p.categories;
+      const postCategory = isArray(p.categories)
+        ? p.categories.filter(pc => pc.id === category.id)[0]
+        : p.categories;
       return postCategory && postCategory.id === category.id;
     });
 
@@ -92,7 +98,9 @@ const makeCategoryRoutes = (categories, posts) => {
     });
   });
 
-  return flatten(routes);
+  const final = flatten(routes);
+  console.log(`Processed ${final.length} Category routes`);
+  return final;
 };
 
 // const makeTagRoutes = (tags, posts) => {
@@ -146,7 +154,9 @@ const makePostRoutes = (posts, furtherReadingUnit) => {
     return getPostRoute(post.categories);
   });
 
-  return flatten(routes);
+  const final = flatten(routes);
+  console.log(`Processed ${final.length} Post routes`);
+  return final;
 };
 
 const organizeContentByType = (content, models) => {

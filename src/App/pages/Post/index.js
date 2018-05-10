@@ -19,19 +19,13 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const category = isArray(post.categories) ? post.categories[0] : post.categories;
   const excerpt = post.excerpt ? post.excerpt : `${striptags(post.content).slice(0, 200)}`;
   const shareImage =
-    post.seoMeta.image || post.featuredImage || post.postImage || post.thumbnailImage;
+    (post.seoMeta && post.seoMeta) || post.featuredImage || post.postImage || post.thumbnailImage;
   const shareImageURL = shareImage && toAssetURL(shareImage.path);
   const shareUrl = `${SITE_BASE_URL}/${category.slug}/${post.slug}`; // eslint-disable-line no-undef
-  const meta = Object.assign(
-    {
-      title: post.title,
-      description: excerpt
-    },
-    {
-      title: post.seoMeta.title,
-      description: post.seoMeta.description
-    }
-  );
+  const meta = {
+    title: (post.seoMeta && post.seoMeta.title) || post.title,
+    description: (post.seoMeta && post.seoMeta.description) || excerpt
+  };
   const themeCss = `
     .g-accent {
       color: ${toRGBString(themePrimaryColor)};

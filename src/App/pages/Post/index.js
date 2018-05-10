@@ -5,7 +5,7 @@ import striptags from 'striptags';
 //
 import './style.css';
 import { MONTH_NAMES } from '../../util/constants';
-import { toRGBString } from '../../util/helpers';
+import { toRGBString, toAssetURL } from '../../util/helpers';
 import FurtherReadingUnit from '../../components/FurtherReadingUnit';
 import Image from '../../components/Image';
 import SubscribeCallout from '../../components/SubscribeCallout';
@@ -18,9 +18,20 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const date = new Date(post.publishedAt);
   const category = isArray(post.categories) ? post.categories[0] : post.categories;
   const excerpt = post.excerpt ? post.excerpt : `${striptags(post.content).slice(0, 200)}`;
-  const shareImage = post.featuredImage || post.postImage || post.thumbnailImage;
-  const shareImageURL = shareImage && `https://www.datocms-assets.com${shareImage.path}`;
+  const shareImage =
+    post.seoMeta.image || post.featuredImage || post.postImage || post.thumbnailImage;
+  const shareImageURL = shareImage && toAssetURL(shareImage.path);
   const shareUrl = `${SITE_BASE_URL}/${category.slug}/${post.slug}`; // eslint-disable-line no-undef
+  const meta = Object.assign(
+    {
+      title: post.title,
+      description: excerpt
+    },
+    {
+      title: post.seoMeta.title,
+      description: post.seoMeta.description
+    }
+  );
   const themeCss = `
     .g-accent {
       color: ${toRGBString(themePrimaryColor)};
@@ -33,26 +44,24 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
     <div id="post">
       <Head>
         <style>{themeCss}</style>
-        <meta name="description" content={excerpt} />
+        <meta name="description" content={meta.description} />
 
         {/* Schema.org for Google */}
-        <meta item="name" content={post.title} />
-        <meta item="description" content={excerpt} />
+        <meta item="name" content={meta.title} />
+        <meta item="description" content={meta.description} />
         {shareImageURL && <meta item="image" content={shareImageURL} />}
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={excerpt} />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
         {shareImageURL && <meta name="twitter:image:src" content={shareImageURL} />}
 
         {/* Open Graph general (Facebook, Pinterest & Google+) */}
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={excerpt} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
         {shareImageURL && <meta property="og:image" content={shareImageURL} />}
         <meta property="og:url" content={shareUrl} />
-        <meta property="og:site_name" content="Jewish Currents" />
-        <meta property="og:type" content="website" />
       </Head>
       {post.featuredPost &&
         post.featuredImage && (

@@ -79,14 +79,29 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
               )}
             <h3 className="label">{category.title}</h3>
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />
-            <p>
+            <div>
               <span className="date">
                 {`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
               </span>
-              <Link className="author g-underline-link" to={`/author/${post.authors.slug}`}>
-                {post.authors.name}
-              </Link>
-            </p>
+              {isArray(post.authors) ? (
+                <div className="authors">
+                  {post.authors.map((author, idx) => (
+                    <Link
+                      className="author g-underline-link"
+                      to={`/author/${author.slug}`}
+                      key={author.id}
+                    >
+                      <span>{author.name}</span>
+                      {idx >= 0 && idx < post.authors.length - 1 && <span>,</span>}
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <Link className="author g-underline-link" to={`/author/${post.authors.slug}`}>
+                  {post.authors.name}
+                </Link>
+              )}
+            </div>
           </header>
           <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>

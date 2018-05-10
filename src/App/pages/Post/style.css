@@ -88,8 +88,21 @@
         margin-bottom: 15px;
       }
 
-      & .author {
-        margin-left: 10px;
+      & .date {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+
+      & .authors {
+        display: inline;
+
+        & .author {
+          margin-left: 10px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
       }
     }
 

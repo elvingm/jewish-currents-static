@@ -19,7 +19,10 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const category = isArray(post.categories) ? post.categories[0] : post.categories;
   const excerpt = post.excerpt ? post.excerpt : `${striptags(post.content).slice(0, 200)}`;
   const shareImage =
-    (post.seoMeta && post.seoMeta) || post.featuredImage || post.postImage || post.thumbnailImage;
+    (post.seoMeta && post.seoMeta.image) ||
+    post.featuredImage ||
+    post.postImage ||
+    post.thumbnailImage;
   const shareImageURL = shareImage && toAssetURL(shareImage.path);
   const shareUrl = `${SITE_BASE_URL}/${category.slug}/${post.slug}`; // eslint-disable-line no-undef
   const meta = {

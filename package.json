@@ -11,7 +11,7 @@
     "clean": "rm -rf ./dist",
     "copy": "cp src/lambda-src/subscribe.js src/lambda/subscribe.js",
     "format": "prettier --write '**/*.js'",
-    "freshstart": "REFRESH_FILE_CACHE=true react-static start",
+    "freshstart": "REFRESH_FILE_CACHE=true yarn run start",
     "lambda-serve": "yarn run copy && netlify-lambda serve src/lambda",
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "precommit": "lint-staged",

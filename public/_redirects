@@ -1,6 +1,10 @@
 /sign-up / 301
 /jcultcha-gallery/multimedia / 301
 /about/contact /about
+/about/subscribe /#shop-now-ad
+/blog-shmog /
+/why-were-the-nazis-so-successful-at-killing-six-million-jews-16509 /editor/why-were-the-nazis-so-successful-at-killing-six-million-jews
+/the-origins-and-meanings-of-ashkenazic-last-names-12849 /editor/the-origins-and-meanings-of-ashkenazic-last-names-12849
 
 # Wordpress Post URLs Redirects - 4/15/18
 # Redirect old urls at root to post slug nested under category

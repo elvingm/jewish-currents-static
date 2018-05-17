@@ -13,6 +13,7 @@ export default props => {
   const excerpt = props.excerpt ? props.excerpt : `${striptags(props.content).slice(0, 500)}...`;
   const category = isArray(props.categories) ? props.categories[0] : props.categories;
   const postImage = props.thumbnailImage || props.featuredImage || props.postImage;
+
   return (
     <div className={classNames({ 'g-post': true, stacked: props.stackedLayout })}>
       {postImage && (
@@ -27,18 +28,35 @@ export default props => {
           <Link to={`/category/${category.slug}`}>{category.title}</Link>
         </h3>
         <h2 className="title">
-          <Link to={`/${category.slug}/${props.slug}`} className="g-bold-link">
-            {props.title}
-          </Link>
+          <Link
+            to={`/${category.slug}/${props.slug}`}
+            className="g-bold-link"
+            dangerouslySetInnerHTML={{ __html: props.title }}
+          />
         </h2>
-        <p className="info">
+        <div className="info">
           <span className="date">{`${
             MONTH_NAMES[date.getMonth()]
           } ${date.getDate()}, ${date.getFullYear()}`}</span>
-          <Link className="author g-underline-link" to={`/author/${props.authors.slug}`}>
-            {props.authors.name}
-          </Link>
-        </p>
+          {isArray(props.authors) ? (
+            <div className="authors">
+              {props.authors.map((author, idx) => (
+                <Link
+                  className="author g-underline-link"
+                  to={`/author/${author.slug}`}
+                  key={author.id}
+                >
+                  <span>{author.name}</span>
+                  {idx >= 0 && idx < props.authors.length - 1 && <span>,</span>}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Link className="author g-underline-link" to={`/author/${props.authors.slug}`}>
+              {props.authors.name}
+            </Link>
+          )}
+        </div>
         <p className="excerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
         <Link to={`/${category.slug}/${props.slug}`} className="g-bold-link">
           Read More

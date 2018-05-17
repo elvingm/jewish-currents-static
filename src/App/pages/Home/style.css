@@ -42,7 +42,6 @@
   & .post-row {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
     
     @media(max-width: 768px) {
       flex-flow: wrap;
@@ -68,6 +67,7 @@
     &.split-30 {
       & .g-post {
         flex: 1 1 33%;
+        max-width: 33%;
 
         @media(max-width: 768px) {
           flex: 1 1 100%;

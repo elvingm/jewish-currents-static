@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   flex-flow: wrap;
-  justify-content: space-between;
 
   @media(--post-unstacked) {
     flex-flow: nowrap;
@@ -55,6 +54,22 @@
 
       @media(--post-unstacked) {
         font-size: 18px;
+      }
+    }
+
+    & .date {
+      margin-right: 10px;
+    }
+
+    & .authors {
+      display: inline;
+
+      & .author {
+        margin-left: 10px;
+
+        &:first-child {
+          margin-left: 0;
+        }
       }
     }
   }

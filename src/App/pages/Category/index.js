@@ -4,11 +4,15 @@ import { Head, withRouteData } from 'react-static';
 import './style.css';
 import { toRGBString } from '../../util/helpers';
 import Post from '../../components/Post';
+import Paginator from '../../components/Paginator';
 
-const CategoryPage = ({ category, posts, themePrimaryColor }) => {
+const CategoryPage = ({ category, posts, themePrimaryColor, paginator }) => {
   const themeCss = `
     .g-accent {
       color: ${toRGBString(themePrimaryColor)});
+    }
+    .paginator .g-button:hover {
+      background-color: ${toRGBString(themePrimaryColor)};
     }
   `;
 
@@ -36,6 +40,7 @@ const CategoryPage = ({ category, posts, themePrimaryColor }) => {
             <h3>Ad</h3>
           </div> */}
         </aside>
+        {paginator.totalPages > 1 && <Paginator paginator={paginator} model={category} />}
       </div>
     </div>
   );

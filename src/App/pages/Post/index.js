@@ -5,7 +5,7 @@ import striptags from 'striptags';
 //
 import './style.css';
 import { MONTH_NAMES } from '../../util/constants';
-import { toRGBString } from '../../util/helpers';
+import { toRGBString, toAssetURL } from '../../util/helpers';
 import FurtherReadingUnit from '../../components/FurtherReadingUnit';
 import Image from '../../components/Image';
 import SubscribeCallout from '../../components/SubscribeCallout';
@@ -18,14 +18,19 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const date = new Date(post.publishedAt);
   const category = isArray(post.categories) ? post.categories[0] : post.categories;
   const excerpt = post.excerpt ? post.excerpt : `${striptags(post.content).slice(0, 200)}`;
-  const shareImage = post.featuredImage || post.postImage || post.thumbnailImage;
-  const shareImageURL = shareImage && `https://www.datocms-assets.com${shareImage.path}`;
+  const shareImage =
+    (post.seoMeta && post.seoMeta) || post.featuredImage || post.postImage || post.thumbnailImage;
+  const shareImageURL = shareImage && toAssetURL(shareImage.path);
   const shareUrl = `${SITE_BASE_URL}/${category.slug}/${post.slug}`; // eslint-disable-line no-undef
+  const meta = {
+    title: (post.seoMeta && post.seoMeta.title) || post.title,
+    description: (post.seoMeta && post.seoMeta.description) || excerpt
+  };
   const themeCss = `
     .g-accent {
       color: ${toRGBString(themePrimaryColor)};
     }
-    blockquote {
+    .pullquote {
       color: ${toRGBString(themePrimaryColor)};
     }
   `;
@@ -33,26 +38,24 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
     <div id="post">
       <Head>
         <style>{themeCss}</style>
-        <meta name="description" content={excerpt} />
+        <meta name="description" content={meta.description} />
 
         {/* Schema.org for Google */}
-        <meta item="name" content={post.title} />
-        <meta item="description" content={excerpt} />
+        <meta item="name" content={meta.title} />
+        <meta item="description" content={meta.description} />
         {shareImageURL && <meta item="image" content={shareImageURL} />}
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={excerpt} />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
         {shareImageURL && <meta name="twitter:image:src" content={shareImageURL} />}
 
         {/* Open Graph general (Facebook, Pinterest & Google+) */}
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={excerpt} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
         {shareImageURL && <meta property="og:image" content={shareImageURL} />}
         <meta property="og:url" content={shareUrl} />
-        <meta property="og:site_name" content="Jewish Currents" />
-        <meta property="og:type" content="website" />
       </Head>
       {post.featuredPost &&
         post.featuredImage && (
@@ -72,30 +75,49 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
                       alt={post.postImage ? post.postImage.alt : post.featuredImage.alt}
                     />
                   </div>
-                  {post.postImageCaption && <figcaption>{post.postImageCaption}</figcaption>}
+                  {post.headerImageCaption && (
+                    <figcaption dangerouslySetInnerHTML={{ __html: post.headerImageCaption }} />
+                  )}
                 </figure>
               )}
             <h3 className="label">{category.title}</h3>
             <h1 className="g-accent" dangerouslySetInnerHTML={{ __html: post.title }} />
-            <p>
-              <span className="date">{`${
-                MONTH_NAMES[date.getMonth()]
-              } ${date.getDate()}, ${date.getFullYear()}`}</span>
-              <Link className="author g-underline-link" to={`/author/${post.authors.slug}`}>
-                {post.authors.name}
-              </Link>
-            </p>
+            <div>
+              <span className="date">
+                {`${MONTH_NAMES[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
+              </span>
+              {isArray(post.authors) ? (
+                <div className="authors">
+                  {post.authors.map((author, idx) => (
+                    <Link
+                      className="author g-underline-link"
+                      to={`/author/${author.slug}`}
+                      key={author.id}
+                    >
+                      <span>{author.name}</span>
+                      {idx >= 0 && idx < post.authors.length - 1 && <span>,</span>}
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <Link className="author g-underline-link" to={`/author/${post.authors.slug}`}>
+                  {post.authors.name}
+                </Link>
+              )}
+            </div>
           </header>
           <div className="content" dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
         <aside className="share-icons">
           <SocialLink
-            url={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+            shareUrl={shareUrl}
+            shareText={post.title}
             network="facebook"
             iconColor="#000"
           />
           <SocialLink
-            url={`https://twitter.com/intent/tweet?url=${shareUrl}`}
+            shareUrl={shareUrl}
+            shareText={post.title}
             network="twitter"
             iconColor="#000"
           />
@@ -112,13 +134,10 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
           Share <span>this article</span>
         </h2>
         <div className="share-icons">
+          <SocialLink shareUrl={shareUrl} network="facebook" iconColor="#000" />
           <SocialLink
-            url={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
-            network="facebook"
-            iconColor="#000"
-          />
-          <SocialLink
-            url={`https://twitter.com/intent/tweet?url=${shareUrl}`}
+            shareUrl={shareUrl}
+            shareText={post.title}
             network="twitter"
             iconColor="#000"
           />

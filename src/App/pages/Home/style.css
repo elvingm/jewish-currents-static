@@ -64,10 +64,9 @@
       }
     }
 
-    &.split-30 {
+    &.split-33 {
       & .g-post {
         flex: 1 1 33%;
-        max-width: 33%;
 
         @media(max-width: 768px) {
           flex: 1 1 100%;

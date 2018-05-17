@@ -45,7 +45,7 @@ const HomePage = ({
           <Post {...mainFeaturedPost} useThumbnail />
         </section>
         {postRowChunks[0] && (
-          <section className="post-row split-30">
+          <section className="post-row split-33">
             {postRowChunks[0].map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
           </section>
         )}
@@ -135,7 +135,7 @@ const HomePage = ({
           <NewsletterForm formId="a3ab65eb-bed1-456e-a221-7310a4bf4d7e" />
         </section>
         {postRowChunks[1] && (
-          <section className="post-row split-30">
+          <section className="post-row split-33">
             {postRowChunks[1].map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
           </section>
         )}

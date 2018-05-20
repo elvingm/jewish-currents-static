@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import './style.css';
 import SearchForm from '../Form';
 import CloseIcon from '../../../assets/img/icons/close.svg';
-import { toRGBAString } from '../../../util/helpers';
+import { toRGBString } from '../../../util/helpers';
 
 export default class SearchPopup extends React.Component {
   handleCloseClick = () => {
@@ -21,10 +21,10 @@ export default class SearchPopup extends React.Component {
       <div
         className={classNames({ 'search-popup': true, hidden: !this.props.show })}
         style={{
-          background: `radial-gradient(ellipse at center, ${toRGBAString(
+          background: `radial-gradient(ellipse at center, ${toRGBString(
             accentColor,
             0.9
-          )} 0%, ${toRGBAString(accentColor)} 100%)`
+          )} 0%, ${toRGBString(accentColor)} 100%)`
         }}
       >
         <div className="close-icon" onClick={this.handleCloseClick}>

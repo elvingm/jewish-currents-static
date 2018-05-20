@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-static';
-import DatoCmsSearch from 'datocms-search/src/base';
+import DatoCmsSearch from 'datocms-search/dist/datocms-search.base';
 import parse from 'url-parse';
 import { debounce } from 'lodash';
 import './style.css';

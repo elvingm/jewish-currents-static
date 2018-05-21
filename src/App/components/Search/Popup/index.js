@@ -31,7 +31,10 @@ export default class SearchPopup extends React.Component {
           <img src={CloseIcon} alt="Close Icon" />
         </div>
         <div className="g-content-wrap">
-          <SearchForm onResultClick={this.handleCloseClick} />
+          <SearchForm
+            onResultClick={this.handleCloseClick}
+            placeholder={'Search Jewish Currents'}
+          />
         </div>
       </div>
     );

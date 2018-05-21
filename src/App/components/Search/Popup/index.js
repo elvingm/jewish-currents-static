@@ -33,7 +33,7 @@ export default class SearchPopup extends React.Component {
         <div className="g-content-wrap">
           <SearchForm
             onResultClick={this.handleCloseClick}
-            placeholder={'Search Jewish Currents'}
+            placeholderText="Search Jewish Currents"
           />
         </div>
       </div>

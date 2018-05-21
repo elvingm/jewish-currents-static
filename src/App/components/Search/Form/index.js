@@ -5,6 +5,7 @@ import parse from 'url-parse';
 import { debounce } from 'lodash';
 import './style.css';
 import SearchIcon from '../../../assets/img/icons/search-icon.svg';
+import CloseIcon from '../../../assets/img/icons/close.svg';
 
 export default class SearchForm extends React.Component {
   constructor() {
@@ -41,7 +42,7 @@ export default class SearchForm extends React.Component {
         <div className="input-wrap">
           <input
             type="text"
-            placeholder="Search Jewish Currents"
+            placeholder={this.props.placeholderText}
             onInput={this.handleInputChange}
           />
           <img className="search-icon" src={SearchIcon} alt="Search Icon" />

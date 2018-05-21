@@ -14,6 +14,7 @@ import SearchIcon from '../../assets/img/icons/search-icon.svg';
 import SocialLink from '../SocialLink';
 import NoticePopup from '../NoticePopup';
 import SearchPopup from '../Search/Popup';
+import SearchForm from '../Search/Form';
 
 export default withRouteData(
   class Header extends React.Component {
@@ -146,6 +147,7 @@ export default withRouteData(
                 iconColor="#000"
               />
             </div>
+            <SearchForm onResultClick={this.handleMenuClick} placeholderText="Search" />
           </nav>
           <NoticePopup onCloseClick={this.handleArchiveClose} show={this.state.showArchivesNotice}>
             <h2>
@@ -160,6 +162,7 @@ export default withRouteData(
             show={this.state.showSearchPopup}
             accentColor={backgroundColor}
             onCloseClick={this.handleSearchClose}
+            placeholderText="Search Jewish Currents"
           />
         </header>
       );

@@ -111,6 +111,7 @@
 
     &.menu-active {
       height: 100%;
+      overflow: auto;
     }
 
     & > a,
@@ -186,4 +187,17 @@
     }
   }
 
+  & .search-form {
+    margin: 40px var(--s-block-spacing) 0;
+
+    @media(--header-desktop) {
+      display: none;
+    }
+
+    & input[type="text"] {
+      font-size: 28px;
+      letter-spacing: -1.57px;
+      line-height: 1.61;
+    }
+  }
 }

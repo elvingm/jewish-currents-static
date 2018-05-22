@@ -118,12 +118,8 @@ export default withRouteData(
             >
               Jewdayo
             </a>
-            <button href="#" onClick={this.handleArchiveOpen}>
-              Archives
-            </button>
-            <button href="#" onClick={this.handlePushcartOpen}>
-              Pushcart
-            </button>
+            <button onClick={this.handleArchiveOpen}>Archives</button>
+            <button onClick={this.handlePushcartOpen}>Pushcart</button>
             <Link to="/about" activeClassName="active">
               About Us
             </Link>

@@ -50,9 +50,11 @@ export default class SearchForm extends React.Component {
           {this.state.results.map((result, idx) => (
             <div className="result" key={`result-${result.path}-${idx}`}>
               <h2 className="title">
-                <Link to={result.path} onClick={this.props.onResultClick}>
-                  {result.title}
-                </Link>
+                <Link
+                  to={result.path}
+                  onClick={this.props.onResultClick}
+                  dangerouslySetInnerHTML={{ __html: result.title }}
+                />
               </h2>
               <div className="body" dangerouslySetInnerHTML={{ __html: result.body }} />
             </div>

@@ -15,6 +15,7 @@ const SubmissionsPage = ({ title, content }) => {
     <div id="submissions">
       <Head>
         <style>{themeCss}</style>
+        <title>Jewish Currents | Submissions </title>
       </Head>
       <article>
         <h1 className="g-accent">{title}</h1>

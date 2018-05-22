@@ -1,11 +1,14 @@
 import React from 'react';
-import { withRouteData } from 'react-static';
+import { Head, withRouteData } from 'react-static';
 //
 import NewsletterForm from '../../components/NewsletterForm';
 import './style.css';
 
 const AboutPage = () => (
   <div id="about">
+    <Head>
+      <title>Jewish Currents | About Us</title>
+    </Head>
     <section className="about-us">
       <h2>About Us</h2>
       <p>

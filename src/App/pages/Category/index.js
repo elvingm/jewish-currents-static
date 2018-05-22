@@ -20,6 +20,7 @@ const CategoryPage = ({ category, posts, themePrimaryColor, paginator }) => {
     <div id="category">
       <Head>
         <style>{themeCss}</style>
+        <title>{`Jewish Currents | ${category.title}`}</title>
       </Head>
       <div className="category-info">
         <div className="g-content-wrap">

@@ -20,6 +20,7 @@ const AuthorPage = ({ author, posts, themePrimaryColor, paginator }) => {
     <div id="author">
       <Head>
         <style>{themeCss}</style>
+        <title>{`Jewish Currents | ${author.name}`}</title>
       </Head>
       <div className="author-info">
         <div className="g-content-wrap">

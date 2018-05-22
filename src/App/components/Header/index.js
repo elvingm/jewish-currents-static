@@ -1,3 +1,5 @@
+// TODO: improve accessibility
+/* eslint jsx-a11y/click-events-have-key-events: 0 */
 import React from 'react';
 import { Link, withRouteData, scrollTo } from 'react-static';
 import classNames from 'classnames';
@@ -8,8 +10,11 @@ import { toRGBString } from '../../util/helpers';
 import JCLogo from '../../assets/img/logos/jewishcurrents.svg';
 import MenuIcon from '../../assets/img/icons/menu.svg';
 import CloseIcon from '../../assets/img/icons/close.svg';
+import SearchIcon from '../../assets/img/icons/search-icon.svg';
 import SocialLink from '../SocialLink';
 import NoticePopup from '../NoticePopup';
+import SearchPopup from '../Search/Popup';
+import SearchForm from '../Search/Form';
 
 export default withRouteData(
   class Header extends React.Component {
@@ -18,7 +23,8 @@ export default withRouteData(
       this.state = {
         menuActive: false,
         showPushcartNotice: false,
-        showArchivesNotice: false
+        showArchivesNotice: false,
+        showSearchPopup: false
       };
     }
 
@@ -29,6 +35,8 @@ export default withRouteData(
         scrollTo(element, { duration: 500 });
       }
     };
+
+    // TODO: refactor to use React Portals for modals and DRY this up
 
     handleMenuClick = () => {
       this.setState({ menuActive: !this.state.menuActive });
@@ -48,6 +56,14 @@ export default withRouteData(
 
     handlePushcartClose = () => {
       this.setState({ showPushcartNotice: false });
+    };
+
+    handleSearchOpen = () => {
+      this.setState({ showSearchPopup: true });
+    };
+
+    handleSearchClose = () => {
+      this.setState({ showSearchPopup: false });
     };
 
     render() {
@@ -75,6 +91,9 @@ export default withRouteData(
                 network="instagram"
                 iconColor="#000"
               />
+              <div className="search-toggle" onClick={this.handleSearchOpen}>
+                <img className="search-icon" src={SearchIcon} alt="Search Toggle" />
+              </div>
             </div>
             <div
               className={classNames({ 'menu-toggle': true, 'menu-active': this.state.menuActive })}
@@ -99,12 +118,8 @@ export default withRouteData(
             >
               Jewdayo
             </a>
-            <a href="#" onClick={this.handleArchiveOpen}>
-              Archives
-            </a>
-            <a href="#" onClick={this.handlePushcartOpen}>
-              Pushcart
-            </a>
+            <button onClick={this.handleArchiveOpen}>Archives</button>
+            <button onClick={this.handlePushcartOpen}>Pushcart</button>
             <Link to="/about" activeClassName="active">
               About Us
             </Link>
@@ -128,6 +143,7 @@ export default withRouteData(
                 iconColor="#000"
               />
             </div>
+            <SearchForm onResultClick={this.handleMenuClick} placeholderText="Search" />
           </nav>
           <NoticePopup onCloseClick={this.handleArchiveClose} show={this.state.showArchivesNotice}>
             <h2>
@@ -138,6 +154,12 @@ export default withRouteData(
           <NoticePopup onCloseClick={this.handlePushcartClose} show={this.state.showPushcartNotice}>
             <h2>Stay tuned for our online store for unique gifts, books, and more.</h2>
           </NoticePopup>
+          <SearchPopup
+            show={this.state.showSearchPopup}
+            accentColor={backgroundColor}
+            onCloseClick={this.handleSearchClose}
+            placeholderText="Search Jewish Currents"
+          />
         </header>
       );
     }

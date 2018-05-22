@@ -41,6 +41,7 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
     <div id="post">
       <Head>
         <style>{themeCss}</style>
+        <title>{`Jewish Currents | ${meta.title}`}</title>
         <meta name="description" content={meta.description} />
 
         {/* Schema.org for Google */}

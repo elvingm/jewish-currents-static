@@ -20,6 +20,7 @@ const TagPage = ({ tag, posts, themePrimaryColor, paginator }) => {
     <div id="tag">
       <Head>
         <style>{themeCss}</style>
+        <title>{`Jewish Currents | ${tag.title}`}</title>
       </Head>
       <div className="tag-info">
         <div className="g-content-wrap">

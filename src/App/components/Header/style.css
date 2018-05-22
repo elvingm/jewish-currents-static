@@ -92,13 +92,13 @@
   & nav {
     background-color: inherit;
     border-bottom: 0;
-    height: 0;
+    max-height: 0;
     width: 100%;
     position: absolute;
     top: 60px;
     left: 0;
     overflow: hidden;
-    transition: height .15s ease-in;
+    transition: max-height .15s ease-in;
 
     @media(--header-desktop) {
       background-color: var(--white);
@@ -110,8 +110,7 @@
     }
 
     &.menu-active {
-      height: 100%;
-      overflow: auto;
+      max-height: 9999px;
     }
 
     & > a,
@@ -185,19 +184,20 @@
         height: 27px;
       }
     }
+    
+    & .search-form {
+      margin: 40px var(--s-block-spacing) 0;
+
+      @media(--header-desktop) {
+        display: none;
+      }
+
+      & input[type="text"] {
+        font-size: 28px;
+        letter-spacing: -1.57px;
+        line-height: 1.61;
+      }
+    }
   }
 
-  & .search-form {
-    margin: 40px var(--s-block-spacing) 0;
-
-    @media(--header-desktop) {
-      display: none;
-    }
-
-    & input[type="text"] {
-      font-size: 28px;
-      letter-spacing: -1.57px;
-      line-height: 1.61;
-    }
-  }
 }

@@ -241,6 +241,7 @@
     @media(--post-desktop) {
       display: block;
       flex-basis: 35em;
+      margin-right: auto;
     }
   }
 

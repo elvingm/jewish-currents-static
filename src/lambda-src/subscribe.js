@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+const YEARLY_PLAN_ID = 'plan_CxcE8XbYOL5KAT';
 const statusCode = 200;
 const headers = {
   'Access-Control-Allow-Origin': '*',
@@ -22,9 +24,10 @@ exports.handler = (event, context, callback) => {
 
   // Parse the body contents into an object.
   const data = JSON.parse(event.body);
+  const { token, amount, idempotency_key } = data;
 
   // Make sure we have all required data. Otherwise, escape.
-  if (!data.token || !data.amount || !data.idempotency_key) {
+  if (!token || !amount || !idempotency_key) {
     console.error('Required information is missing.');
 
     callback(null, {
@@ -38,35 +41,37 @@ exports.handler = (event, context, callback) => {
 
   console.log('stripe form data', JSON.stringify(data));
 
-  // const customer = stripe.customer.create({
-  //   email: data.token.email
-  // })
+  const customer = stripe.customer.create({
+    email: token.email
+  });
 
-  // stripe.charges.create(
-  //   {
-  //     currency: 'usd',
-  //     amount: data.amount,
-  //     source: data.token.id,
-  //     receipt_email: data.token.email,
-  //     description: `charge for a widget`
-  //   },
-  //   {
-  //     idempotency_key: data.idempotency_key
-  //   }, (err, charge) => {
+  console.log('customer res', customer);
 
-  //     if(err !== null) {
-  //       console.log(err);
-  //     }
+  if (customer.id) {
+    stripe.subscriptions.create(
+      {
+        customer: customer.id,
+        items: [{ plan: YEARLY_PLAN_ID }]
+      },
+      {
+        idempotency_key
+      },
+      (err, subscription) => {
+        if (err !== null) {
+          console.log(err);
+        }
 
-  //     const status = (charge === null || charge.status !== 'succeeded')
-  //       ? 'failed'
-  //       : charge.status;
+        const status =
+          subscription === null || subscription.status !== 'succeeded'
+            ? 'failed'
+            : subscription.status;
 
-  //     callback(null, {
-  //       statusCode,
-  //       headers,
-  //       body: JSON.stringify({status})
-  //     });
-  //   }
-  // );
+        callback(null, {
+          statusCode,
+          headers,
+          body: JSON.stringify({ status })
+        });
+      }
+    );
+  }
 };

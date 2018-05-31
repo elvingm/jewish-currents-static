@@ -142,6 +142,7 @@
   & div.ctct-form-embed form.ctct-form-custom div.ctct-form-field,
   & div.ctct-form-embed form.ctct-form-custom input.ctct-form-element,
   & div.ctct-form-embed form.ctct-form-custom button.ctct-form-button,
+  & div.ctct-form-embed div.ctct-form-defaults p.ctct-gdpr-text,
   & div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text {
     font-family: var(--font-stack);
     font-size: 14px;
@@ -156,5 +157,9 @@
   & div.ctct-form-embed div.ctct-form-defaults p.ctct-form-footer,
   & div.ctct-form-embed form.ctct-form-custom label.ctct-form-label {
     display: none;
+  }
+
+  & div.ctct-form-embed div.ctct-form-defaults p.ctct-gdpr-text {
+    letter-spacing: -.47px;
   }
 }

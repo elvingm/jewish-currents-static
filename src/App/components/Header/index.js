@@ -23,7 +23,6 @@ export default withRouteData(
       this.state = {
         menuActive: false,
         showPushcartNotice: false,
-        showArchivesNotice: false,
         showSearchPopup: false
       };
     }
@@ -40,14 +39,6 @@ export default withRouteData(
 
     handleMenuClick = () => {
       this.setState({ menuActive: !this.state.menuActive });
-    };
-
-    handleArchiveOpen = () => {
-      this.setState({ showArchivesNotice: true });
-    };
-
-    handleArchiveClose = () => {
-      this.setState({ showArchivesNotice: false });
     };
 
     handlePushcartOpen = () => {
@@ -118,7 +109,9 @@ export default withRouteData(
             >
               Jewdayo
             </a>
-            <button onClick={this.handleArchiveOpen}>Archives</button>
+            <a href="http://archive.jewishcurrents.org" target="_blank" rel="noopener noreferrer">
+              Archives
+            </a>
             <button onClick={this.handlePushcartOpen}>Pushcart</button>
             <Link to="/about" activeClassName="active">
               About Us
@@ -145,12 +138,6 @@ export default withRouteData(
             </div>
             <SearchForm onResultClick={this.handleMenuClick} placeholderText="Search" />
           </nav>
-          <NoticePopup onCloseClick={this.handleArchiveClose} show={this.state.showArchivesNotice}>
-            <h2>
-              We will soon relaunch the extensive Sid Resnick Memorial Archives and Schappes Center
-              for Cultural Jewish Life. Stay tuned!
-            </h2>
-          </NoticePopup>
           <NoticePopup onCloseClick={this.handlePushcartClose} show={this.state.showPushcartNotice}>
             <h2>Stay tuned for our online store for unique gifts, books, and more.</h2>
           </NoticePopup>

@@ -19,8 +19,8 @@ export default class NoticePopup extends React.Component {
           <div className="close-icon" onClick={this.handleCloseClick}>
             <img src={CloseIcon} alt="Close Icon" />
           </div>
+          <div className="content">{this.props.children}</div>
         </div>
-        <div className="content">{this.props.children}</div>
       </div>
     );
   }

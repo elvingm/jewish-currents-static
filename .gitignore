@@ -6,7 +6,8 @@
 
 # production
 /dist
-/lambda
+/lambda/*
+/src/lambda/*
 /tmp
 
 # misc

@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-const YEARLY_PLAN_ID = 'plan_CxcE8XbYOL5KAT';
+const YEARLY_PLAN_ID = 'plan_CZpp8FXByEauXF';
 const statusCode = 200;
 const headers = {
   'Access-Control-Allow-Origin': '*',
@@ -20,58 +20,48 @@ exports.handler = (event, context, callback) => {
     });
   }
 
-  console.log('stripe form data', JSON.stringify(event));
-
   // Parse the body contents into an object.
-  const data = JSON.parse(event.body);
-  const { token, amount, idempotency_key } = data;
+  const token = JSON.parse(event.body);
 
   // Make sure we have all required data. Otherwise, escape.
-  if (!token || !amount || !idempotency_key) {
-    console.error('Required information is missing.');
+  if (!token.id && !token.email) {
+    console.error('Error tokenizing customer payment information.');
 
     callback(null, {
       statusCode,
       headers,
-      body: JSON.stringify({ status: 'missing-information' })
+      body: JSON.stringify({ status: 'missing token information' })
     });
 
     return;
   }
 
-  console.log('stripe form data', JSON.stringify(data));
-
-  const customer = stripe.customer.create({
-    email: token.email
-  });
-
-  console.log('customer res', customer);
-
-  if (customer.id) {
-    stripe.subscriptions.create(
-      {
+  stripe.customers
+    .create({
+      email: token.email,
+      source: token.id
+    })
+    .then(customer => {
+      console.log('customer created:', customer);
+      return stripe.subscriptions.create({
         customer: customer.id,
         items: [{ plan: YEARLY_PLAN_ID }]
-      },
-      {
-        idempotency_key
-      },
-      (err, subscription) => {
-        if (err !== null) {
-          console.log(err);
-        }
+      });
+    })
+    .then(subscription => {
+      console.log('subscription created:', subscription);
+      const status =
+        subscription === null || subscription.status !== 'succeeded'
+          ? 'failed'
+          : subscription.status;
 
-        const status =
-          subscription === null || subscription.status !== 'succeeded'
-            ? 'failed'
-            : subscription.status;
-
-        callback(null, {
-          statusCode,
-          headers,
-          body: JSON.stringify({ status })
-        });
-      }
-    );
-  }
+      callback(null, {
+        statusCode,
+        headers,
+        body: JSON.stringify({ status })
+      });
+    })
+    .catch(err => {
+      throw err;
+    });
 };

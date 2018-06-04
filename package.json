@@ -7,15 +7,18 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "react-static build",
+    "build": "react-static build && yarn run copy && netlify-lambda build src/lambda",
     "clean": "rm -rf ./dist",
-    "lint": "eslint '**/*.{js,jsx}' --quiet",
+    "copy": "cp src/lambda-src/subscribe.js src/lambda/subscribe.js",
     "format": "prettier --write '**/*.js'",
+    "freshstart": "REFRESH_FILE_CACHE=true yarn run start",
+    "lint": "eslint '**/*.{js,jsx}' --quiet",
     "precommit": "lint-staged",
     "serve": "serve dist -p 1111",
-    "start": "react-static start",
-    "freshstart": "REFRESH_FILE_CACHE=true react-static start",
-    "stage": "react-static build --staging",
+    "start": "concurrently \"yarn run start-app\" \"yarn run start-lambda\"",
+    "start-app": "react-static start",
+    "start-lambda": "yarn run copy && netlify-lambda serve src/lambda",
+    "stage": "react-static build --staging && yarn run copy && netlify-lambda build src/lambda",
     "migrate": "node scripts/migrate/index.js"
   },
   "lint-staged": {
@@ -35,22 +38,28 @@
     "lodash": "^4.17.5",
     "object-fit-images": "^3.2.3",
     "p-map": "^1.2.0",
+    "prop-types": "^15.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-ga": "^2.4.1",
     "react-hot-loader": "^4.0.0-beta.21",
     "react-router": "^4.2.0",
     "react-static": "^5.5.14",
+    "react-stripe-checkout": "^2.6.3",
+    "stripe": "^5.8.0",
     "striptags": "^2.2.1",
+    "uuid": "^3.2.1",
     "wpapi": "^1.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",
+    "concurrently": "^3.5.1",
     "eslint": "^4.18.2",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-tools": "1.x.x",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
+    "netlify-lambda": "^0.4.0",
     "postcss-calc": "^6.0.1",
     "postcss-color-function": "^4.0.1",
     "postcss-custom-media": "^6.0.0",
@@ -71,5 +80,13 @@
     "prettier": "^1.11.1",
     "rucksack-css": "^1.0.2",
     "serve": "^6.1.0"
+  },
+  "proxy": {
+    "/.netlify/functions": {
+      "target": "http://localhost:9000",
+      "pathRewrite": {
+        "^/\\.netlify/functions": ""
+      }
+    }
   }
 }

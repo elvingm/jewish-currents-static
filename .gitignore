@@ -6,6 +6,9 @@
 
 # production
 /dist
+/lambda/*
+/src/lambda/*
+/tmp
 
 # misc
 .DS_Store

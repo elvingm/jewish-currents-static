@@ -41,8 +41,13 @@ export default (config, { defaultLoaders, stage }) => {
 
   config.plugins.push(
     new DefinePlugin({
+      DOMESTIC_PLAN_KEY: JSON.stringify(process.env.DOMESTIC_PLAN_KEY),
+      INTERNATIONAL_PLAN_KEY: JSON.stringify(process.env.INTERNATIONAL_PLAN_KEY),
+      LIFETIME_PLAN_KEY: JSON.stringify(process.env.LIFETIME_PLAN_KEY),
       SITE_BASE_URL: JSON.stringify(process.env.SITE_BASE_URL),
-      SITE_SEARCH_TOKEN: JSON.stringify(process.env.SITE_SEARCH_TOKEN)
+      SITE_SEARCH_TOKEN: JSON.stringify(process.env.SITE_SEARCH_TOKEN),
+      STRIPE_API_KEY: JSON.stringify(process.env.STRIPE_API_KEY),
+      STRIPE_PUBLISHABLE_KEY: JSON.stringify(process.env.STRIPE_PUBLISHABLE_KEY)
     })
   );
 

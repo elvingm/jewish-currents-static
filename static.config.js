@@ -176,6 +176,14 @@ export default {
   webpack,
   siteRoot: 'https://jewishcurrents.org',
   stagingSiteRoot: 'https://jewishcurrents-staging.netlify.com',
+  devServer: {
+    proxy: {
+      '/.netlify': {
+        target: 'http://localhost:9000',
+        pathRewrite: { '^/.netlify/lambda': '' }
+      }
+    }
+  },
   // Global Site Data -
   getSiteData: () => ({
     title: 'Jewish Currents',

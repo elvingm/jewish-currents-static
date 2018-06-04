@@ -7,7 +7,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "react-static build && npm run copy && netlify-lambda build src/lambda",
+    "build": "react-static build && netlify-lambda build src/lambda-src",
     "clean": "rm -rf ./dist",
     "copy": "cp src/lambda-src/subscribe.js src/lambda/subscribe.js",
     "format": "prettier --write '**/*.js'",
@@ -18,7 +18,7 @@
     "start": "concurrently \"npm run start-app\" \"npm run start-lambda\"",
     "start-app": "react-static start",
     "start-lambda": "npm run copy && netlify-lambda serve src/lambda",
-    "stage": "react-static build --staging && npm run copy && netlify-lambda build src/lambda",
+    "stage": "react-static build --staging && netlify-lambda build src/lambda-src",
     "migrate": "node scripts/migrate/index.js"
   },
   "lint-staged": {

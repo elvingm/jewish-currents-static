@@ -66,7 +66,9 @@ const HomePage = ({
                 One Year of <br />
                 <em>Jewish Currents</em>
               </h2>
-              <SubscribeButton />
+              <SubscribeButton plan="Domestic" buttonText="Domestic - $18/yr" />
+              <SubscribeButton plan="International" buttonText="International - $40/yr" />
+              <SubscribeButton plan="Lifetime" buttonText="Lifetime - $300 one-time payment" />
             </div>
           </div>
         </section>

@@ -12,11 +12,12 @@
     "copy": "cp src/lambda-src/subscribe.js src/lambda/subscribe.js",
     "format": "prettier --write '**/*.js'",
     "freshstart": "REFRESH_FILE_CACHE=true yarn run start",
-    "lambda-serve": "yarn run copy && netlify-lambda serve src/lambda",
     "lint": "eslint '**/*.{js,jsx}' --quiet",
     "precommit": "lint-staged",
     "serve": "serve dist -p 1111",
-    "start": "concurrently \"react-static start\" \"yarn run lambda-serve\"",
+    "start": "concurrently \"yarn run start-app\" \"yarn run start-lambda\"",
+    "start-app": "react-static start",
+    "start-lambda": "yarn run copy && netlify-lambda serve src/lambda",
     "stage": "react-static build --staging && yarn run copy && netlify-lambda build src/lambda",
     "migrate": "node scripts/migrate/index.js"
   },
@@ -37,6 +38,7 @@
     "lodash": "^4.17.5",
     "object-fit-images": "^3.2.3",
     "p-map": "^1.2.0",
+    "prop-types": "^15.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-ga": "^2.4.1",
@@ -46,6 +48,7 @@
     "react-stripe-checkout": "^2.6.3",
     "stripe": "^5.8.0",
     "striptags": "^2.2.1",
+    "uuid": "^3.2.1",
     "wpapi": "^1.1.2"
   },
   "devDependencies": {

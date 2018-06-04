@@ -107,6 +107,18 @@ a {
   }
 }
 
+button,
+input[type="submit"], 
+input[type="reset"] {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
+}
+
 #root,
 #root > div {
   display: flex;

@@ -2,7 +2,11 @@ require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-const YEARLY_PLAN_ID = 'plan_CZpp8FXByEauXF';
+const PLAN_KEYS = {
+  Domestic: process.env.DOMESTIC_PLAN_KEY,
+  International: process.env.INTERNATIONAL_PLAN_KEY,
+  Lifetime: process.env.LIFETIME_PLAN_KEY
+};
 const statusCode = 200;
 const headers = {
   'Access-Control-Allow-Origin': '*',
@@ -21,10 +25,10 @@ exports.handler = (event, context, callback) => {
   }
 
   // Parse the body contents into an object.
-  const token = JSON.parse(event.body);
+  const data = JSON.parse(event.body);
 
   // Make sure we have all required data. Otherwise, escape.
-  if (!token.id && !token.email) {
+  if (!data.id && !data.email && !data.plan && !data.idempotency_key) {
     console.error('Error tokenizing customer payment information.');
 
     callback(null, {
@@ -38,23 +42,34 @@ exports.handler = (event, context, callback) => {
 
   stripe.customers
     .create({
-      email: token.email,
-      source: token.id
+      email: data.email,
+      source: data.id
     })
     .then(customer => {
-      console.log('customer created:', customer);
-      return stripe.subscriptions.create({
-        customer: customer.id,
-        items: [{ plan: YEARLY_PLAN_ID }]
-      });
-    })
-    .then(subscription => {
-      console.log('subscription created:', subscription);
-      const status =
-        subscription === null || subscription.status !== 'succeeded'
-          ? 'failed'
-          : subscription.status;
+      if (data.plan === 'Lifetime') {
+        return stripe.charges.create(
+          {
+            amount: 30000,
+            currency: 'usd',
+            customer: customer.id,
+            description: 'Jewish Currents - Lifetime Subscription',
+            statement_descriptor: 'Jewish Currents - Life'
+          },
+          { idempotency_key: data.idempotency_key }
+        );
+      }
 
+      return stripe.subscriptions.create(
+        {
+          customer: customer.id,
+          items: [{ plan: PLAN_KEYS[data.plan] }]
+        },
+        { idempotency_key: data.idempotency_key }
+      );
+    })
+    .then(purchase => {
+      const { status } = purchase;
+      console.log('Purchase Completed:', purchase);
       callback(null, {
         statusCode,
         headers,
@@ -62,6 +77,12 @@ exports.handler = (event, context, callback) => {
       });
     })
     .catch(err => {
-      throw err;
+      const { statusCode, headers, message } = err;
+      callback(null, {
+        statusCode,
+        headers,
+        body: JSON.stringify({ message })
+      });
+      throw Error(err);
     });
 };

@@ -122,6 +122,11 @@
       }
     }
 
+    & .g-underline-link {
+      font-size: 18px;
+      letter-spacing: -1.01px;
+    }
+
     & .issue-details {
       flex: 0 1 50%;
       display: flex;

@@ -23,8 +23,9 @@ class SubscribeButton extends React.Component {
   onToken = token => {
     const { plan } = this.props;
     const idempotency_key = uuid();
+    // eslint-disable-next-line no-undef
     axios
-      .post('/.netlify/lambda/subscribe', { ...token, plan, idempotency_key })
+      .post(`${LAMBDA_ENDPOINT}/.netlify/lambda/subscribe`, { ...token, plan, idempotency_key })
       .then(response => {
         if (response.status !== 200) {
           console.error('Subscription failed with error:', response.data);

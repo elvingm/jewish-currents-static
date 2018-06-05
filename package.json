@@ -17,7 +17,7 @@
     "serve": "serve dist -p 1111",
     "start": "concurrently \"npm run start-app\" \"npm run start-lambda\"",
     "start-app": "react-static start",
-    "start-lambda": "npm run copy && netlify-lambda serve src/lambda",
+    "start-lambda": "netlify-lambda serve src/lambda",
     "stage": "react-static build --staging && netlify-lambda build src/lambda-src",
     "migrate": "node scripts/migrate/index.js"
   },

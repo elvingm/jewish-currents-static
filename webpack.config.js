@@ -44,6 +44,7 @@ export default (config, { defaultLoaders, stage }) => {
       DOMESTIC_PLAN_KEY: JSON.stringify(process.env.DOMESTIC_PLAN_KEY),
       INTERNATIONAL_PLAN_KEY: JSON.stringify(process.env.INTERNATIONAL_PLAN_KEY),
       LIFETIME_PLAN_KEY: JSON.stringify(process.env.LIFETIME_PLAN_KEY),
+      LAMBDA_ENDPOINT: JSON.stringify(process.env.LAMBDA_ENDPOINT),
       SITE_BASE_URL: JSON.stringify(process.env.SITE_BASE_URL),
       SITE_SEARCH_TOKEN: JSON.stringify(process.env.SITE_SEARCH_TOKEN),
       STRIPE_API_KEY: JSON.stringify(process.env.STRIPE_API_KEY),

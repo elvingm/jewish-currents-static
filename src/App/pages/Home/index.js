@@ -69,43 +69,41 @@ const HomePage = ({
                 <input type="hidden" name="cmd" value="_s-xclick" />
                 <input type="hidden" name="hosted_button_id" value="DW98Q7N7CR46W" />
                 <table>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <input type="hidden" name="on0" value="Subscription type" />
-                        Subscription Type
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <select name="os0">
-                          <option value="This sub is for me! (US)">
-                            This sub is for me! (US) $18.00 USD
-                          </option>
-                          <option value="This sub is a gift! (US)">
-                            This sub is a gift! (US) $18.00 USD
-                          </option>
-                          <option value="This sub is for me! (International)">
-                            This sub is for me! (International) $40.00 USD
-                          </option>
-                          <option value="This sub is a gift! (International)">
-                            This sub is a gift! (International) $40.00 USD
-                          </option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="hidden" name="on1" value="Mailing address" />
-                        Mailing address
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input type="text" name="os1" maxLength="200" />
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tr>
+                    <td>
+                      <input type="hidden" name="on0" value="Subscription type" />
+                      Subscription type
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <select name="os0">
+                        <option value="One year sub for me! (US)">
+                          One year sub for me! (US) $18.00 USD
+                        </option>
+                        <option value="One year sub as a gift! (US)">
+                          One year sub as a gift! (US) $18.00 USD
+                        </option>
+                        <option value="One year sub for me! (International)">
+                          One year sub for me! (International) $40.00 USD
+                        </option>
+                        <option value="One year sub as a gift! (International)">
+                          One year sub as a gift! (International) $40.00 USD
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="hidden" name="on1" value="Mailing address" />
+                      Mailing address
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" name="os1" maxLength="200" />
+                    </td>
+                  </tr>
                 </table>
                 <input type="hidden" name="currency_code" value="USD" />
                 <input
@@ -116,7 +114,6 @@ const HomePage = ({
                   alt="PayPal - The safer, easier way to pay online!"
                 />
                 <img
-                  className="pixel"
                   alt=""
                   border="0"
                   src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"

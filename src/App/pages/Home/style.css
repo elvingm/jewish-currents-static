@@ -107,7 +107,6 @@
 
   & #shop-now-ad {
     position: relative;
-    border-bottom: 0;
 
     & .g-border-wrap {
       background-color: var(--soft-amber);

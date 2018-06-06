@@ -5,7 +5,6 @@ import { chunk } from 'lodash';
 import Post from '../../components/Post';
 import NewsletterForm from '../../components/NewsletterForm';
 import NewsletterPopup from '../../components/NewsletterPopup';
-import SubscribeCallout from '../../components/SubscribeCallout';
 import Image from '../../components/Image';
 import './style.css';
 import SubscribeButton from '../../components/SubscribeButton';
@@ -72,7 +71,6 @@ const HomePage = ({
             </div>
           </div>
         </section>
-        <SubscribeCallout />
         <section className="post-row split-40x60">
           {featuredPostPaired.map(p => <Post {...p} key={p.id} stackedLayout useThumbnail />)}
         </section>

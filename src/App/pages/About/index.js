@@ -120,7 +120,7 @@ const AboutPage = () => (
       </div>
     </section>
     <section className="newsletter-signup">
-      <NewsletterForm />
+      <NewsletterForm formId="a3ab65eb-bed1-456e-a221-7310a4bf4d7e" />
     </section>
   </div>
 );

@@ -7,7 +7,6 @@
 # production
 /dist
 /lambda/*
-/src/lambda/*
 /tmp
 
 # misc

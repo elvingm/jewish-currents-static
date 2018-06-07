@@ -67,7 +67,7 @@ const HomePage = ({
               </h2>
               <SubscribeButton plan="Domestic" buttonText="Domestic - $18/yr" />
               <SubscribeButton plan="International" buttonText="International - $40/yr" />
-              <SubscribeButton plan="Lifetime" buttonText="Lifetime - $300 one-time payment" />
+              <SubscribeButton plan="Lifetime" buttonText="Lifetime - $300" />
             </div>
           </div>
         </section>

@@ -1,10 +1,15 @@
-const { SiteClient } = require('datocms-client');
+const { SiteClient, Loader } = require('datocms-client');
 
-const datocmsClient = new SiteClient('0ef9d273001e4484d53bec08550899');
+const client = new SiteClient('0ef9d273001e4484d53bec08550899');
+const loader = new Loader(client);
 
-datocmsClient.items.all({}, { allPages: true }).then(items => {
-  console.log(items.length);
-});
+const getData = async () => {
+  await loader.load();
+  console.log(loader);
+  console.log(loader.itemsRepo);
+};
+
+getData();
 
 // Dato Models
 // [ { id: '26697',

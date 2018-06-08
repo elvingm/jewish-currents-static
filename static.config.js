@@ -1,8 +1,13 @@
 import React from 'react';
 import { isArray, flatten } from 'lodash';
+import { SiteClient, Loader } from 'datocms-client';
 import webpack from './webpack.config.js';
-import fetchData from './src/datocms/fetch';
+// import fetchData from './src/datocms/fetch';
+
 import { SITE_PRIMARY_COLOR, POST_PRIMARY_COLOR } from './src/App/util/constants';
+
+const client = new SiteClient('0ef9d273001e4484d53bec08550899');
+const content = new Loader(client);
 
 const paginateItems = ({ items, parent, pageSize, pageToken = 'page', route, decorate }) => {
   const itemsCopy = [...items]; // Make a copy of the items
@@ -37,10 +42,9 @@ const paginateItems = ({ items, parent, pageSize, pageToken = 'page', route, dec
 
 const makeAuthorRoutes = (authors, posts) => {
   const routes = authors.map(author => {
+    author = author.toMap();
     const authorPosts = posts.filter(p => {
-      const postAuthor = isArray(p.authors)
-        ? p.authors.filter(pa => pa.id === author.id)[0]
-        : p.authors;
+      const postAuthor = isArray(p.authors) ? p.authors.find(pa => pa.id === author.id) : p.authors;
       return postAuthor && postAuthor.id === author.id;
     });
 
@@ -71,9 +75,10 @@ const makeAuthorRoutes = (authors, posts) => {
 
 const makeCategoryRoutes = (categories, posts) => {
   const routes = categories.map(category => {
+    category = category.toMap();
     const categoryPosts = posts.filter(p => {
       const postCategory = isArray(p.categories)
-        ? p.categories.filter(pc => pc.id === category.id)[0]
+        ? p.categories.find(pc => pc.id === category.id)
         : p.categories;
       return postCategory && postCategory.id === category.id;
     });
@@ -143,8 +148,8 @@ const makePostRoutes = (posts, furtherReadingUnit) => {
       getData: () => ({
         themePrimaryColor: post.themePrimaryColor || POST_PRIMARY_COLOR,
         currentPage: 'post',
-        furtherReadingUnit,
-        post
+        furtherReadingUnit: furtherReadingUnit.toMap(),
+        post: post.toMap()
       })
     });
 
@@ -159,17 +164,17 @@ const makePostRoutes = (posts, furtherReadingUnit) => {
   return final;
 };
 
-const organizeContentByType = (content, models) => {
-  const organized = {};
-  models.forEach(model => {
-    organized[model.apiKey] = [];
-  });
-  content.forEach(item => {
-    const modelName = item.meta.contentType.name;
-    organized[modelName].push(item);
-  });
-  return organized;
-};
+// const organizeContentByType = (content, models) => {
+//   const organized = {};
+//   models.forEach(model => {
+//     organized[model.apiKey] = [];
+//   });
+//   content.forEach(item => {
+//     const modelName = item.meta.contentType.name;
+//     organized[modelName].push(item);
+//   });
+//   return organized;
+// };
 
 export default {
   // Webpack config from file
@@ -190,16 +195,16 @@ export default {
     description: 'A progressive, secular voice.'
   }),
   getRoutes: async () => {
-    const { models, content } = await fetchData();
+    await content.load();
     const {
-      post,
-      author,
-      category,
-      home_page: homePage,
-      privacy_policy: privacyPolicy,
-      submissions_page: submissionsPage,
-      further_reading_unit: furtherReadingUnit
-    } = organizeContentByType(content, models);
+      posts,
+      authors,
+      categories,
+      homePage,
+      privacyPolicy,
+      submissionsPage,
+      furtherReadingUnits
+    } = content.itemsRepo.collectionsByType;
 
     return [
       {
@@ -207,7 +212,7 @@ export default {
         component: 'src/App/pages/Home',
         getData: () => ({
           currentPage: 'home',
-          ...homePage[0]
+          ...homePage.toMap()
         })
       },
       {
@@ -221,16 +226,16 @@ export default {
       {
         path: '/about/privacy-policy',
         component: 'src/App/pages/PrivacyPolicy',
-        getData: () => privacyPolicy[0]
+        getData: () => privacyPolicy.toMap()
       },
       {
         path: '/submit',
         component: 'src/App/pages/Submissions',
-        getData: () => submissionsPage[0]
+        getData: () => submissionsPage.toMap()
       },
-      ...makeAuthorRoutes(author, post),
-      ...makeCategoryRoutes(category, post),
-      ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
+      ...makeAuthorRoutes(authors, posts),
+      ...makeCategoryRoutes(categories, posts),
+      ...makePostRoutes(posts, furtherReadingUnits.find(u => u.setAsDefault)),
       {
         is404: true,
         component: 'src/App/pages/404'

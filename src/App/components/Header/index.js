@@ -2,7 +2,7 @@
 /* eslint jsx-a11y/click-events-have-key-events: 0 */
 import React from 'react';
 import { Link, withRouteData, scrollTo } from 'react-static';
-import classNames from 'classnames';
+import classNames from '@sindresorhus/class-names';
 //
 import './style.css';
 import { SITE_PRIMARY_COLOR } from '../../util/constants';

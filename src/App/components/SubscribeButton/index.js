@@ -20,11 +20,22 @@ const PLAN_DETAILS = {
 };
 
 class SubscribeButton extends React.Component {
-  onToken = token => {
+  onToken = (token, addresses) => {
     const { plan } = this.props;
     const idempotency_key = uuid();
+    const shipping = {
+      address: {
+        line1: addresses.shipping_address_line1,
+        city: addresses.shipping_address_city,
+        state: addresses.shipping_address_state,
+        postal_code: addresses.shipping_address_zip,
+        country: addresses.shipping_address_country
+      },
+      name: addresses.shipping_name
+    };
+
     axios // eslint-disable-next-line no-undef
-      .post(`${LAMBDA_ENDPOINT}/subscribe`, { ...token, plan, idempotency_key })
+      .post(`${LAMBDA_ENDPOINT}/subscribe`, { ...token, plan, idempotency_key, shipping })
       .then(response => {
         if (response.status !== 200) {
           console.error('Subscription failed with error:', response.data);

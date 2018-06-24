@@ -43,7 +43,8 @@ exports.handler = (event, context, callback) => {
   stripe.customers
     .create({
       email: data.email,
-      source: data.id
+      source: data.id,
+      shipping: data.shipping
     })
     .then(customer => {
       if (data.plan === 'Lifetime') {

@@ -90,16 +90,18 @@
   }
 
   & nav {
-    background-color: inherit;
-    border-bottom: 0;
-    max-height: 0;
-    width: 100%;
-    z-index: 1;
     position: absolute;
     top: 60px;
     left: 0;
+    height: 100%;
     overflow: hidden;
+    border-bottom: 0;
+    background-color: inherit;
+    z-index: 1;
+    width: 100%;
+    max-height: 0;
     transition: max-height .15s ease-in;
+    will-change: max-height;
 
     @media(--header-desktop) {
       background-color: var(--white);
@@ -108,11 +110,11 @@
       position: relative;
       top: 0;
       text-align: center;
+      will-change: auto;
     }
 
     &.menu-active {
-      max-height: 99999px;
-      min-height: 100%;
+      max-height: 100vh;
     }
 
     & > a,

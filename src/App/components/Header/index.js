@@ -27,6 +27,22 @@ export default withRouteData(
       };
     }
 
+    componentDidMount = () => {
+      // Always close menu on navigation
+      this.setState({
+        unlisten: this.props.history.listen(() => {
+          if (this.state.menuActive) this.setState({ menuActive: false });
+        })
+      });
+    }
+
+    // NOTE: Only once componentDidMount has been called does React guarantee
+    // that componentWillUnmount will later be called for clean up
+    componentWillUnmount = () => {
+      // Remove History Event Listener
+      this.state.unlisten();
+    }
+
     handleSubscribeClick = event => {
       if (typeof document !== 'undefined') {
         event.preventDefault();

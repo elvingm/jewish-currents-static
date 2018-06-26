@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Router } from 'react-static';
 import { hot } from 'react-hot-loader';
-//
+
 import Routes from 'react-static-routes';
 import ReactGA from 'react-ga';
 import Header from './components/Header';
@@ -26,13 +26,13 @@ class App extends React.Component {
   render() {
     return (
       <Router onUpdate={fireTracking} scrollToHashDuration={500}>
-        <div>
+        <Fragment>
           <Header />
           <div className="content">
             <Routes />
           </div>
           <Footer />
-        </div>
+        </Fragment>
       </Router>
     );
   }

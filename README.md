@@ -1,4 +1,4 @@
-# # Jewish Currents - Static Website
+# Jewish Currents - Static Website
 Jewish Currents is built using [React Static](https://github.com/nozzle/react-static) and [Netlify Lambda](https://www.netlify.com/docs/functions/). React Static is a progressive static site generator for React and Netlify Lambda allows us to create function endpoints to run back-end tasks from the client-side. Please reference their docs and the relevant config files: `static.config.js`, `webpack.config.js`, `postcss.config.js`  and of course, `package.json` for information about the scripts being run to build the website. The website is deployed with Netlify
 
 ## Setup

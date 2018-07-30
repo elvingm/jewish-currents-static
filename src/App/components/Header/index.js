@@ -125,7 +125,7 @@ export default withRouteData(
             >
               Jewdayo
             </a>
-            <a href="http://archive.jewishcurrents.org" target="_blank" rel="noopener noreferrer">
+            <a href="https://archive.jewishcurrents.org" target="_blank" rel="noopener noreferrer">
               Archives
             </a>
             <button onClick={this.handlePushcartOpen}>Pushcart</button>

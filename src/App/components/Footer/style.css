@@ -7,13 +7,17 @@
     padding: 0 var(--l-block-spacing);
   }
 
-  & ul {
+  & .footer-wrapper {
     border-top: 3px solid var(--black);
+  }
+
+  & ul {
     display: flex;
     flex-direction: column;
     list-style: none;
     margin: 0;
     padding: 34px 0;
+    float: left;
 
     @media(--footer-desktop) {
       align-items: center;
@@ -40,10 +44,19 @@
   & a {
     color: var(--black);
     font-weight: normal;
-    
+
     &:hover,
     &:focus {
       text-decoration: underline;
     }
+  }
+
+  & p.la-review-of-books {
+    background-image: url('../../../../public/img/la-review-of-books.png');
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    padding: 25px 0 25px 40px;
+    font-size: 18px;
+    float: right;
   }
 }

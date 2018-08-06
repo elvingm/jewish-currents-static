@@ -1,14 +1,21 @@
 @custom-media --footer-desktop (min-width: 835px);
 
 #site-footer {
-  padding: 0 var(--s-block-spacing);
+  padding: 0px var(--s-block-spacing) 10px var(--s-block-spacing);
 
   @media(--g-large-viewport) {
-    padding: 0 var(--l-block-spacing);
+    padding: 0px var(--l-block-spacing) 10px var(--l-block-spacing);
   }
 
-  & .footer-wrapper {
+  & .g-thick-border {
     border-top: 3px solid var(--black);
+  }
+
+  & .footer-content-wrap {
+    @media(--footer-desktop) {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   & ul {
@@ -17,7 +24,6 @@
     list-style: none;
     margin: 0;
     padding: 34px 0;
-    float: left;
 
     @media(--footer-desktop) {
       align-items: center;
@@ -51,12 +57,14 @@
     }
   }
 
-  & p.la-review-of-books {
-    background-image: url('../../../../public/img/la-review-of-books.png');
-    background-repeat: no-repeat;
-    background-position: 0 50%;
-    padding: 25px 0 25px 40px;
+  & img.la-review-of-books-logo {
+    padding: 20px 10px 0px 0px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  & p {
     font-size: 18px;
-    float: right;
+    margin: 0;
   }
 }

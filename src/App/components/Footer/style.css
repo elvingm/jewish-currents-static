@@ -1,17 +1,15 @@
 @custom-media --footer-desktop (min-width: 835px);
 
 #site-footer {
-  padding: 0px var(--s-block-spacing) 10px var(--s-block-spacing);
+  padding: 0px var(--s-block-spacing) 10px;
 
   @media(--g-large-viewport) {
-    padding: 0px var(--l-block-spacing) 10px var(--l-block-spacing);
+    padding: 0px var(--l-block-spacing) 10px;
   }
 
   & .g-thick-border {
     border-top: 3px solid var(--black);
-  }
 
-  & .footer-content-wrap {
     @media(--footer-desktop) {
       display: flex;
       justify-content: space-between;

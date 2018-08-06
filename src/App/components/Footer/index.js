@@ -9,15 +9,18 @@ export default withRouteData(({ footerColor }) => {
   footerColor = footerColor || { red: 255, green: 255, blue: 255 };
   return (
     <footer id="site-footer" style={{ backgroundColor: toRGBString(footerColor) }}>
-      <ul>
-        <li>Jewish Currents</li>
-        <li>
-          <Link to="/about">Contact Us</Link>
-        </li>
-        <li>
-          <Link to="/about/privacy-policy">Privacy Policy</Link>
-        </li>
-      </ul>
+      <div className="footer-wrapper">
+        <ul>
+          <li>Jewish Currents</li>
+          <li>
+            <Link to="/about">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/about/privacy-policy">Privacy Policy</Link>
+          </li>
+        </ul>
+        <p className="la-review-of-books">A Los Angeles Review of Books Affiliate</p>
+      </div>
     </footer>
   );
 });

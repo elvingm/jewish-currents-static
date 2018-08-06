@@ -10,7 +10,7 @@ export default withRouteData(({ footerColor }) => {
   footerColor = footerColor || { red: 255, green: 255, blue: 255 };
   return (
     <footer id="site-footer" style={{ backgroundColor: toRGBString(footerColor) }}>
-      <div className="g-thick-border footer-content-wrap">
+      <div className="g-thick-border">
         <ul>
           <li>Jewish Currents</li>
           <li>

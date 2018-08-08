@@ -22,7 +22,6 @@ export default withRouteData(
       super(props);
       this.state = {
         menuActive: false,
-        showPushcartNotice: false,
         showSearchPopup: false
       };
     }
@@ -34,14 +33,14 @@ export default withRouteData(
           if (this.state.menuActive) this.setState({ menuActive: false });
         })
       });
-    }
+    };
 
     // NOTE: Only once componentDidMount has been called does React guarantee
     // that componentWillUnmount will later be called for clean up
     componentWillUnmount = () => {
       // Remove History Event Listener
       this.state.unlisten();
-    }
+    };
 
     handleSubscribeClick = event => {
       if (typeof document !== 'undefined') {
@@ -55,14 +54,6 @@ export default withRouteData(
 
     handleMenuClick = () => {
       this.setState({ menuActive: !this.state.menuActive });
-    };
-
-    handlePushcartOpen = () => {
-      this.setState({ showPushcartNotice: true });
-    };
-
-    handlePushcartClose = () => {
-      this.setState({ showPushcartNotice: false });
     };
 
     handleSearchOpen = () => {
@@ -128,7 +119,13 @@ export default withRouteData(
             <a href="http://archive.jewishcurrents.org" target="_blank" rel="noopener noreferrer">
               Archives
             </a>
-            <button onClick={this.handlePushcartOpen}>Pushcart</button>
+            <a
+              href="https://jewishcurrents.bigcartel.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pushcart
+            </a>
             <Link to="/about" activeClassName="active">
               About Us
             </Link>
@@ -154,9 +151,6 @@ export default withRouteData(
             </div>
             <SearchForm onResultClick={this.handleMenuClick} placeholderText="Search" />
           </nav>
-          <NoticePopup onCloseClick={this.handlePushcartClose} show={this.state.showPushcartNotice}>
-            <h2>Stay tuned for our online store for unique gifts, books, and more.</h2>
-          </NoticePopup>
           <SearchPopup
             show={this.state.showSearchPopup}
             accentColor={backgroundColor}

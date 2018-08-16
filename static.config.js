@@ -190,16 +190,15 @@ export default {
     description: 'A progressive, secular voice.'
   }),
   getRoutes: async () => {
-    const { models, content } = await fetchData();
-    const {
-      post,
-      author,
-      category,
-      home_page: homePage,
-      privacy_policy: privacyPolicy,
-      submissions_page: submissionsPage,
-      further_reading_unit: furtherReadingUnit
-    } = organizeContentByType(content, models);
+    const content = await fetchData();
+
+    const post = content.posts;
+    const author = content.authors;
+    const category = content.categories;
+    const homePage = content.homePage;
+    const privacyPolicy = content.privacyPolicy;
+    const submissionsPage = content.submissionsPage;
+    const furtherReadingUnit = content.furtherReadingUnits;
 
     return [
       {

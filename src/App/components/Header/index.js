@@ -12,9 +12,9 @@ import MenuIcon from '../../assets/img/icons/menu.svg';
 import CloseIcon from '../../assets/img/icons/close.svg';
 import SearchIcon from '../../assets/img/icons/search-icon.svg';
 import SocialLink from '../SocialLink';
-import NoticePopup from '../NoticePopup';
 import SearchPopup from '../Search/Popup';
 import SearchForm from '../Search/Form';
+import DonatePopup from '../DonatePopup';
 
 export default withRouteData(
   class Header extends React.Component {
@@ -22,7 +22,8 @@ export default withRouteData(
       super(props);
       this.state = {
         menuActive: false,
-        showSearchPopup: false
+        showSearchPopup: false,
+        showDonatePopup: false
       };
     }
 
@@ -62,6 +63,14 @@ export default withRouteData(
 
     handleSearchClose = () => {
       this.setState({ showSearchPopup: false });
+    };
+
+    handleDonateOpen = () => {
+      this.setState({ showDonatePopup: true });
+    };
+
+    handleDonateClose = () => {
+      this.setState({ showDonatePopup: false });
     };
 
     render() {
@@ -132,6 +141,7 @@ export default withRouteData(
             <Link to="/submit" activeClassName="active">
               Submissions
             </Link>
+            <a onClick={this.handleDonateOpen}>Donate</a>
             <div className="social-icons">
               <SocialLink
                 url="https://www.facebook.com/jewishcurrents/"
@@ -157,6 +167,7 @@ export default withRouteData(
             onCloseClick={this.handleSearchClose}
             placeholderText="Search Jewish Currents"
           />
+          <DonatePopup hidden={!this.state.showDonatePopup} onCloseClick={this.handleDonateClose} />
         </header>
       );
     }

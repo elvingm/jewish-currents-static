@@ -1,0 +1,119 @@
+.donate-popup {
+  z-index: 99;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 55%;
+  min-height: 360px;
+  padding: 0 var(--s-block-spacing);
+
+  @media(--g-large-viewport) {
+    height: 100%;
+    max-width: 900px;
+    max-height: 600px;
+    padding: 0 var(--l-block-spacing);
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  & .g-content-wrap {
+    background-color: var(--soft-amber);
+    border: var(--black-border);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  & .content {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  & .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  & .g-button {
+    margin-top: 20px;
+
+    @media(--g-large-viewport) {
+      margin-top: 40px;
+    }
+  }
+
+  & h2 {
+    line-height: 1.61;
+
+    @media(--g-medium-viewport) {
+      font-size: 40px;
+      letter-spacing: -2.25px;
+      line-height: 1.125;
+    }
+  }
+
+  & p {
+    font-size: 18px;
+    letter-spacing: -1.01px;
+    line-height: 1.667;
+
+    @media(--g-large-viewport) {
+      font-size: 31px;
+      letter-spacing: -1.74px;
+      line-height: 1.45;
+      margin: 15px 0;
+    }
+  }
+
+  & fieldset {
+    width: 100%;
+    border: 0;
+    margin: 0 auto 8px 0;
+    padding: 0;
+
+    & ul {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    & li {
+      display: table-cell;
+      padding: 4px;
+      vertical-align: top;
+    }
+
+    & input[type="radio"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      clip: rect(0 0 0 0);
+    }
+
+    & label.checked {
+      color: var(--white);
+      background-color: black;
+    }
+  }
+
+  & .g-button {
+    text-decoration: none;
+  }
+}

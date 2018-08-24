@@ -29,7 +29,8 @@ class DonateButton extends React.Component {
 
   render() {
     const { frequency, amount } = this.props;
-    const description = `${frequency} $${amount} Donation`;
+    const formattedFrequency = frequency === 'one_time' ? 'One Time' : 'Monthly';
+    const description = `${formattedFrequency} $${amount} Donation`;
     const amountCents = amount * 100;
 
     return (
@@ -46,7 +47,7 @@ class DonateButton extends React.Component {
         stripeKey={STRIPE_PUBLISHABLE_KEY} // eslint-disable-line no-undef
         token={this.onToken} // submit callback
       >
-        <button className="g-underline-link">${amount}</button>
+        <button>Donate</button>
       </StripeCheckout>
     );
   }

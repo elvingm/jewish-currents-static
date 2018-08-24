@@ -10,8 +10,8 @@ export default class DonatePopup extends React.Component {
     super(props);
 
     this.state = {
-      oneTimeFrequencyChecked: false,
-      monthlyFrequencyChecked: true
+      frequency: 'monthly',
+      amount: 18
     };
   }
 
@@ -19,17 +19,15 @@ export default class DonatePopup extends React.Component {
     this.props.onCloseClick();
   };
 
-  handleOneTimeFrequencyClick = () => {
-    if (this.state.monthlyFrequencyChecked) this.setState({ monthlyFrequencyChecked: false });
-    this.setState({ oneTimeFrequencyChecked: true });
+  handleFrequencyClick = event => {
+    this.setState({ frequency: event.target.value });
   };
 
-  handleMonthlyFrequencyClick = () => {
-    if (this.state.oneTimeFrequencyChecked) this.setState({ oneTimeFrequencyChecked: false });
-    this.setState({ monthlyFrequencyChecked: true });
+  handleAmountClick = event => {
+    this.setState({ amount: Number(event.target.value) });
   };
 
-  frequency = () => (this.state.monthlyFrequencyChecked ? 'Monthly' : 'One Time');
+  amountOptions = () => [5, 18, 36, 72];
 
   render() {
     return (
@@ -47,16 +45,16 @@ export default class DonatePopup extends React.Component {
                   <label
                     className={classNames({
                       'g-button': true,
-                      checked: this.state.oneTimeFrequencyChecked
+                      checked: this.state.frequency === 'one_time'
                     })}
-                    htmlFor="frequency_onetime"
+                    htmlFor="frequency_one_time"
                   >
                     <input
                       type="radio"
                       name="frequency"
-                      id="frequency_onetime"
-                      value="onetime"
-                      onClick={this.handleOneTimeFrequencyClick}
+                      id="frequency_one_time"
+                      value="one_time"
+                      onClick={this.handleFrequencyClick}
                     />
                     Just Once
                   </label>
@@ -65,7 +63,7 @@ export default class DonatePopup extends React.Component {
                   <label
                     className={classNames({
                       'g-button': true,
-                      checked: this.state.monthlyFrequencyChecked
+                      checked: this.state.frequency === 'monthly'
                     })}
                     htmlFor="frequency_monthly"
                   >
@@ -74,7 +72,7 @@ export default class DonatePopup extends React.Component {
                       name="frequency"
                       id="frequency_monthly"
                       value="monthly"
-                      onClick={this.handleMonthlyFrequencyClick}
+                      onClick={this.handleFrequencyClick}
                     />
                     Give Monthly
                   </label>
@@ -84,28 +82,31 @@ export default class DonatePopup extends React.Component {
 
             <fieldset className="amount-options">
               <ul>
-                <li>
-                  <a className="g-button">
-                    <DonateButton frequency={this.frequency()} amount={5} />
-                  </a>
-                </li>
-                <li>
-                  <a className="g-button">
-                    <DonateButton frequency={this.frequency()} amount={18} />
-                  </a>
-                </li>
-                <li>
-                  <a className="g-button">
-                    <DonateButton frequency={this.frequency()} amount={36} />
-                  </a>
-                </li>
-                <li>
-                  <a className="g-button">
-                    <DonateButton frequency={this.frequency()} amount={72} />
-                  </a>
-                </li>
+                {this.amountOptions().map(amount => (
+                  <li key={amount}>
+                    <label
+                      className={classNames({
+                        'g-button': true,
+                        checked: this.state.amount === amount
+                      })}
+                      htmlFor={`amount_${amount}`}
+                    >
+                      <input
+                        type="radio"
+                        id={`amount_${amount}`}
+                        value={amount}
+                        onClick={this.handleAmountClick}
+                      />
+                      ${amount}
+                    </label>
+                  </li>
+                ))}
               </ul>
             </fieldset>
+
+            <a className="g-button">
+              <DonateButton frequency={this.state.frequency} amount={this.state.amount} />
+            </a>
           </div>
         </div>
       </div>

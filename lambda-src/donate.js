@@ -47,7 +47,7 @@ exports.handler = (event, context, callback) => {
       shipping: data.shipping
     })
     .then(customer => {
-      if (data.frequency === 'One Time') {
+      if (data.frequency === 'one_time') {
         const amountCents = data.amount * 100;
 
         return stripe.charges.create(

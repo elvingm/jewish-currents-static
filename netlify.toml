@@ -5,6 +5,3 @@
 
 [context.staging]
   command = "npm run stage"
-
-[context.donato/donations]
-  command = "npm run stage"

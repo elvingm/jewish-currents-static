@@ -124,13 +124,20 @@
     & .g-underline-link {
       font-size: 18px;
       letter-spacing: -1.01px;
+      text-align: left;
     }
 
     & .issue-details {
-      flex: 0 1 50%;
+      flex: 0 1 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: 0 var(--s-block-spacing);
+
+      @media(--g-medium-viewport) {
+        flex-basis: 50%;
+        padding: 0;
+      }
 
       @media(--g-large-viewport) {
         flex-basis: 30%;
@@ -149,7 +156,7 @@
         object-position: right;
         max-width: none;
         position: relative;
-        left: -10%;
+        left: -15%;
         transform: scale(1.3);
 
         @media(--g-large-viewport) {
@@ -165,7 +172,7 @@
     & h2 {
       font-size: 20px;
       letter-spacing: -1.12px;
-      line-height: 1.7;
+      line-height: 1.3;
       margin-bottom: 10px;
 
       @media(--g-large-viewport) {

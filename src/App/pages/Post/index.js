@@ -27,7 +27,7 @@ const PostPage = ({ post, themePrimaryColor, furtherReadingUnit }) => {
   const shareUrl = `${SITE_BASE_URL}/${category.slug}/${post.slug}`; // eslint-disable-line no-undef
   const meta = {
     title: (post.seoMeta && post.seoMeta.title) || post.title,
-    description: (post.seoMeta && post.seoMeta.description) || excerpt
+    description: (post.seoMeta && post.seoMeta.description) || striptags(excerpt)
   };
   const themeCss = `
     .g-accent {

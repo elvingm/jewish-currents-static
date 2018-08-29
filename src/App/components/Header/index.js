@@ -111,6 +111,7 @@ export default withRouteData(
             </div>
           </div>
           <nav className={classNames({ 'menu-active': this.state.menuActive })}>
+            <button onClick={this.handleDonateOpen}>Donate</button>
             {this.props.currentPage === 'home' ? (
               <a href="#shop-now-ad" onClick={this.handleSubscribeClick}>
                 Subscribe
@@ -141,7 +142,6 @@ export default withRouteData(
             <Link to="/submit" activeClassName="active">
               Submissions
             </Link>
-            <a onClick={this.handleDonateOpen}>Donate</a>
             <div className="social-icons">
               <SocialLink
                 url="https://www.facebook.com/jewishcurrents/"

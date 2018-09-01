@@ -11,7 +11,8 @@ export default class DonatePopup extends React.Component {
 
     this.state = {
       frequency: 'monthly',
-      amount: 18
+      amount: 18,
+      customAmount: false
     };
   }
 
@@ -24,7 +25,18 @@ export default class DonatePopup extends React.Component {
   };
 
   handleAmountClick = event => {
-    this.setState({ amount: Number(event.target.value) });
+    this.setState({ amount: Number(event.target.value), customAmount: false });
+  };
+
+  handleCustomAmountClick = () => {
+    this.setState({ customAmount: true });
+  };
+
+  handleCustomAmountChange = event => {
+    const untrucatedCustomAmount = Number.parseFloat(event.target.value);
+    const truncatedCustomAmount = untrucatedCustomAmount.toFixed(2);
+
+    this.setState({ amount: Number(truncatedCustomAmount) });
   };
 
   amountOptions = () => [5, 18, 36, 72];
@@ -39,7 +51,7 @@ export default class DonatePopup extends React.Component {
           <div className="content">
             <h2>Support Us</h2>
 
-            <ul className="frequency-options">
+            <ul>
               <li>
                 <label
                   className={classNames({
@@ -78,13 +90,13 @@ export default class DonatePopup extends React.Component {
               </li>
             </ul>
 
-            <ul className="amount-options">
+            <ul>
               {this.amountOptions().map(amount => (
                 <li key={amount}>
                   <label
                     className={classNames({
                       'g-button': true,
-                      checked: this.state.amount === amount
+                      checked: !this.state.customAmount && this.state.amount === amount
                     })}
                     htmlFor={`amount_${amount}`}
                   >
@@ -98,6 +110,29 @@ export default class DonatePopup extends React.Component {
                   </label>
                 </li>
               ))}
+            </ul>
+
+            <ul>
+              <li className="custom-amount">
+                <label
+                  className={classNames({
+                    'g-button': true,
+                    checked: this.state.customAmount
+                  })}
+                  htmlFor="custom_amount"
+                >
+                  <span className="input-descriptor">Other</span>
+                  <span className="input-symbol-dollar">
+                    <input
+                      type="number"
+                      id="custom_amount"
+                      min="0"
+                      onClick={this.handleCustomAmountClick}
+                      onChange={this.handleCustomAmountChange}
+                    />
+                  </span>
+                </label>
+              </li>
             </ul>
 
             <DonateButton frequency={this.state.frequency} amount={this.state.amount} />

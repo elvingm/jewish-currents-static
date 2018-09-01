@@ -2,12 +2,76 @@ require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-const PLAN_KEYS = {
-  MONTHLY_DONATION_5: process.env.MONTHLY_DONATION_5_PLAN_KEY,
-  MONTHLY_DONATION_18: process.env.MONTHLY_DONATION_18_PLAN_KEY,
-  MONTHLY_DONATION_36: process.env.MONTHLY_DONATION_36_PLAN_KEY,
-  MONTHLY_DONATION_72: process.env.MONTHLY_DONATION_72_PLAN_KEY
+const STRIPE_DONATION_PRODUCT = process.env.STRIPE_DONATION_PRODUCT;
+
+const findPlan = planAmount => {
+  const paginateStripeAPI = (getMore, options = {}, previousList = []) => {
+    const latestItem = previousList[previousList.length - 1];
+    const starting_after = latestItem ? latestItem.id : undefined;
+
+    return getMore({ limit: 100, starting_after, ...options }).then(newList => {
+      const fullList = [...previousList, ...newList.data];
+
+      return !newList.has_more
+        ? Promise.resolve(fullList)
+        : paginateStripeAPI(getMore, options, fullList);
+    });
+  };
+
+  return paginateStripeAPI(options => {
+    options.product = STRIPE_DONATION_PRODUCT;
+    return stripe.plans.list(options);
+  })
+    .then(plans => plans.find(plan => plan.amount / 100 === planAmount))
+    .catch(err => {
+      throw Error(err);
+    });
 };
+
+const createPlan = planAmount =>
+  stripe.plans.create({
+    amount: planAmount * 100,
+    currency: 'USD',
+    interval: 'month',
+    product: STRIPE_DONATION_PRODUCT,
+    nickname: `Monthly $${planAmount}`
+  });
+
+const findOrCreatePlan = planAmount =>
+  findPlan(planAmount)
+    .then(plan => plan || createPlan(planAmount))
+    .catch(err => {
+      throw Error(err);
+    });
+
+const createOneTimeDonation = (customer, amount, idempotencyKey) => {
+  const amountCents = amount * 100;
+
+  return stripe.charges.create(
+    {
+      amount: amountCents,
+      currency: 'USD',
+      customer: customer.id,
+      statement_descriptor: 'Jewish Currents'
+    },
+    { idempotency_key: idempotencyKey }
+  );
+};
+
+const createRecurringDonation = (customer, amount, idempotencyKey) =>
+  findOrCreatePlan(amount)
+    .then(plan =>
+      stripe.subscriptions.create(
+        {
+          customer: customer.id,
+          items: [{ plan: plan.id }]
+        },
+        { idempotency_key: idempotencyKey }
+      )
+    )
+    .catch(err => {
+      throw Error(err);
+    });
 
 const statusCode = 200;
 const headers = {
@@ -46,30 +110,12 @@ exports.handler = (event, context, callback) => {
       source: data.id,
       shipping: data.shipping
     })
-    .then(customer => {
-      if (data.frequency === 'one_time') {
-        const amountCents = data.amount * 100;
-
-        return stripe.charges.create(
-          {
-            amount: amountCents,
-            currency: 'USD',
-            customer: customer.id,
-            statement_descriptor: 'Jewish Currents'
-          },
-          { idempotency_key: data.idempotency_key }
-        );
-      }
-
-      const stripePlanId = PLAN_KEYS[`MONTHLY_DONATION_${data.amount}`];
-      return stripe.subscriptions.create(
-        {
-          customer: customer.id,
-          items: [{ plan: stripePlanId }]
-        },
-        { idempotency_key: data.idempotency_key }
-      );
-    })
+    .then(
+      customer =>
+        data.frequency === 'one_time'
+          ? createOneTimeDonation(customer, data.amount, data.idempotency_key)
+          : createRecurringDonation(customer, data.amount, data.idempotency_key)
+    )
     .then(purchase => {
       const { status } = purchase;
       callback(null, {

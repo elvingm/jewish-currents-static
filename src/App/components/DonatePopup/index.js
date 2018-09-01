@@ -100,9 +100,7 @@ export default class DonatePopup extends React.Component {
               ))}
             </ul>
 
-            <a className="g-button">
-              <DonateButton frequency={this.state.frequency} amount={this.state.amount} />
-            </a>
+            <DonateButton frequency={this.state.frequency} amount={this.state.amount} />
           </div>
         </div>
       </div>

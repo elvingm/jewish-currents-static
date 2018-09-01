@@ -135,7 +135,9 @@ export default class DonatePopup extends React.Component {
               </li>
             </ul>
 
-            <DonateButton frequency={this.state.frequency} amount={this.state.amount} />
+            <span onClick={this.handleCloseClick}>
+              <DonateButton frequency={this.state.frequency} amount={this.state.amount} />
+            </span>
           </div>
         </div>
       </div>

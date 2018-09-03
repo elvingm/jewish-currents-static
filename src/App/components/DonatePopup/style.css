@@ -1,19 +1,16 @@
 .donate-popup {
   z-index: 99;
   position: fixed;
-  top: 10%;
+  top: 12.5%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  height: 55%;
-  min-height: 360px;
-  padding: 0 var(--s-block-spacing);
 
   @media(--g-large-viewport) {
+    top: 13%;
     height: 100%;
     max-width: 700px;
     max-height: 500px;
-    padding: 0 var(--l-block-spacing);
   }
 
   &.hidden {
@@ -34,7 +31,11 @@
   & .content {
     text-align: center;
     margin: 0 auto;
-    max-width: 600px;
+
+    @media(--g-large-viewport) {
+      max-width: 350px;
+      max-height: 400px;
+    }
   }
 
   & .close-icon {
@@ -54,11 +55,14 @@
 
   & h2 {
     line-height: 1.61;
+    margin-top: 20px;
+    margin-bottom: 0;
 
     @media(--g-medium-viewport) {
       font-size: 40px;
       letter-spacing: -2.25px;
       line-height: 1.125;
+      margin: 0;
     }
   }
 
@@ -81,18 +85,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 0;
     padding: 0;
+
+    &.amount-options {
+      flex-wrap: wrap;
+    }
   }
 
   & li {
-    margin-left: 5px;
-
-    @media(--g-large-viewport) {
-      margin-left: 25px;
-    }
-
     &:first-child {
       margin: 0;
     }
@@ -105,10 +107,60 @@
 
   & label.checked {
     color: var(--white);
-    background-color: black;
+    background-color: var(--black);
   }
 
   & .g-button {
     text-decoration: none;
+  }
+
+  & .custom-amount {
+    & label.checked {
+      & input {
+        color: var(--white);
+      }
+
+      & input:focus {
+        outline: none;
+      }
+
+      & input[type=number] {
+        background-color: var(--black);
+        border-bottom: 1px solid var(--white);
+      }
+    }
+
+    & input[type=number] {
+      border: 0;
+      background-color: var(--soft-amber);
+      font-size: 18px;
+      width: 75px;
+      border-bottom: 1px solid var(--black);
+    }
+
+    & input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    & span.input-descriptor {
+      padding-right: 5px;
+    }
+
+    & span.input-symbol-dollar input {
+      padding-left: 10px;
+    }
+
+    & span.input-symbol-dollar:before {
+      content: '$';
+      font-size: 18px;
+    }
+  }
+
+  & button.g-button {
+    margin: 20px;
+
+    @media(--g-large-viewport) {
+      margin: 20px 0 0 0;
+    }
   }
 }

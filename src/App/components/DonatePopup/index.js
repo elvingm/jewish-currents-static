@@ -5,13 +5,16 @@ import './style.css';
 import CloseIcon from '../../assets/img/icons/close.svg';
 import DonateButton from '../DonateButton';
 
+const DONATION_AMOUNTS = [5, 18, 36, 72];
+
 export default class DonatePopup extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       frequency: 'monthly',
-      amount: 18
+      amount: 18,
+      customAmount: false
     };
   }
 
@@ -24,10 +27,17 @@ export default class DonatePopup extends React.Component {
   };
 
   handleAmountClick = event => {
-    this.setState({ amount: Number(event.target.value) });
+    this.setState({ amount: Number(event.target.value), customAmount: false });
   };
 
-  amountOptions = () => [5, 18, 36, 72];
+  handleCustomAmountClick = () => {
+    this.setState({ customAmount: true });
+  };
+
+  handleCustomAmountChange = event => {
+    const amount = Number(parseFloat(event.target.value).toFixed(2)) || 0;
+    this.setState({ amount });
+  };
 
   render() {
     return (
@@ -79,12 +89,12 @@ export default class DonatePopup extends React.Component {
             </ul>
 
             <ul className="amount-options">
-              {this.amountOptions().map(amount => (
+              {DONATION_AMOUNTS.map(amount => (
                 <li key={amount}>
                   <label
                     className={classNames({
                       'g-button': true,
-                      checked: this.state.amount === amount
+                      checked: !this.state.customAmount && this.state.amount === amount
                     })}
                     htmlFor={`amount_${amount}`}
                   >
@@ -98,9 +108,34 @@ export default class DonatePopup extends React.Component {
                   </label>
                 </li>
               ))}
+
+              <li className="custom-amount">
+                <label
+                  className={classNames({
+                    'g-button': true,
+                    checked: this.state.customAmount
+                  })}
+                  htmlFor="custom_amount"
+                >
+                  <span className="input-descriptor">Other</span>
+                  <span className="input-symbol-dollar">
+                    <input
+                      type="number"
+                      id="custom_amount"
+                      min="0"
+                      onClick={this.handleCustomAmountClick}
+                      onChange={this.handleCustomAmountChange}
+                    />
+                  </span>
+                </label>
+              </li>
             </ul>
 
-            <DonateButton frequency={this.state.frequency} amount={this.state.amount} />
+            <DonateButton
+              frequency={this.state.frequency}
+              amount={this.state.amount}
+              onComplete={this.handleCloseClick}
+            />
           </div>
         </div>
       </div>

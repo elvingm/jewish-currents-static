@@ -54,7 +54,7 @@ export default withRouteData(
     // TODO: refactor to use React Portals for modals and DRY this up
 
     handleMenuClick = () => {
-      this.setState({ menuActive: !this.state.menuActive });
+      this.setState({ menuActive: !this.state.menuActive, showDonatePopup: false });
     };
 
     handleSearchOpen = () => {
@@ -66,7 +66,7 @@ export default withRouteData(
     };
 
     handleDonateOpen = () => {
-      this.setState({ showDonatePopup: true });
+      this.setState({ menuActive: false, showDonatePopup: true });
     };
 
     handleDonateClose = () => {

@@ -51,7 +51,7 @@ export default class DonatePopup extends React.Component {
           <div className="content">
             <h2>Support Us</h2>
 
-            <ul>
+            <ul className="frequency-options">
               <li>
                 <label
                   className={classNames({
@@ -90,7 +90,7 @@ export default class DonatePopup extends React.Component {
               </li>
             </ul>
 
-            <ul>
+            <ul className="amount-options">
               {this.amountOptions().map(amount => (
                 <li key={amount}>
                   <label
@@ -110,9 +110,7 @@ export default class DonatePopup extends React.Component {
                   </label>
                 </li>
               ))}
-            </ul>
 
-            <ul>
               <li className="custom-amount">
                 <label
                   className={classNames({

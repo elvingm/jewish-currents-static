@@ -5,6 +5,8 @@ import './style.css';
 import CloseIcon from '../../assets/img/icons/close.svg';
 import DonateButton from '../DonateButton';
 
+const DONATION_AMOUNTS = [5, 18, 36, 72];
+
 export default class DonatePopup extends React.Component {
   constructor(props) {
     super(props);
@@ -33,13 +35,9 @@ export default class DonatePopup extends React.Component {
   };
 
   handleCustomAmountChange = event => {
-    const untrucatedCustomAmount = Number.parseFloat(event.target.value);
-    const truncatedCustomAmount = untrucatedCustomAmount.toFixed(2);
-
-    this.setState({ amount: Number(truncatedCustomAmount) });
+    const amount = Number(parseFloat(event.target.value).toFixed(2)) || 0;
+    this.setState({ amount });
   };
-
-  amountOptions = () => [5, 18, 36, 72];
 
   render() {
     return (
@@ -91,7 +89,7 @@ export default class DonatePopup extends React.Component {
             </ul>
 
             <ul className="amount-options">
-              {this.amountOptions().map(amount => (
+              {DONATION_AMOUNTS.map(amount => (
                 <li key={amount}>
                   <label
                     className={classNames({
@@ -133,9 +131,11 @@ export default class DonatePopup extends React.Component {
               </li>
             </ul>
 
-            <span onClick={this.handleCloseClick}>
-              <DonateButton frequency={this.state.frequency} amount={this.state.amount} />
-            </span>
+            <DonateButton
+              frequency={this.state.frequency}
+              amount={this.state.amount}
+              onComplete={this.handleCloseClick}
+            />
           </div>
         </div>
       </div>

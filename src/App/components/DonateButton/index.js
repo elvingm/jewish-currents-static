@@ -25,13 +25,7 @@ class DonateButton extends React.Component {
     };
 
     axios // eslint-disable-next-line no-undef
-      .post('http://localhost:3000/.netlify/lambda/donate', {
-        ...token,
-        frequency,
-        amount,
-        idempotency_key,
-        shipping
-      })
+      .post(`${LAMBDA_ENDPOINT}/donate`, { ...token, frequency, amount, idempotency_key, shipping })
       .then(() => {
         this.onComplete();
       })
@@ -57,7 +51,7 @@ class DonateButton extends React.Component {
         billingAddress
         shippingAddress
         amount={amountCents}
-        stripeKey="pk_test_pEnT3io8zbnumLXLXutNT58N" // eslint-disable-line no-undef
+        stripeKey={STRIPE_PUBLISHABLE_KEY} // eslint-disable-line no-undef
         token={this.onToken} // submit callback
       >
         <button className="g-button">Donate</button>

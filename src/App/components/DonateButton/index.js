@@ -5,12 +5,8 @@ import uuid from 'uuid/v4';
 import StripeCheckout from 'react-stripe-checkout';
 
 class DonateButton extends React.Component {
-  onComplete = () => {
-    this.props.onComplete();
-  };
-
   onToken = (token, addresses) => {
-    const { frequency, amount } = this.props;
+    const { frequency, amount, onComplete } = this.props;
     const idempotency_key = uuid();
 
     const shipping = {
@@ -26,9 +22,7 @@ class DonateButton extends React.Component {
 
     axios // eslint-disable-next-line no-undef
       .post(`${LAMBDA_ENDPOINT}/donate`, { ...token, frequency, amount, idempotency_key, shipping })
-      .then(() => {
-        this.onComplete();
-      })
+      .then(onComplete)
       .catch(err => {
         throw Error(err);
       });

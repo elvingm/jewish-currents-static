@@ -69,7 +69,7 @@ export const makeAuthorRoutes = (authors, posts) => {
   return final;
 };
 
-const makeCategoryRoutes = (categories, posts) => {
+export const makeCategoryRoutes = (categories, posts) => {
   const routes = categories.map(category => {
     const categoryPosts = posts.filter(p => {
       const postCategory = isArray(p.categories)

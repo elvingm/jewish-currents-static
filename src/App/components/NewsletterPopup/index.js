@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import classNames from 'classnames';
+import classNames from '@sindresorhus/class-names';
 import Cookies from 'js-cookie';
 //-
 import './style.css';

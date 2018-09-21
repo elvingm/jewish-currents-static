@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-static';
 import { isArray } from 'lodash';
-import classNames from 'classnames';
+import classNames from '@sindresorhus/class-names';
 import striptags from 'striptags';
 //
 import './style.css';

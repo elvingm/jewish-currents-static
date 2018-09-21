@@ -28,9 +28,9 @@
     ]
   },
   "dependencies": {
+    "@sindresorhus/class-names": "^0.1.0",
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
-    "classnames": "^2.2.5",
     "datocms-client": "^0.4.6",
     "datocms-search": "^0.1.7",
     "fs-extra": "^5.0.0",

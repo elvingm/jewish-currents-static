@@ -26,8 +26,8 @@ export default class DatoClient {
     return { models, content, fields };
   }
 
-  _getModels(params = { version: 'published' }, options = { allPages: true }) {
-    return this.client.itemTypes.all(params, options);
+  _getModels(params = { version: 'published' }) {
+    return this.client.itemTypes.all(params, {});
   }
 
   _getContent(params = { version: 'published' }, options = { allPages: true }) {

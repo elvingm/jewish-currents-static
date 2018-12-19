@@ -12,7 +12,7 @@ export default class DatoNormalizer {
     // TODO check if this.options.transformers contains a custom transformer
     content = content.map(item => {
       // default transform
-      const model = models.find(m => m.id === item.itemType);
+      const model = models.find(m => m.id === item.item_type);
       if (!model) console.warn('Unable to find model for', item.id);
 
       const required = Object.keys(item).filter(key =>

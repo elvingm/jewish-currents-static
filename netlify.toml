@@ -5,3 +5,6 @@
 
 [context.staging]
   command = "npm run stage"
+
+[context.donato_datocms_client_library_update]
+  command = "npm run stage"

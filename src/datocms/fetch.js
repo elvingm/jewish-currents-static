@@ -18,7 +18,8 @@ function handleJSONSyntaxError(error) {
 
 export default async () => {
   // check cache
-  let data = await cache.read().catch(handleJSONSyntaxError);
+  // let data = await cache.read().catch(handleJSONSyntaxError);
+  let data;
 
   // fetch and transform data if none in cache
   if (!data) {

@@ -1,5 +1,5 @@
 import File from 'datocms-client/lib/local/fields/File';
-import { isArray, includes } from 'lodash';
+import { includes, isArray, isUndefined } from 'lodash';
 
 export default class DatoNormalizer {
   constructor(options = { transformers: [] }) {
@@ -9,13 +9,14 @@ export default class DatoNormalizer {
   transform(content) {
     File.prototype.toMap = function toMap() {
       return {
-        format: undefined,
-        size: undefined,
-        width: undefined,
-        height: undefined,
-        title: undefined,
-        alt: undefined,
-        url: undefined
+        format: isUndefined(this) ? undefined : this.format,
+        size: isUndefined(this) ? undefined : this.size,
+        width: isUndefined(this) ? undefined : this.width,
+        height: isUndefined(this) ? undefined : this.height,
+        title: isUndefined(this) ? undefined : this.title,
+        alt: isUndefined(this) ? undefined : this.alt,
+        url: isUndefined(this) ? undefined : this.url(),
+        path: isUndefined(this) ? undefined : this.path
       };
     };
 
@@ -47,9 +48,7 @@ export default class DatoNormalizer {
             };
 
             normalizedContent[model].push(normalizedRecord);
-          } catch (error) {
-            console.error(error);
-          }
+          } catch (error) {} /* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
         });
       }
     });

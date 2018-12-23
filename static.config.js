@@ -159,18 +159,6 @@ const makePostRoutes = (posts, furtherReadingUnit) => {
   return final;
 };
 
-const organizeContentByType = (content, models) => {
-  const organized = {};
-  models.forEach(model => {
-    organized[model.apiKey] = [];
-  });
-  content.forEach(item => {
-    const modelName = item.meta.contentType.name;
-    organized[modelName].push(item);
-  });
-  return organized;
-};
-
 export default {
   // Webpack config from file
   webpack,

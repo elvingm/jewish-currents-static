@@ -42,7 +42,7 @@ const HomePage = ({
       </Head>
       <div className="g-content-wrap">
         <section className="featured-post">
-          <Post {...mainFeaturedPost} useThumbnail />
+          <Post {...mainFeaturedPost[0]} useThumbnail />
         </section>
         {postRowChunks[0] && (
           <section className="post-row split-33">

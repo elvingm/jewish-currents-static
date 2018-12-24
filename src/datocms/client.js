@@ -9,7 +9,6 @@ export default class DatoClient {
 
   async data() {
     await this.loader.load();
-    const content = this.loader.itemsRepo.collectionsByType;
-    return content;
+    return this.loader.itemsRepo.collectionsByType;
   }
 }

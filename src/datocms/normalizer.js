@@ -34,6 +34,7 @@ export default class DatoNormalizer {
           try {
             const normalizedRecord = record.toMap();
 
+            // Lazily record all required fields per model.
             if (requiredFieldsPerModel[model] === undefined) {
               requiredFieldsPerModel[model] = record.fields
                 .filter(f => !!f.validators.required)

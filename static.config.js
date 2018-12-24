@@ -178,15 +178,15 @@ export default {
     description: 'A progressive, secular voice.'
   }),
   getRoutes: async () => {
-    const content = await fetchData();
-
-    const post = content.posts;
-    const author = content.authors;
-    const category = content.categories;
-    const homePage = content.homePage;
-    const privacyPolicy = content.privacyPolicy;
-    const submissionsPage = content.submissionsPage;
-    const furtherReadingUnit = content.furtherReadingUnits;
+    const {
+      posts,
+      authors,
+      categories,
+      homePage,
+      privacyPolicy,
+      submissionsPage,
+      furtherReadingUnits
+    } = await fetchData();
 
     return [
       {
@@ -215,9 +215,9 @@ export default {
         component: 'src/App/pages/Submissions',
         getData: () => submissionsPage[0]
       },
-      ...makeAuthorRoutes(author, post),
-      ...makeCategoryRoutes(category, post),
-      ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
+      ...makeAuthorRoutes(authors, posts),
+      ...makeCategoryRoutes(categories, posts),
+      ...makePostRoutes(posts, furtherReadingUnits.find(u => u.setAsDefault)),
       {
         is404: true,
         component: 'src/App/pages/404'

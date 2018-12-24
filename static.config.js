@@ -1,12 +1,7 @@
 import React from 'react';
 import webpack from './webpack.config.js';
 import fetchData from './src/datocms/fetch';
-import {
-  makeAuthorRoutes,
-  makePostRoutes,
-  makeCategoryRoutes,
-  organizeContentByType
-} from './routes-util';
+import { makeAuthorRoutes, makePostRoutes, makeCategoryRoutes } from './routes-util';
 
 export default {
   // Webpack config from file
@@ -27,16 +22,15 @@ export default {
     description: 'A progressive, secular voice.'
   }),
   getRoutes: async () => {
-    const { models, content } = await fetchData();
     const {
-      post,
-      author,
-      category,
-      home_page: homePage,
-      privacy_policy: privacyPolicy,
-      submissions_page: submissionsPage,
-      further_reading_unit: furtherReadingUnit
-    } = organizeContentByType(content, models);
+      posts,
+      authors,
+      categories,
+      homePage,
+      privacyPolicy,
+      submissionsPage,
+      furtherReadingUnits
+    } = await fetchData();
 
     return [
       {
@@ -65,9 +59,9 @@ export default {
         component: 'src/App/pages/Submissions',
         getData: () => submissionsPage[0]
       },
-      ...makeAuthorRoutes(author, post),
-      ...makeCategoryRoutes(category, post),
-      ...makePostRoutes(post, furtherReadingUnit.find(u => u.setAsDefault)),
+      ...makeAuthorRoutes(authors, posts),
+      ...makeCategoryRoutes(categories, posts),
+      ...makePostRoutes(posts, furtherReadingUnits.find(u => u.setAsDefault)),
       {
         is404: true,
         component: 'src/App/pages/404'

@@ -48,7 +48,9 @@ class DonateButton extends React.Component {
         stripeKey={STRIPE_PUBLISHABLE_KEY} // eslint-disable-line no-undef
         token={this.onToken} // submit callback
       >
-        <button className="g-button">Donate</button>
+        <div role="button" tabIndex="0" className="g-button">
+          Donate
+        </div>
       </StripeCheckout>
     );
   }

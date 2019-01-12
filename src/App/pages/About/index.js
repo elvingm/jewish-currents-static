@@ -37,7 +37,6 @@ const AboutPage = () => (
           <h3>Contributing Writers</h3>
           <p>
             Mitchell Abidor <br />
-            Rabbi Reba Carmel <br />
             Esther Cohen <br />
             Dick Flacks <br />
             Alessio Franko <br />
@@ -109,13 +108,9 @@ const AboutPage = () => (
           <h3>Post</h3>
           <p>
             Jewish Currents <br />
-            POB 111, Accord NY <br />
-            12404
+            POB 130049 <br />
+            Brooklyn, NY 11213
           </p>
-        </div>
-        <div className="column">
-          <h3>Phone</h3>
-          <p>(845) 626-2427</p>
         </div>
       </div>
     </section>

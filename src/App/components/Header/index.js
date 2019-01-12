@@ -111,7 +111,9 @@ export default withRouteData(
             </div>
           </div>
           <nav className={classNames({ 'menu-active': this.state.menuActive })}>
-            <button onClick={this.handleDonateOpen}>Donate</button>
+            <div role="button" tabIndex="0" onClick={this.handleDonateOpen}>
+              Donate
+            </div>
             {this.props.currentPage === 'home' ? (
               <a href="#shop-now-ad" onClick={this.handleSubscribeClick}>
                 Subscribe

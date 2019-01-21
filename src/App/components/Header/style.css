@@ -1,13 +1,13 @@
 @custom-media --header-desktop (min-width: 768px);
 
-#site-header {  
+#site-header {
   & .logo-wrap {
     border-bottom: var(--black-border);
     display: flex;
     padding: var(--s-block-spacing);
     position: relative;
-    
-    @media(--header-desktop) {
+
+    @media (--header-desktop) {
       padding-left: var(--l-block-spacing);
       padding-right: var(--l-block-spacing);
     }
@@ -16,7 +16,7 @@
   & .logo {
     display: inline-block;
 
-    @media(--header-desktop) {
+    @media (--header-desktop) {
       position: relative;
       left: 50%;
       transform: translateX(-50%);
@@ -25,7 +25,7 @@
     & img {
       max-width: 180px;
 
-      @media(--header-desktop) {
+      @media (--header-desktop) {
         max-width: none;
       }
     }
@@ -39,7 +39,7 @@
   & .social-icons {
     display: none;
 
-    @media(--header-desktop) {
+    @media (--header-desktop) {
       align-self: flex-end;
       display: block;
     }
@@ -58,7 +58,7 @@
     display: block;
     align-self: center;
 
-    @media(--header-desktop) {
+    @media (--header-desktop) {
       display: none;
     }
 
@@ -100,12 +100,13 @@
     z-index: 1;
     width: 100%;
     max-height: 0;
-    transition: max-height .15s ease-in;
+    transition: max-height 0.15s ease-in;
     will-change: max-height;
 
-    @media(--header-desktop) {
+    @media (--header-desktop) {
       background-color: var(--white);
       border-bottom: var(--black-border);
+      height: auto;
       max-height: none;
       position: relative;
       top: 0;
@@ -118,8 +119,9 @@
     }
 
     & > a,
-    & > button {
+    & > div[role='button'] {
       color: var(--black);
+      cursor: pointer;
       display: block;
       font-size: 28px;
       font-weight: normal;
@@ -128,21 +130,19 @@
       margin: 0 var(--s-block-spacing);
       padding: 0;
 
-      @media(--header-desktop) {
+      @media (--header-desktop) {
         display: inline-block;
         font-size: 18px;
         letter-spacing: -1.01px;
         padding: 1rem;
         margin: 0;
       }
-      
+
       &:first-child {
         border-top: var(--black-border);
-        padding-top: 7px;
 
-        @media(--header-desktop) {
+        @media (--header-desktop) {
           border-top: 0;
-          padding-top: 0;
         }
       }
 
@@ -156,12 +156,6 @@
       }
     }
 
-    & > button {
-      background-color: transparent;
-      border: 0;
-      cursor: pointer;
-    }
-
     & .social-icons {
       border-top: var(--black-border);
       border-bottom: var(--black-border);
@@ -171,7 +165,7 @@
       margin: 40px var(--s-block-spacing) 0;
       padding: var(--s-block-spacing) 0;
 
-      @media(--header-desktop) {
+      @media (--header-desktop) {
         display: none;
       }
 
@@ -188,20 +182,19 @@
         height: 27px;
       }
     }
-    
+
     & .search-form {
       margin: 40px var(--s-block-spacing) 0;
 
-      @media(--header-desktop) {
+      @media (--header-desktop) {
         display: none;
       }
 
-      & input[type="text"] {
+      & input[type='text'] {
         font-size: 28px;
         letter-spacing: -1.57px;
         line-height: 1.61;
       }
     }
   }
-
 }

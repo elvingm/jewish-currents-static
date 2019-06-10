@@ -7,7 +7,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "react-static build && netlify-lambda build lambda-src",
+    "build": "react-static build",
     "clean": "rm -rf ./dist",
     "copy": "cp src/lambda-src/subscribe.js src/lambda/subscribe.js",
     "format": "prettier --write '**/*.js'",
@@ -81,7 +81,7 @@
     "postcss-selector-not": "^3.0.1",
     "prettier": "^1.11.1",
     "rucksack-css": "^1.0.2",
-    "serve": "^6.1.0"
+    "serve": "^7.1.3"
   },
   "proxy": {
     "/.netlify/functions": {

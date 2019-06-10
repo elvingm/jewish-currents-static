@@ -6,7 +6,7 @@ import { makeAuthorRoutes, makePostRoutes, makeCategoryRoutes } from './routes-u
 export default {
   // Webpack config from file
   webpack,
-  siteRoot: 'https://jewishcurrents.org',
+  siteRoot: 'https://jewishcurrents-production.netlify.com',
   stagingSiteRoot: 'https://jewishcurrents-staging.netlify.com',
   devServer: {
     proxy: {
@@ -87,7 +87,7 @@ export default {
         <meta item="description" content={siteData.description} data-react-helmet="true" />
         <meta
           item="image"
-          content="https://jewishcurrents.org/img/share-image-salmon.png"
+          content="https://jewishcurrents-production.netlify.com/img/share-image-salmon.png"
           data-react-helmet="true"
         />
 
@@ -97,7 +97,7 @@ export default {
         <meta name="twitter:description" content={siteData.description} data-react-helmet="true" />
         <meta
           name="twitter:image:src"
-          content="https://jewishcurrents.org/img/share-image-green.png"
+          content="https://jewishcurrents-production.netlify.com/img/share-image-green.png"
           data-react-helmet="true"
         />
 
@@ -106,10 +106,14 @@ export default {
         <meta property="og:description" content={siteData.description} data-react-helmet="true" />
         <meta
           property="og:image"
-          content="https://jewishcurrents.org/img/share-image-green.png"
+          content="https://jewishcurrents-production.netlify.com/img/share-image-green.png"
           data-react-helmet="true"
         />
-        <meta property="og:url" content="https://jewishcurrents.org" data-react-helmet="true" />
+        <meta
+          property="og:url"
+          content="https://jewishcurrents-production.netlify.com"
+          data-react-helmet="true"
+        />
         <meta property="og:site_name" content="Jewish Currents" data-react-helmet="true" />
         <meta property="og:type" content="website" data-react-helmet="true" />
         <title data-react-helmet="true">{siteData.title}</title>

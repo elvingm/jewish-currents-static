@@ -46,7 +46,8 @@ export default (config, { defaultLoaders, stage }) => {
       SITE_SEARCH_TOKEN: JSON.stringify(process.env.SITE_SEARCH_TOKEN),
       STRIPE_API_KEY: JSON.stringify(process.env.STRIPE_API_KEY),
       STRIPE_PUBLISHABLE_KEY: JSON.stringify(process.env.STRIPE_PUBLISHABLE_KEY)
-    })
+    }),
+    new ExtractTextPlugin('index.css')
   );
 
   config.module.rules = [

@@ -81,7 +81,7 @@
     "postcss-selector-not": "^3.0.1",
     "prettier": "^1.11.1",
     "rucksack-css": "^1.0.2",
-    "serve": "^6.1.0"
+    "serve": "^7.1.3"
   },
   "proxy": {
     "/.netlify/functions": {

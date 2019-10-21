@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "datocms-client": "^0.8.11",

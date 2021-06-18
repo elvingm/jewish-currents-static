@@ -48,7 +48,7 @@
     "react-static": "^5.5.14",
     "react-stripe-checkout": "^2.6.3",
     "stripe": "^5.8.0",
-    "striptags": "^2.2.1",
+    "striptags": "^3.2.0",
     "uuid": "^3.2.1",
     "wpapi": "^1.1.2"
   },
